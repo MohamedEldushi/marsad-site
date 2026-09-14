@@ -1,0 +1,22 @@
+{
+  "slug": "salt-and-signal",
+  "status": "beta",
+  "primaryAction": { "type": "download", "url": "#" },
+  "title": { "ar": "ملح وإشارة", "en": "Salt & Signal" },
+  "tagline": {
+    "ar": "أبحر واقتفِ أثر إشارة مفقودة عبر بحر مهجور",
+    "en": "Sail out and trace a lost signal across an empty sea"
+  },
+  "description": {
+    "ar": "لعبة استكشاف بحري نائمة، ما زالت في طور التجربة، يتتبع فيها اللاعب إشارات غامضة.",
+    "en": "A placeholder nautical exploration game, still in beta, tracking mysterious signals."
+  },
+  "genres": ["Exploration", "Adventure"],
+  "platforms": ["pc", "ios", "android"],
+  "releaseDate": "",
+  "keyArt": "salt-and-signal/key-art",
+  "thumbnail": "salt-and-signal/thumbnail",
+  "screenshots": [],
+  "trailerUrl": "",
+  "featured": false
+}

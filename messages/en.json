@@ -6,5 +6,58 @@
   "Boot": {
     "heading": "Marsad",
     "tagline": "We build worlds worth discovering"
+  },
+  "Styleguide": {
+    "title": "Style Tile",
+    "intro": "The section 4 tokens from CLAUDE.md, built and checked here before any other page.",
+    "colour": {
+      "heading": "Colour",
+      "avoid": "Below 4.5:1 — avoid this pairing"
+    },
+    "colourTokens": {
+      "ink": "Page base",
+      "inkRaised": "Raised surfaces, cards, nav on scroll",
+      "lapis": "Links, focus rings, active states",
+      "lapisDeep": "Filled surfaces only",
+      "brass": "The one loud accent — primary CTA",
+      "parchment": "Body and heading text",
+      "muted": "Secondary text, borders, disabled states",
+      "error": "Form feedback only",
+      "success": "Form feedback only"
+    },
+    "type": {
+      "heading": "Type scale",
+      "sub": "Arabic and Latin, compared at the same size.",
+      "sampleLatin": "Aa Gg 0123",
+      "sampleArabic": "أب جد 0123"
+    },
+    "wordmark": {
+      "heading": "Wordmark",
+      "sub": "The single boldest element on the site. Everything else stays quieter than it."
+    },
+    "buttons": {
+      "heading": "Buttons",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "disabled": "Disabled"
+    },
+    "cards": {
+      "heading": "Game card",
+      "sub": "One card, three statuses."
+    },
+    "hero": {
+      "heading": "Hero",
+      "cta": "Explore games"
+    }
+  },
+  "PrimaryAction": {
+    "store": "View on store",
+    "download": "Download",
+    "play": "Play now",
+    "none": ""
+  },
+  "GameStatus": {
+    "beta": "Beta",
+    "comingSoon": "Coming soon"
   }
 }

@@ -1,0 +1,22 @@
+{
+  "slug": "echo-atlas",
+  "status": "coming-soon",
+  "primaryAction": { "type": "none", "url": "" },
+  "title": { "ar": "أطلس الصدى", "en": "Echo Atlas" },
+  "tagline": {
+    "ar": "ارسم خريطة عالم يتغيّر كلما رويت قصته",
+    "en": "Map a world that changes each time its story is told"
+  },
+  "description": {
+    "ar": "لعبة نائمة قيد التطوير، لم يُعلن عن تفاصيلها بعد.",
+    "en": "A placeholder game still in development, details not yet announced."
+  },
+  "genres": ["Adventure"],
+  "platforms": ["pc"],
+  "releaseDate": "",
+  "keyArt": "echo-atlas/key-art",
+  "thumbnail": "echo-atlas/thumbnail",
+  "screenshots": [],
+  "trailerUrl": "",
+  "featured": false
+}

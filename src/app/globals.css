@@ -64,3 +64,35 @@ body {
   background: var(--color-ink);
   color: var(--color-parchment);
 }
+
+/*
+ * Explicit script pins, independent of the ambient [dir]. The automatic
+ * --font-display/--font-body swap above is for real content, which is
+ * always one script per page. These four exist only for places that show
+ * both scripts together regardless of route locale — e.g. the styleguide's
+ * side-by-side type scale.
+ */
+.font-display-ar {
+  font-family: var(--font-noto-kufi-arabic), sans-serif;
+}
+.font-display-en {
+  font-family: var(--font-archivo), sans-serif;
+}
+.font-body-ar {
+  font-family: var(--font-ibm-plex-sans-arabic), sans-serif;
+}
+.font-body-en {
+  font-family: var(--font-ibm-plex-sans), sans-serif;
+}
+
+/* The one orchestrated reveal CLAUDE.md allows — hero only, on load. */
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
