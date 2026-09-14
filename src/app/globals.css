@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
+/*
+ * Colour, the type scale, and the font/line-height swap are defined here
+ * because they are the tokens from CLAUDE.md section 4, not because this
+ * file is a place for one-off styling. Keep it that way.
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colour — six base tokens plus the split lapis and the two form-state
+     tokens. See CLAUDE.md section 4 before adding anything outside this set. */
+  --ink: #0a1228;
+  --ink-raised: #131e3a;
+  --lapis: #4a7be8;
+  --lapis-deep: #2449c4;
+  --brass: #c9953f;
+  --parchment: #ede6d8;
+  --muted: #8a94ae;
+  --error: #e5484d;
+  --success: #46a758;
+
+  /* Latin is the default script; [dir="rtl"] below swaps these to Arabic. */
+  --display-font: var(--font-archivo), sans-serif;
+  --body-font: var(--font-ibm-plex-sans), sans-serif;
+  --display-leading: 1.05;
+  --body-leading: 1.5;
+}
+
+[dir="rtl"] {
+  --display-font: var(--font-noto-kufi-arabic), sans-serif;
+  --body-font: var(--font-ibm-plex-sans-arabic), sans-serif;
+  --display-leading: 1.2;
+  --body-leading: 1.7;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-lapis: var(--lapis);
+  --color-lapis-deep: var(--lapis-deep);
+  --color-brass: var(--brass);
+  --color-parchment: var(--parchment);
+  --color-muted: var(--muted);
+  --color-error: var(--error);
+  --color-success: var(--success);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: var(--display-font);
+  --font-body: var(--body-font);
+  --leading-display: var(--display-leading);
+  --leading-body: var(--body-leading);
+
+  /* Type scale, 1.25 ratio: 0.8 / 1 / 1.25 / 1.563 / 1.953 / 2.441 / 3.052 / 3.815rem */
+  --text-step-1: 0.8rem;
+  --text-step-2: 1rem;
+  --text-step-3: 1.25rem;
+  --text-step-4: 1.563rem;
+  --text-step-5: 1.953rem;
+  --text-step-6: 2.441rem;
+  --text-step-7: 3.052rem;
+  --text-step-8: 3.815rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-parchment);
 }
