@@ -72,9 +72,9 @@ const COLOUR_TOKENS: ColourToken[] = [
   {
     key: "error",
     cssVar: "--error",
-    hex: "#E5484D",
+    hex: "#EA6469",
     roleKey: "error",
-    pairings: [{ fg: "error", bg: "ink", ratio: 4.75 }],
+    pairings: [{ fg: "error", bg: "ink", ratio: 5.77 }],
   },
   {
     key: "success",

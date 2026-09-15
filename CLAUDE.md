@@ -87,7 +87,7 @@ Eight tokens. Nothing outside this set without asking.
 | `--brass` | `#C9953F` | The one loud accent. Rare. Primary CTA and nothing else by default. |
 | `--parchment` | `#EDE6D8` | Body and heading text. Never pure white. |
 | `--muted` | `#8A94AE` | Secondary text, borders, disabled states. |
-| `--error` | `#E5484D` | Form feedback only. Not decoration. |
+| `--error` | `#EA6469` | Form feedback only. Not decoration. |
 | `--success` | `#46A758` | Form feedback only. Not decoration. |
 
 Brass is the single place boldness is spent. If it appears more than twice on a screen, it has stopped working. `--error`/`--success` exist only for form validation states — never used to color a badge, label, or other UI decoration.

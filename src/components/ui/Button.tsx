@@ -11,12 +11,21 @@ type ButtonProps<T extends ElementType> = {
 // brightness lift on hover, slight scale-down on press. The transition is
 // scoped to filter/transform only so the focus ring (box-shadow) never
 // animates — it has to appear instantly.
+//
+// border-2 border-transparent is on every variant, even the unbordered
+// primary, so switching variants never changes the button's box size —
+// secondary's border just swaps that transparent border for a visible one.
+//
+// Disabled is a hard override, not a dimmed variant: ink-raised surface,
+// muted text, no border, at full opacity. Brass or lapis tint on a
+// disabled control reads as "still interactive but faded," which is the
+// opposite of what disabled needs to communicate.
 const base =
-  "inline-flex items-center justify-center rounded font-body text-step-2 font-medium transition-[filter,transform] duration-200 ease-[var(--ease-entrance)] hover:brightness-110 motion-safe:active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:pointer-events-none disabled:opacity-40";
+  "inline-flex items-center justify-center rounded border-2 border-transparent font-body text-step-2 font-medium transition-[filter,transform] duration-200 ease-[var(--ease-entrance)] hover:brightness-110 motion-safe:active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:pointer-events-none disabled:border-transparent disabled:bg-ink-raised disabled:text-muted";
 
 const variants: Record<Variant, string> = {
   primary: "bg-brass text-ink",
-  secondary: "bg-lapis-deep text-parchment",
+  secondary: "border-lapis bg-transparent text-lapis",
 };
 
 export function Button<T extends ElementType = "button">({
