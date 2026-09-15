@@ -50,6 +50,39 @@
       "cta": "Explore games"
     }
   },
+  "Home": {
+    "hero": {
+      "cta": "Explore our games"
+    },
+    "featured": {
+      "eyebrow": "Featured game"
+    },
+    "grid": {
+      "heading": "More worlds in progress"
+    },
+    "statement": {
+      "heading": "An independent studio",
+      "body": "Marsad is an independent studio building small, focused worlds instead of sprawling ones. Every game starts from a single idea worth years of work, and stays in development until it's worth the time it asks of the people who play it."
+    }
+  },
+  "Footer": {
+    "gamesHeading": "Games",
+    "gamesAll": "All games",
+    "studioHeading": "Studio",
+    "home": "Home",
+    "about": "About",
+    "support": "Support",
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "social": {
+      "x": "X",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "copyright": "© {year} Marsad. All rights reserved."
+  },
   "PrimaryAction": {
     "store": "View on store",
     "download": "Download",

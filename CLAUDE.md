@@ -130,7 +130,7 @@ The full spec behind the one-line rule above.
 Two rules govern everything:
 
 - **One orchestrated reveal on page load, hero only.** Nothing else animates on mount or on scrolling into view.
-- **Everything else moves only in direct response to a user action** — hover, press, focus. No ambient motion outside the hero's pool drift below, no scroll-triggered reveals, no autoplay.
+- **Everything else moves only in direct response to a user action** — hover, press, focus. No ambient motion outside the hero's pool drift below, no autoplay. The one scoped exception is the Home page's scroll reveal, below.
 
 `prefers-reduced-motion: reduce` disables every animation and transition this section describes. The end state still renders — reduced motion removes the *motion*, not the result.
 
@@ -168,9 +168,17 @@ The hero's pool gradient drifts slowly — 20s or longer per cycle, subtle enoug
 - **Cards:** raise 4px and lighten the border on hover. No rotation, no shadow bloom.
 - **Focus rings:** appear instantly. Never animated — a focus ring that fades in is briefly invisible to the person who needs it most.
 
+### Scroll reveal (Home only)
+
+The single named exception to "everything else moves on user action only." Home page sections below the hero (Featured game, Games grid, Studio statement, Footer) fade up 16px once, the first time each scrolls into view, at the entrance duration and house easing. Once triggered, a section never re-animates — scrolling away and back does nothing.
+
+This is scoped to Home's own sections. It is not a general pattern to reach for on other pages without the same explicit decision.
+
 ---
 
 ## 5. Art assets
+
+**`ART.md` (project root) is the source of truth for every generated asset** — style block, palette bridge, mirroring rules, per-asset specs, workflow, and rejection criteria. Read it before generating or accepting any art.
 
 Art is AI-generated and does not exist yet. **Build every image slot as a placeholder** — a flat `--ink-raised` rectangle at the correct aspect ratio with the slot name as a label. Layout must never be shaped around a specific generated image.
 

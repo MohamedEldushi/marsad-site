@@ -193,3 +193,33 @@ body {
       hero-pool-drift 24s ease-in-out 680ms infinite;
   }
 }
+
+/*
+ * Home-only scroll reveal — CLAUDE.md 4.5's documented exception to "no
+ * scroll-triggered reveals." Base state is fully visible so it degrades
+ * safely with JS disabled; only under no-preference motion does it start
+ * hidden, waiting for ScrollReveal.tsx to flip data-revealed once.
+ */
+@keyframes reveal-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  .reveal[data-revealed="true"] {
+    animation: reveal-fade-up var(--duration-entrance) var(--ease-entrance) forwards;
+  }
+}
