@@ -104,7 +104,7 @@ body {
  */
 .hero-surface {
   --hero-pool-x: 30%;
-  --hero-pool-y: 82%;
+  --hero-pool-y: 72%;
 }
 [dir="rtl"] .hero-surface {
   --hero-pool-x: 70%;
@@ -112,18 +112,20 @@ body {
 
 /* Masks the Kufic tiling against the same pool: strongest where the light
    pools, dissolved to nothing at the edges. Keeps the 6% base opacity on
-   the SVG itself as the ceiling — this only ever subtracts from it. */
+   the SVG itself as the ceiling — this only ever subtracts from it, so
+   perceptibility is tuned via how much area reaches that ceiling (the
+   plateau below), not by raising the base past what section 4 allows. */
 .hero-tiling-mask {
   -webkit-mask-image: radial-gradient(
-    ellipse 42% 38% at var(--hero-pool-x) var(--hero-pool-y),
+    ellipse 58% 50% at var(--hero-pool-x) var(--hero-pool-y),
     #fff 0%,
-    #fff 12%,
-    transparent 62%
+    #fff 20%,
+    transparent 72%
   );
   mask-image: radial-gradient(
-    ellipse 42% 38% at var(--hero-pool-x) var(--hero-pool-y),
+    ellipse 58% 50% at var(--hero-pool-x) var(--hero-pool-y),
     #fff 0%,
-    #fff 12%,
-    transparent 62%
+    #fff 20%,
+    transparent 72%
   );
 }
