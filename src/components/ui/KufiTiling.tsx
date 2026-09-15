@@ -17,11 +17,11 @@ export function KufiTiling({ id, className = "" }: { id: string; className?: str
       <defs>
         <pattern id={id} width="200" height="200" patternUnits="userSpaceOnUse">
           <g fill="currentColor">
-            <rect x="26" y="26" width="42" height="132" />
-            <rect x="26" y="26" width="116" height="34" />
-            <rect x="108" y="26" width="34" height="96" />
-            <rect x="70" y="122" width="98" height="28" />
-            <rect x="146" y="122" width="26" height="56" />
+            <rect x="22" y="22" width="54" height="146" />
+            <rect x="22" y="22" width="108" height="15" />
+            <rect x="115" y="22" width="24" height="70" />
+            <rect x="70" y="158" width="110" height="13" />
+            <rect x="158" y="92" width="38" height="79" />
           </g>
         </pattern>
       </defs>

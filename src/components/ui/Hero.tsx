@@ -18,16 +18,11 @@ export function Hero({
           side, not a wash across the whole viewport; the vertical radius
           is sized to the pool's own distance from the top edge so the
           falloff keeps grading all the way there instead of plateauing
-          into a flat dark band. */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 78% at var(--hero-pool-x) var(--hero-pool-y), #2c4a8f 0%, #16274d 26%, var(--ink) 55%, #080c1e 100%)",
-        }}
-      />
-      <div className="hero-tiling-mask absolute inset-0">
+          into a flat dark band. Step 2 of the load sequence: expands
+          slightly outward, then drifts ambiently — see globals.css. */}
+      <div aria-hidden="true" className="hero-pool-gradient absolute inset-0" />
+      {/* Step 1 of the load sequence: the tiling fades in from 0. */}
+      <div className="hero-tiling-mask absolute inset-0 motion-safe:[animation:hero-fade-in_var(--duration-entrance)_var(--ease-entrance)_both]">
         <KufiTiling id="hero-kufi-tiling" />
       </div>
       {/* Edge vignette, independent of the pool. */}
@@ -39,14 +34,18 @@ export function Hero({
             "radial-gradient(ellipse 95% 90% at 50% 50%, transparent 60%, rgba(3,6,16,0.45) 100%)",
         }}
       />
-      <div className="relative flex max-w-2xl flex-col items-start gap-4 text-start motion-safe:[animation:hero-reveal_0.7s_ease-out]">
-        <span className="font-display text-step-2 font-black leading-display text-muted">
+      <div className="relative flex max-w-2xl flex-col items-start gap-4 text-start">
+        {/* Steps 3-5: wordmark, then headline, then CTA, each fading up
+            16px, 80ms apart. */}
+        <span className="font-display text-step-2 font-black leading-display text-muted motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_160ms_both]">
           {wordmark}
         </span>
-        <h1 className="text-balance font-display text-step-7 font-black leading-display text-parchment sm:text-step-8">
+        <h1 className="text-balance font-display text-step-7 font-black leading-display text-parchment sm:text-step-8 motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_240ms_both]">
           {headline}
         </h1>
-        {children}
+        <div className="motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_320ms_both]">
+          {children}
+        </div>
       </div>
     </section>
   );

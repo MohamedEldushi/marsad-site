@@ -123,6 +123,53 @@ Kufic-inspired geometric tiling (SVG) appears in exactly two places: behind the 
 
 ---
 
+## 4.5 Motion
+
+The full spec behind the one-line rule above.
+
+Two rules govern everything:
+
+- **One orchestrated reveal on page load, hero only.** Nothing else animates on mount or on scrolling into view.
+- **Everything else moves only in direct response to a user action** — hover, press, focus. No ambient motion outside the hero's pool drift below, no scroll-triggered reveals, no autoplay.
+
+`prefers-reduced-motion: reduce` disables every animation and transition this section describes. The end state still renders — reduced motion removes the *motion*, not the result.
+
+### Easing and duration
+
+One curve, used everywhere: `cubic-bezier(0.16, 1, 0.3, 1)`. Never linear, never a bounce/spring overshoot.
+
+Three duration bands. Nothing outside them:
+
+| Band | Duration | Use |
+|---|---|---|
+| Interaction | 200ms | Hover, press, focus-visible state changes |
+| Entrance | 600ms | The hero's load-in sequence |
+| Ambient | 1200ms+ | Slow background motion — the pool drift below runs far longer than this floor |
+
+### Hero load sequence
+
+On mount, once, staggered 80ms apart:
+
+1. Tiling pattern fades in from 0 to its resting state.
+2. Pool gradient expands slightly outward.
+3. Wordmark fades up 16px.
+4. Headline fades up 16px.
+5. CTA fades up 16px.
+
+Each step runs at the entrance duration (600ms) with the house easing curve. This sequence is the one exception to "everything else moves on user action only" — it runs once, on load, in the hero and nowhere else.
+
+### Ambient
+
+The hero's pool gradient drifts slowly — 20s or longer per cycle, subtle enough to be felt rather than consciously seen. No other element gets ambient motion.
+
+### Interaction
+
+- **Buttons:** a brightness lift on hover, a slight scale-down on press. 200ms.
+- **Cards:** raise 4px and lighten the border on hover. No rotation, no shadow bloom.
+- **Focus rings:** appear instantly. Never animated — a focus ring that fades in is briefly invisible to the person who needs it most.
+
+---
+
 ## 5. Art assets
 
 Art is AI-generated and does not exist yet. **Build every image slot as a placeholder** — a flat `--ink-raised` rectangle at the correct aspect ratio with the slot name as a label. Layout must never be shaped around a specific generated image.

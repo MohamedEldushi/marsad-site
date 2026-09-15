@@ -85,8 +85,28 @@ body {
   font-family: var(--font-ibm-plex-sans), sans-serif;
 }
 
-/* The one orchestrated reveal CLAUDE.md allows — hero only, on load. */
-@keyframes hero-reveal {
+/*
+ * Motion tokens — CLAUDE.md section 4.5. One easing curve for everything,
+ * three duration bands, nothing outside them.
+ */
+:root {
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-interaction: 200ms;
+  --duration-entrance: 600ms;
+}
+
+/* The one orchestrated reveal CLAUDE.md allows — hero only, on load,
+   staggered 80ms per step across the five elements below. */
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-fade-up {
   from {
     opacity: 0;
     transform: translateY(16px);
@@ -97,6 +117,29 @@ body {
   }
 }
 
+/* Pool: expands slightly outward on load, then drifts ambiently forever.
+   Both animate `transform`, anchored at the pool position via
+   transform-origin, and hand off cleanly because the drift's resting
+   frame (scale(1), no offset) matches the expand animation's end state. */
+@keyframes hero-pool-expand {
+  from {
+    transform: scale(0.92);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-pool-drift {
+  0%,
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.015) translate(1.2%, -1.2%);
+  }
+}
+
 /*
  * Hero depth anchor. Content sits inline-start, lower third, so the light
  * pool and the tiling mask are centred there instead of the hero's visual
@@ -104,7 +147,7 @@ body {
  */
 .hero-surface {
   --hero-pool-x: 30%;
-  --hero-pool-y: 72%;
+  --hero-pool-y: 57%;
 }
 [dir="rtl"] .hero-surface {
   --hero-pool-x: 70%;
@@ -128,4 +171,25 @@ body {
     #fff 20%,
     transparent 72%
   );
+}
+
+/* The lit pool itself. transform-origin is pinned to the same anchor so
+   the load-in "expands outward" and the ambient drift both grow/shift
+   from the pool's own position, not the hero box's centre. */
+.hero-pool-gradient {
+  background: radial-gradient(
+    ellipse 50% 62% at var(--hero-pool-x) var(--hero-pool-y),
+    #2c4a8f 0%,
+    #16274d 26%,
+    var(--ink) 55%,
+    #080c1e 100%
+  );
+  transform-origin: var(--hero-pool-x) var(--hero-pool-y);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-pool-gradient {
+    animation:
+      hero-pool-expand var(--duration-entrance) var(--ease-entrance) 80ms both,
+      hero-pool-drift 24s ease-in-out 680ms infinite;
+  }
 }
