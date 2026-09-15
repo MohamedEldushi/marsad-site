@@ -11,7 +11,7 @@
      tokens. See CLAUDE.md section 4 before adding anything outside this set. */
   --ink: #0a1228;
   --ink-raised: #131e3a;
-  --lapis: #4a7be8;
+  --lapis: #5a8aeb;
   --lapis-deep: #2449c4;
   --brass: #c9953f;
   --parchment: #ede6d8;
@@ -95,4 +95,35 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/*
+ * Hero depth anchor. Content sits inline-start, lower third, so the light
+ * pool and the tiling mask are centred there instead of the hero's visual
+ * middle. RTL mirrors the x anchor because inline-start flips sides.
+ */
+.hero-surface {
+  --hero-pool-x: 30%;
+  --hero-pool-y: 82%;
+}
+[dir="rtl"] .hero-surface {
+  --hero-pool-x: 70%;
+}
+
+/* Masks the Kufic tiling against the same pool: strongest where the light
+   pools, dissolved to nothing at the edges. Keeps the 6% base opacity on
+   the SVG itself as the ceiling — this only ever subtracts from it. */
+.hero-tiling-mask {
+  -webkit-mask-image: radial-gradient(
+    ellipse 42% 38% at var(--hero-pool-x) var(--hero-pool-y),
+    #fff 0%,
+    #fff 12%,
+    transparent 62%
+  );
+  mask-image: radial-gradient(
+    ellipse 42% 38% at var(--hero-pool-x) var(--hero-pool-y),
+    #fff 0%,
+    #fff 12%,
+    transparent 62%
+  );
 }

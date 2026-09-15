@@ -31,11 +31,11 @@ const COLOUR_TOKENS: ColourToken[] = [
   {
     key: "lapis",
     cssVar: "--lapis",
-    hex: "#4A7BE8",
+    hex: "#5A8AEB",
     roleKey: "lapis",
     pairings: [
-      { fg: "lapis", bg: "ink", ratio: 4.68 },
-      { fg: "lapis", bg: "ink-raised", ratio: 4.15 },
+      { fg: "lapis", bg: "ink", ratio: 5.55 },
+      { fg: "lapis", bg: "ink-raised", ratio: 4.92 },
     ],
   },
   {
@@ -290,7 +290,7 @@ export default async function StyleguidePage({
         <h2 id="hero-heading" className="px-6 font-display text-step-5 font-semibold leading-display text-parchment sm:px-12">
           {t("hero.heading")}
         </h2>
-        <Hero headline={tBoot("tagline")}>
+        <Hero wordmark={tBoot("heading")} headline={tBoot("tagline")}>
           <Button as="a" href="#" variant="primary">
             {t("hero.cta")}
           </Button>
