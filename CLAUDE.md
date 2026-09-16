@@ -170,9 +170,9 @@ The hero's pool gradient drifts slowly — 20s or longer per cycle, subtle enoug
 
 ### Scroll reveal (Home only)
 
-The single named exception to "everything else moves on user action only." Home page sections below the hero (Featured game, Games grid, Studio statement, Footer) fade up 16px once, the first time each scrolls into view, at the entrance duration and house easing. Once triggered, a section never re-animates — scrolling away and back does nothing.
+The single named exception to "everything else moves on user action only." Home page sections below the hero (Featured game, Games grid, Studio statement) fade up 16px once, the first time each scrolls into view, at the entrance duration and house easing. Once triggered, a section never re-animates — scrolling away and back does nothing.
 
-This is scoped to Home's own sections. It is not a general pattern to reach for on other pages without the same explicit decision.
+This is scoped to Home's own sections. It is not a general pattern to reach for on other pages without the same explicit decision. The Footer moved to the shared layout in step 4 (it now renders on every page, not just Home) and lost its scroll-reveal treatment in the move — for the same reason, it isn't a site-wide pattern without a fresh decision to make it one.
 
 ---
 

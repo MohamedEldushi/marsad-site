@@ -8,6 +8,7 @@ import {
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Footer } from "@/components/ui/Footer";
 import { routing } from "@/i18n/routing";
 import { getSiteUrl } from "@/lib/site";
 import "../globals.css";
@@ -118,7 +119,10 @@ export default async function LocaleLayout({
       className={`${archivo.variable} ${notoKufiArabic.variable} ${ibmPlexSans.variable} ${ibmPlexSansArabic.variable} h-full`}
     >
       <body className="min-h-full font-body antialiased">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          {children}
+          <Footer locale={locale} />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

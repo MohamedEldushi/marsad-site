@@ -65,6 +65,25 @@
       "body": "Marsad is an independent studio building small, focused worlds instead of sprawling ones. Every game starts from a single idea worth years of work, and stays in development until it's worth the time it asks of the people who play it."
     }
   },
+  "GamesIndex": {
+    "heading": "Our games",
+    "intro": "Every world Marsad is building, whichever stage it's at — released, in beta, or still taking shape."
+  },
+  "GameDetail": {
+    "backToGames": "All games",
+    "genresLabel": "Genres",
+    "platformsLabel": "Platforms",
+    "releaseLabel": "Release date",
+    "releaseTba": "To be announced",
+    "screenshotsHeading": "Screenshots",
+    "screenshotsEmpty": "Screenshots are coming soon."
+  },
+  "Platforms": {
+    "ios": "iOS",
+    "android": "Android",
+    "web": "Web",
+    "pc": "PC"
+  },
   "Footer": {
     "gamesHeading": "Games",
     "gamesAll": "All games",
