@@ -11,7 +11,7 @@
     "ar": "لعبة استراتيجية بمحتوى نائم يحمي فيه اللاعب برجًا من موجات متصاعدة من الظلام.",
     "en": "A placeholder strategy game where the player defends a tower against rising waves of dark."
   },
-  "genres": ["Strategy", "Tower Defense"],
+  "genres": ["strategy"],
   "platforms": ["pc", "web"],
   "releaseDate": "2025-11-01",
   "keyArt": "lantern-keep/key-art",

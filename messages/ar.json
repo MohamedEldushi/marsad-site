@@ -84,6 +84,17 @@
     "web": "Web",
     "pc": "PC"
   },
+  "Genres": {
+    "puzzle": "ألغاز",
+    "adventure": "مغامرة",
+    "strategy": "استراتيجية",
+    "action": "أكشن",
+    "simulation": "محاكاة",
+    "narrative": "سردية",
+    "arcade": "أركيد",
+    "roguelike": "روغلايك",
+    "exploration": "استكشاف"
+  },
   "Footer": {
     "gamesHeading": "الألعاب",
     "gamesAll": "كل الألعاب",

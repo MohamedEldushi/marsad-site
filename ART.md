@@ -30,6 +30,8 @@ Subject: a lantern-keeper in heavy robes holding a brass lamp,
 standing guard, determined expression.
 ```
 
+Each game's `genres` field (`content/games/*.json`) is a small fixed set defined in `src/types/game.ts` — not free text. It's a reasonable input for the subject line (a `strategy` game's subject can read more tactical, an `exploration` game's more nautical or wandering), but it never touches the locked style block above.
+
 ---
 
 ## 2. Palette bridge

@@ -84,6 +84,17 @@
     "web": "Web",
     "pc": "PC"
   },
+  "Genres": {
+    "puzzle": "Puzzle",
+    "adventure": "Adventure",
+    "strategy": "Strategy",
+    "action": "Action",
+    "simulation": "Simulation",
+    "narrative": "Narrative",
+    "arcade": "Arcade",
+    "roguelike": "Roguelike",
+    "exploration": "Exploration"
+  },
   "Footer": {
     "gamesHeading": "Games",
     "gamesAll": "All games",

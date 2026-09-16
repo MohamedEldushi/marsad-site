@@ -11,7 +11,7 @@
     "ar": "لعبة استكشاف بحري نائمة، ما زالت في طور التجربة، يتتبع فيها اللاعب إشارات غامضة.",
     "en": "A placeholder nautical exploration game, still in beta, tracking mysterious signals."
   },
-  "genres": ["Exploration", "Adventure"],
+  "genres": ["exploration", "adventure"],
   "platforms": ["pc", "ios", "android"],
   "releaseDate": "",
   "keyArt": "salt-and-signal/key-art",

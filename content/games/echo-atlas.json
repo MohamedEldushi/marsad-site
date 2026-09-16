@@ -11,7 +11,7 @@
     "ar": "لعبة نائمة قيد التطوير، لم يُعلن عن تفاصيلها بعد.",
     "en": "A placeholder game still in development, details not yet announced."
   },
-  "genres": ["Adventure"],
+  "genres": ["adventure"],
   "platforms": ["pc"],
   "releaseDate": "",
   "keyArt": "echo-atlas/key-art",

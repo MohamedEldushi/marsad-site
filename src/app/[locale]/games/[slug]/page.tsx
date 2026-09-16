@@ -67,6 +67,7 @@ export default async function GameDetailPage({
   const tStatus = await getTranslations("GameStatus");
   const tPrimaryAction = await getTranslations("PrimaryAction");
   const tPlatforms = await getTranslations("Platforms");
+  const tGenres = await getTranslations("Genres");
 
   // Body line length cap, section 4: 62ch Latin, 58ch Arabic.
   const proseMaxWidth = locale === "ar" ? "max-w-[58ch]" : "max-w-[62ch]";
@@ -131,7 +132,7 @@ export default async function GameDetailPage({
           {game.genres.length > 0 && (
             <p className="font-body text-step-1 text-muted">
               <span className="font-medium">{t("genresLabel")}: </span>
-              {game.genres.join(" · ")}
+              {game.genres.map((genre) => tGenres(genre)).join(" · ")}
             </p>
           )}
 

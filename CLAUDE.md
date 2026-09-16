@@ -205,7 +205,7 @@ Every game is one JSON file in `content/games/`:
   "title": { "ar": "", "en": "" },
   "tagline": { "ar": "", "en": "" },
   "description": { "ar": "", "en": "" },
-  "genres": ["", ""],
+  "genres": ["genre-key", "genre-key"],
   "platforms": ["ios", "android", "web", "pc"],
   "releaseDate": "",
   "keyArt": "",
@@ -217,6 +217,10 @@ Every game is one JSON file in `content/games/`:
 ```
 
 `primaryAction` is deliberately abstract because distribution is not yet decided. The card and detail page must render correctly for every `type` value, including `none`.
+
+**`genres` is a closed enum, not free text.** The fixed set lives as `GENRES`/`Genre` in `src/types/game.ts`: `puzzle`, `adventure`, `strategy`, `action`, `simulation`, `narrative`, `arcade`, `roguelike`, `exploration`. Game JSON files store keys from this set, never display strings — every key needs a translation in both `messages/ar.json` and `messages/en.json` under `Genres`, and `src/types/genres.check.ts` fails the build if one is missing. Adding a genre is a two-step change: add the key to `GENRES`, then add its translation to both locale files, in that order — the build won't compile between those two steps, which is the point.
+
+Genres are deliberately not the same list a big publisher would need (no RPG, no sports, no racing) — this is the vocabulary for an indie studio's own small catalogue, not a general-purpose taxonomy. Extend it when a real game doesn't fit, not speculatively.
 
 **Seed content:** 3 placeholder games, one per status (`released`, `beta`, `coming-soon`), so every state gets exercised during build.
 
