@@ -1,41 +1,33 @@
 /**
  * The one texture device allowed by CLAUDE.md section 4: an angular,
- * Kufic-inspired geometric tile. Only ever used at 6% opacity, behind the
- * hero or as a section-divider band — never behind body text or in a card.
+ * Kufic-inspired geometric tile. Behind the hero, or as a section-divider
+ * band — never behind body text or in a card. Always the same 200-unit
+ * tile at native scale, so every use reads as the same pattern family;
+ * only opacity varies by context (6% ceiling for the hero, lower where a
+ * taller/wider area of it would otherwise read as too present).
  *
  * Built from filled right-angle bars of unequal thickness with interlocking
  * negative space of unequal width, the way square Kufic letterforms are
  * constructed — not a uniform-stroke Greek meander.
- *
- * The tile is defined once at 200 units — that's "one scale across the
- * whole site" in the sense that matters: one design, one set of
- * proportions. `scale` renders that same design uniformly smaller where
- * the container is too short to show a full 200px tile (the divider
- * band), the way a photo gets resized, not redrawn.
  */
 export function KufiTiling({
   id,
   className = "",
-  scale = 1,
+  opacity = 0.06,
 }: {
   id: string;
   className?: string;
-  scale?: number;
+  opacity?: number;
 }) {
   return (
     <svg
       aria-hidden="true"
-      className={`pointer-events-none absolute inset-0 h-full w-full text-parchment opacity-[0.06] ${className}`}
+      className={`pointer-events-none absolute inset-0 h-full w-full text-parchment ${className}`}
+      style={{ opacity }}
       preserveAspectRatio="xMidYMid slice"
     >
       <defs>
-        <pattern
-          id={id}
-          width="200"
-          height="200"
-          patternUnits="userSpaceOnUse"
-          patternTransform={scale !== 1 ? `scale(${scale})` : undefined}
-        >
+        <pattern id={id} width="200" height="200" patternUnits="userSpaceOnUse">
           <g fill="currentColor">
             <rect x="22" y="22" width="54" height="146" />
             <rect x="22" y="22" width="108" height="15" />

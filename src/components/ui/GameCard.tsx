@@ -5,21 +5,15 @@ import { Button } from "./Button";
 export async function GameCard({
   game,
   locale,
-  fill = false,
 }: {
   game: Game;
   locale: "ar" | "en";
-  /** Fill the width of a parent grid column instead of the card's own
-   * fixed intrinsic width — for a grid of cards (Home). The styleguide's
-   * flex-wrap showcase leaves this off so cards keep their compact,
-   * self-contained size there. */
-  fill?: boolean;
 }) {
   const t = await getTranslations("PrimaryAction");
   const tStatus = await getTranslations("GameStatus");
 
   return (
-    <article className={`flex flex-col gap-4 ${fill ? "w-full" : "w-64"}`}>
+    <article className="flex w-80 flex-col gap-4">
       <div className="relative aspect-[3/4] w-full bg-ink-raised">
         <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-body text-step-1 text-muted">
           {game.thumbnail}

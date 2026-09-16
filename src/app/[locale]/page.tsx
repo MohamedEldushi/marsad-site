@@ -80,9 +80,9 @@ export default async function Home({
             >
               {tHome("grid.heading")}
             </h2>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-wrap gap-8">
               {otherGames.map((game) => (
-                <GameCard key={game.slug} game={game} locale={locale} fill />
+                <GameCard key={game.slug} game={game} locale={locale} />
               ))}
             </div>
           </section>
