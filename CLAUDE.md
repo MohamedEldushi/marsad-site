@@ -302,6 +302,8 @@ The person running this project is not a developer. So:
 
 ## 11. Open decisions
 
+**`LAUNCH-CHECKLIST.md`** (project root) is the full list of everything that must be replaced or added before this site goes public, each with the file it lives in — update it the same session a new placeholder is introduced.
+
 None of these block the styleguide step.
 
 - [x] Studio name and mission — resolved, see section 1. Wordmark treatment in section 4.
