@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/Button";
 import { GameCard } from "@/components/ui/GameCard";
 import { Hero } from "@/components/ui/Hero";
 import { games } from "@/lib/games";
+
+// Design reference, not public content -- kept out of search results
+// alongside the robots.txt disallow rule.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 type Pairing = { fg: string; bg: string; ratio: number };
 type ColourToken = {

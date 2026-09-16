@@ -9,6 +9,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { getSiteUrl } from "@/lib/site";
 import "../globals.css";
 
 const archivo = Archivo({
@@ -46,15 +47,49 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });
+  const title = t("title");
+  const description = t("description");
+  const ogLocale = locale === "ar" ? "ar_AR" : "en_US";
+  const otherOgLocale = locale === "ar" ? "en_US" : "ar_AR";
+  // Static per-locale OG cards (public/og/{locale}.png), rendered once
+  // with a real browser rather than generated per-request: next/og's
+  // Satori renderer can't shape Arabic text for either Noto Kufi Arabic
+  // or IBM Plex Sans Arabic (both hit "lookupType ... not yet supported"
+  // GSUB errors at build time), while a real browser handles it correctly.
+  const ogImage = {
+    url: `/og/${locale}.png`,
+    width: 1200,
+    height: 630,
+    alt: title,
+  };
 
   return {
-    title: t("title"),
-    description: t("description"),
+    metadataBase: new URL(getSiteUrl()),
+    title,
+    description,
     alternates: {
+      canonical: `/${locale}`,
       languages: {
         ar: "/ar",
         en: "/en",
+        "x-default": "/ar",
       },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/${locale}`,
+      siteName: title,
+      type: "website",
+      locale: ogLocale,
+      alternateLocale: [otherOgLocale],
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage.url],
     },
   };
 }

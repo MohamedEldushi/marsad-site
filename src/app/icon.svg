@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Favicon: the isolated م (meem) from the wordmark مرصد, set in Noto
+    Kufi Arabic Black, the same font and weight as the site wordmark
+    (CLAUDE.md section 4). The glyph outline is baked in as a vector
+    path (extracted once via opentype.js) rather than referencing the
+    font at render time, since favicon surfaces don't reliably load
+    custom web fonts. Per section 5, the logo is SVG, never raster.
+  -->
+  <rect width="100" height="100" fill="#0A1228" />
+  <path
+    transform="translate(17.55,58.24) scale(0.8363)"
+    fill="#EDE6D8"
+    d="M6.50 32L6.50 0.40Q6.50-4 8.40-7.35Q10.30-10.70 13.65-12.65Q17-14.60 21.50-14.60L21.60-14.60Q20.20-16.90 19-20.15Q17.80-23.40 17.80-27.40Q17.80-31.50 18.95-36.40Q20.10-41.30 23.20-45.60Q28.40-48.50 33.60-50.10Q38.80-51.70 44.10-51.70Q48.10-51.70 51.50-50.95Q54.90-50.20 58-48.70Q64.20-45.70 67.65-39.95Q71.10-34.20 71.10-27.10Q71.10-23.10 70.05-19.35Q69-15.60 66.40-11.80Q63-6.60 56.20-3.30Q49.40 0 41.30 0L34.50 0Q29.30 0 27.35 1.80Q25.40 3.60 25.40 8L25.40 32L6.50 32M36.50-25.80Q36.50-22.80 37.15-19.95Q37.80-17.10 38.80-14.80L41.80-14.80Q44.40-14.80 46.75-16Q49.10-17.20 50.60-19.75Q52.10-22.30 52.10-26.10Q52.10-30.80 49.65-33.40Q47.20-36 43.80-36Q42.30-36 40.75-35.55Q39.20-35.10 37.80-34Q37.10-32 36.80-29.75Q36.50-27.50 36.50-25.80"
+  />
+</svg>
