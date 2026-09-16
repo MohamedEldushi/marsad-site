@@ -236,7 +236,7 @@ Genres are deliberately not the same list a big publisher would need (no RPG, no
 - `/` Home — hero, featured game, games grid, studio statement
 - `/games` — full catalogue
 - `/games/[slug]` — one template serving every game
-- `/about` — studio story, team
+- `/about` — studio story, incl. the Arabic-first differentiator. No team section yet.
 - `/support` — `mailto:` link only (no form, no third-party service, no backend — revisit if volume justifies it), FAQ
 - `/privacy` and `/terms` — required for app store listings. Real copy will be supplied by the studio; use placeholder text until then.
 - `404`
@@ -306,6 +306,8 @@ None of these block the styleguide step.
 
 - [x] Studio name and mission — resolved, see section 1. Wordmark treatment in section 4.
 - [ ] Distribution model (affects `primaryAction` only)
-- [ ] Domain and support email address
+- [ ] Domain
+- [x] Support email address — placeholder for now (`support@marsad.example`, in `messages/{ar,en}.json` under `Support.email`), by explicit choice rather than blocking step 5 on it. Swap it for the real address in both locale files when one exists — it's the only place it's stored.
 - [ ] Whether Home carries a news/updates section
 - [ ] Analytics tool, and whether a consent banner is needed
+- [ ] Social media accounts — the Footer's X/Instagram/YouTube links were removed in step 5 rather than left as dead `#` links, since no real accounts exist yet. Add them back to `Footer.tsx` (and their labels to `messages/{ar,en}.json`) once there's somewhere real for them to point.

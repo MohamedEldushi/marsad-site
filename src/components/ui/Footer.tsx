@@ -105,24 +105,6 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
             >
               {t("legal.terms")}
             </Link>
-            <a
-              href="#"
-              className="font-body text-step-1 text-muted underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
-            >
-              {t("social.x")}
-            </a>
-            <a
-              href="#"
-              className="font-body text-step-1 text-muted underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
-            >
-              {t("social.instagram")}
-            </a>
-            <a
-              href="#"
-              className="font-body text-step-1 text-muted underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
-            >
-              {t("social.youtube")}
-            </a>
           </div>
         </div>
       </div>

@@ -78,6 +78,128 @@
     "screenshotsHeading": "Screenshots",
     "screenshotsEmpty": "Screenshots are coming soon."
   },
+  "About": {
+    "heading": "About Marsad",
+    "intro": "How we build, and why we build it this way.",
+    "paragraphs": [
+      "Marsad builds small, focused worlds instead of sprawling ones. That's not a resource constraint dressed up as a philosophy — it's the actual bet: that a game built around one idea, followed all the way through, ends up more worth a player's time than ten ideas each explored halfway. Every project here starts from a single mechanic, mood, or question, and stays in development until that one thing is done right.",
+      "Most games made for Arabic-speaking players are translated into Arabic after the fact — built in English, then localised. Marsad works the other way around. Arabic is the language the studio designs in first: the wordmark, the interface, the pacing of a sentence in a menu. English comes second, as a genuine second language for the games, not a set of subtitles bolted onto an English original. It changes real decisions — how much space a heading needs, how a layout mirrors, which words actually fit a button — not just which font renders.",
+      "None of this makes a game good by itself. It just means every game that reaches a player has already been through a studio that treats craft, and the language it's built in, as the same decision."
+    ]
+  },
+  "Support": {
+    "heading": "Support",
+    "intro": "Have a question, found a bug, or want to talk business? Email us directly — there's no form, no ticket system, just a real inbox.",
+    "email": "support@marsad.example",
+    "faqHeading": "Common questions",
+    "faq": [
+      {
+        "question": "How do I report a bug?",
+        "answer": "Email us with your device, the game you were playing, and what happened — the more specific, the faster we can help. A screenshot or a short clip makes a big difference."
+      },
+      {
+        "question": "How do I request a refund?",
+        "answer": "Refunds are handled by whichever store you bought the game from — the App Store, Google Play, or similar — since they process the payment, not us. If you bought directly from us and it isn't resolved there, email us and we'll sort it out."
+      },
+      {
+        "question": "Press or business inquiries?",
+        "answer": "Same address. Put \"press\" or \"partnership\" in the subject line and it'll reach the right person faster."
+      }
+    ]
+  },
+  "Legal": {
+    "noticeBody": "This page is a placeholder. Marsad will provide the final legal text, and this notice will be removed once it's published.",
+    "lastUpdatedLabel": "Last updated",
+    "lastUpdatedValue": "Not yet published"
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "intro": "How Marsad collects, uses, and protects information across our games and this website.",
+    "sections": [
+      {
+        "heading": "Introduction",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Information We Collect",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "How We Use Your Information",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Sharing and Disclosure",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Cookies and Similar Technologies",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Children's Privacy",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Your Rights and Choices",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Changes to This Policy",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Contact Us",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      }
+    ]
+  },
+  "Terms": {
+    "title": "Terms of Service",
+    "intro": "The terms that govern your use of Marsad's games and this website.",
+    "sections": [
+      {
+        "heading": "Acceptance of These Terms",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Using Our Games and Services",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Accounts",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Intellectual Property",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Acceptable Use",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Purchases and Payments",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Disclaimers and Limitation of Liability",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Governing Law",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Changes to These Terms",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      },
+      {
+        "heading": "Contact Us",
+        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+      }
+    ]
+  },
   "Platforms": {
     "ios": "iOS",
     "android": "Android",
@@ -105,11 +227,6 @@
     "legal": {
       "privacy": "Privacy Policy",
       "terms": "Terms of Service"
-    },
-    "social": {
-      "x": "X",
-      "instagram": "Instagram",
-      "youtube": "YouTube"
     },
     "copyright": "© {year} Marsad. All rights reserved."
   },

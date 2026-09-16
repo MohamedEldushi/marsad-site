@@ -5,8 +5,6 @@ import { getSiteUrl } from "@/lib/site";
 
 /**
  * Only real, public pages. The styleguide is excluded (see robots.ts).
- * Add each page here as it's built (about, support, legal) rather than
- * pre-listing routes that don't exist yet.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
@@ -43,5 +41,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return [...home, ...gamesIndex, ...gameDetail];
+  const staticPages: MetadataRoute.Sitemap = (
+    [
+      ["/about", 0.6],
+      ["/support", 0.6],
+      ["/privacy", 0.3],
+      ["/terms", 0.3],
+    ] as const
+  ).flatMap(([path, priority]) =>
+    routing.locales.map((locale) => ({
+      url: `${siteUrl}/${locale}${path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority,
+      alternates: alternates(path),
+    })),
+  );
+
+  return [...home, ...gamesIndex, ...gameDetail, ...staticPages];
 }
