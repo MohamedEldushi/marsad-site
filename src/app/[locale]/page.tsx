@@ -80,7 +80,7 @@ export default async function Home({
             >
               {tHome("grid.heading")}
             </h2>
-            <div className="flex flex-wrap gap-8">
+            <div className="grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-2">
               {otherGames.map((game) => (
                 <GameCard key={game.slug} game={game} locale={locale} />
               ))}
@@ -93,7 +93,7 @@ export default async function Home({
         <ScrollReveal>
           <section
             aria-labelledby="statement-heading"
-            className="mx-auto flex max-w-[1280px] flex-col gap-4 px-6 py-24 sm:px-12 sm:py-32 lg:px-16"
+            className="mx-auto flex max-w-[1280px] flex-col items-center gap-4 px-6 py-24 text-center sm:px-12 sm:py-32 lg:px-16"
           >
             <h2
               id="statement-heading"

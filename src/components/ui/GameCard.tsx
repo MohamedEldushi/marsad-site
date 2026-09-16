@@ -40,12 +40,9 @@ export async function GameCard({
       </div>
 
       {game.status === "coming-soon" ? (
-        <span
-          aria-disabled="true"
-          className="inline-flex items-center justify-center rounded border border-muted px-6 py-3 font-body text-step-2 text-muted"
-        >
+        <Button variant="secondary" disabled>
           {tStatus("comingSoon")}
-        </span>
+        </Button>
       ) : game.primaryAction.type !== "none" ? (
         <Button as="a" href={game.primaryAction.url} variant="secondary">
           {t(game.primaryAction.type)}
