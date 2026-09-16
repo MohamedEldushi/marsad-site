@@ -13,8 +13,8 @@ export async function GameCard({
   const tStatus = await getTranslations("GameStatus");
 
   return (
-    <article className="flex w-80 flex-col gap-4">
-      <div className="relative aspect-[3/4] w-full bg-ink-raised">
+    <article className="flex w-[280px] flex-col gap-4">
+      <div className="relative aspect-[3/4] w-[280px] bg-ink-raised">
         <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-body text-step-1 text-muted">
           {game.thumbnail}
         </span>

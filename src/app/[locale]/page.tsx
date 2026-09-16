@@ -80,7 +80,7 @@ export default async function Home({
             >
               {tHome("grid.heading")}
             </h2>
-            <div className="flex flex-wrap gap-8">
+            <div className="flex flex-wrap justify-center gap-8">
               {otherGames.map((game) => (
                 <GameCard key={game.slug} game={game} locale={locale} />
               ))}
