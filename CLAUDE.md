@@ -33,8 +33,8 @@ Audience: Arabic-speaking players, plus English-speaking press and publishing pa
 - Deployed on Vercel
 
 Rules:
-- All user-facing copy lives in `messages/ar.json` and `messages/en.json`. Never hardcode text in a component.
-- Game data lives in `content/games/*.json`, one file per game.
+- Interface strings live in `messages/ar.json` and `messages/en.json`, translated into both languages. Never hardcode user-facing text in a component.
+- Game data, including localised titles, taglines, and descriptions translated into both Arabic and English, lives in `content/games/*.json`, one file per game.
 - No CMS for now. No database. No auth.
 - Keep dependencies minimal. Ask before adding a library.
 
@@ -76,7 +76,7 @@ Reference synthesis:
 
 ### Colour
 
-Eight tokens. Nothing outside this set without asking.
+Nine tokens. Nothing outside this set without asking.
 
 | Token | Hex | Use |
 |---|---|---|
@@ -90,7 +90,7 @@ Eight tokens. Nothing outside this set without asking.
 | `--error` | `#EA6469` | Form feedback only. Not decoration. |
 | `--success` | `#46A758` | Form feedback only. Not decoration. |
 
-Brass is the single place boldness is spent. If it appears more than twice on a screen, it has stopped working. `--error`/`--success` exist only for form validation states — never used to color a badge, label, or other UI decoration.
+Brass is the single place boldness is spent. If it appears more than twice on a screen, it has stopped working. Status labels (including beta) are explicitly exempt from this brass budget because they are small metadata, not calls to action. `--error`/`--success` exist only for form validation states — never used to color a badge, label, or other UI decoration.
 
 ### Type
 
@@ -119,7 +119,7 @@ Kufic-inspired geometric tiling (SVG) appears in exactly two places: behind the 
 - 12-column grid, 1280px max content width, full-bleed heroes allowed to break out.
 - Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 128px. Nothing off-scale.
 - Radii: 0 for structural surfaces, 4px for controls. Not every element gets the same radius.
-- **Motion:** one orchestrated reveal on page load, in the hero only. Everything else moves only in response to a user action. No fade-and-slide-up on every section. No hover transform on every card. Always respect `prefers-reduced-motion`.
+- **Motion:** one orchestrated reveal on page load, in the hero only. Everything else moves only in response to a user action, except for the hero's ambient pool drift and Home's scoped scroll reveals specified in section 4.5. Section 4.5 defines the full motion rules, including card hover behaviour; Home's scroll reveals are not a site-wide pattern. Always respect `prefers-reduced-motion`.
 
 ---
 

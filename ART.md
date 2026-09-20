@@ -17,8 +17,8 @@ Three-quarter view from a slightly low heroic angle. Smooth rounded
 forms, exaggerated proportions, oversized head, strong readable
 silhouette. Warm key light from upper front, cool blue rim light from
 behind separating the subject from the background. Saturated colour
-with warm highlights and deep blue-violet shadows. Polished matte
-surfaces, soft subsurface glow on skin. Clean simple background.
+with warm highlights and deep blue-violet shadows. Soft subsurface
+glow on skin. Clean simple background.
 Sharp focus, no motion blur, no film grain, no text, no watermark.
 ```
 
