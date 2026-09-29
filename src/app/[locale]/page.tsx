@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/Button";
 import { GameCard } from "@/components/ui/GameCard";
 import { Hero } from "@/components/ui/Hero";
 import { KufiDivider } from "@/components/ui/KufiDivider";
+import { NewsCard } from "@/components/ui/NewsCard";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Link } from "@/i18n/navigation";
 import { games } from "@/lib/games";
+import { getAllNews, toCardData } from "@/lib/news";
 
 export default async function Home({
   params,
@@ -16,6 +18,9 @@ export default async function Home({
   const tBoot = await getTranslations("Boot");
   const tHome = await getTranslations("Home");
   const tPrimaryAction = await getTranslations("PrimaryAction");
+
+  const tNews = await getTranslations("News");
+  const latestNews = getAllNews().slice(0, 3);
 
   const featuredGame = games.find((game) => game.featured) ?? games[0];
   const otherGames = games.filter((game) => game.slug !== featuredGame.slug);
@@ -85,6 +90,41 @@ export default async function Home({
           </div>
         </section>
       </ScrollReveal>
+
+      {/* Latest news. Not wrapped in ScrollReveal: section 4.5 limits
+          Home's scroll reveal to Featured game, Games grid and Studio
+          statement by name. */}
+      {latestNews.length > 0 && (
+        <>
+          <KufiDivider id="divider-grid-news" />
+          <section
+            aria-labelledby="news-heading"
+            className="mx-auto flex max-w-[1280px] flex-col gap-12 px-6 py-24 sm:px-12 sm:py-32 lg:px-16"
+          >
+            <div className="flex flex-wrap items-baseline justify-between gap-4">
+              <h2
+                id="news-heading"
+                className="font-display text-step-6 font-semibold leading-display text-parchment"
+              >
+                {tHome("news.heading")}
+              </h2>
+              <Link
+                href="/news"
+                className="font-body text-step-2 text-lapis underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+              >
+                {tHome("news.all")}
+              </Link>
+            </div>
+            <ul className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+              {latestNews.map((post) => (
+                <li key={post.slug}>
+                  <NewsCard post={toCardData(post, locale, (type) => tNews(`types.${type}`))} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        </>
+      )}
 
       <KufiDivider id="divider-grid-statement" />
 

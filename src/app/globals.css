@@ -244,3 +244,103 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 65% 65% at 50% 55%, #fff 0%, #fff 25%, transparent 80%);
   mask-image: radial-gradient(ellipse 65% 65% at 50% 55%, #fff 0%, #fff 25%, transparent 80%);
 }
+
+/*
+ * News article body (NewsBody). The HTML comes from markdown, so it can't
+ * carry utility classes; these are the same tokens the utilities use.
+ * Sizes are type-scale steps, spacing is on the 4/8/.../128 scale, and the
+ * font/line-height variables already swap for Arabic under [dir="rtl"].
+ * Every direction is logical, so lists and quotes mirror in Arabic.
+ */
+.news-body {
+  font-family: var(--body-font);
+  font-size: 1.25rem; /* step-3 */
+  line-height: var(--body-leading);
+  color: var(--parchment);
+}
+.news-body > * + * {
+  margin-block-start: 24px;
+}
+.news-body h2,
+.news-body h3 {
+  font-family: var(--display-font);
+  font-weight: 600;
+  line-height: var(--display-leading);
+  color: var(--parchment);
+}
+.news-body h2 {
+  font-size: 1.953rem; /* step-5 */
+  margin-block-start: 64px;
+}
+.news-body h3 {
+  font-size: 1.563rem; /* step-4 */
+  margin-block-start: 48px;
+}
+.news-body h2 + *,
+.news-body h3 + * {
+  margin-block-start: 16px;
+}
+/* Weight rule, section 4: nothing in body text above 500. */
+.news-body strong {
+  font-weight: 500;
+}
+/* Arabic has no italic; emphasis there comes from weight instead. */
+[dir="rtl"] .news-body em {
+  font-style: normal;
+  font-weight: 500;
+}
+.news-body ul,
+.news-body ol {
+  padding-inline-start: 24px;
+}
+.news-body ul {
+  list-style: disc;
+}
+.news-body ol {
+  list-style: decimal;
+}
+.news-body li + li {
+  margin-block-start: 8px;
+}
+.news-body li::marker {
+  color: var(--muted);
+}
+.news-body blockquote {
+  border-inline-start: 2px solid var(--muted);
+  padding-inline-start: 24px;
+  color: var(--muted);
+}
+.news-body a {
+  color: var(--lapis);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.news-body a:hover {
+  text-decoration-thickness: 2px;
+}
+.news-body a:focus-visible {
+  outline: 2px solid var(--lapis);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.news-body figure {
+  margin-block: 48px;
+}
+.news-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--ink-raised);
+}
+.news-body figcaption {
+  margin-block-start: 8px;
+  font-size: 0.8rem; /* step-1 */
+  color: var(--muted);
+}
+.news-body hr {
+  margin-block: 48px;
+  border: 0;
+  border-block-start: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
+}

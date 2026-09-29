@@ -16,7 +16,8 @@
     "switchTo": "العربية",
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
-    "skip": "Skip to content"
+    "skip": "Skip to content",
+    "news": "News"
   },
   "Styleguide": {
     "title": "Style Tile",
@@ -74,6 +75,10 @@
     "statement": {
       "heading": "An independent studio",
       "body": "Marsad is an independent studio building small, focused worlds instead of sprawling ones. Every game starts from a single idea worth years of work, and stays in development until it's worth the time it asks of the people who play it."
+    },
+    "news": {
+      "heading": "Latest news",
+      "all": "All news"
     }
   },
   "GamesIndex": {
@@ -87,7 +92,8 @@
     "releaseLabel": "Release date",
     "releaseTba": "To be announced",
     "screenshotsHeading": "Screenshots",
-    "screenshotsEmpty": "Screenshots are coming soon."
+    "screenshotsEmpty": "Screenshots are coming soon.",
+    "newsHeading": "News"
   },
   "About": {
     "heading": "About Marsad",
@@ -110,6 +116,32 @@
     ],
     "gamesHeading": "Our games",
     "artLabel": "Artwork: Arabic first"
+  },
+  "News": {
+    "heading": "News",
+    "intro": "What we're making, what's changed, and what's next.",
+    "listHeading": "All news",
+    "noPosts": "No news yet. Check back soon.",
+    "filter": {
+      "type": "Type",
+      "game": "Game",
+      "all": "All",
+      "allGames": "All games",
+      "empty": "Nothing here yet for this combination. Try another filter.",
+      "showAll": "Show all news"
+    },
+    "types": {
+      "announcement": "Announcement",
+      "devlog": "Devlog",
+      "update": "Update",
+      "studio": "Studio",
+      "event": "Event"
+    },
+    "article": {
+      "back": "All news",
+      "moreNews": "More news",
+      "gameCta": "Explore {game}"
+    }
   },
   "Support": {
     "heading": "Support",
@@ -281,7 +313,8 @@
       "privacy": "Privacy Policy",
       "terms": "Terms of Service"
     },
-    "copyright": "© {year} Marsad. All rights reserved."
+    "copyright": "© {year} Marsad. All rights reserved.",
+    "news": "News"
   },
   "PrimaryAction": {
     "store": "View on store",

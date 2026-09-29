@@ -8,7 +8,7 @@ import { Link, usePathname } from "@/i18n/navigation";
  * Site-wide header. Structure after the Supercell studio nav (wordmark +
  * a few primary links at the start, utilities at the end), in our system:
  *
- * - Start: the wordmark (links home), then Games / About / Support.
+ * - Start: the wordmark (links home), then Games / News / About / Support.
  * - End: the language switch -- same page, other locale.
  * - Active page: a 2px --lapis underline (lapis = active states, section
  *   4). No brass here; brass stays for primary CTAs.
@@ -23,6 +23,7 @@ import { Link, usePathname } from "@/i18n/navigation";
  */
 const LINKS = [
   { href: "/games", key: "games" },
+  { href: "/news", key: "news" },
   { href: "/about", key: "about" },
   { href: "/support", key: "support" },
 ] as const;

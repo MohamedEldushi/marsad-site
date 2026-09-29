@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { games } from "@/lib/games";
+import { getAllNews } from "@/lib/news";
 import { getSiteUrl } from "@/lib/site";
 
 /**
@@ -41,6 +42,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
+  const newsIndex: MetadataRoute.Sitemap = routing.locales.map((locale) => ({
+    url: `${siteUrl}/${locale}/news`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+    alternates: alternates("/news"),
+  }));
+
+  // Every post exists in both languages (src/lib/news.ts enforces it).
+  const newsArticles: MetadataRoute.Sitemap = routing.locales.flatMap((locale) =>
+    getAllNews().map((post) => ({
+      url: `${siteUrl}/${locale}/news/${post.slug}`,
+      lastModified: new Date(`${post.date}T00:00:00Z`),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: alternates(`/news/${post.slug}`),
+    })),
+  );
+
   const staticPages: MetadataRoute.Sitemap = (
     [
       ["/about", 0.6],
@@ -58,5 +78,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return [...home, ...gamesIndex, ...gameDetail, ...staticPages];
+  return [...home, ...gamesIndex, ...gameDetail, ...newsIndex, ...newsArticles, ...staticPages];
 }

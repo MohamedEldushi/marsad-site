@@ -37,6 +37,7 @@ Rules:
 - Game data, including localised titles, taglines, and descriptions translated into both Arabic and English, lives in `content/games/*.json`, one file per game.
 - No CMS for now. No database. No auth.
 - Keep dependencies minimal. Ask before adding a library.
+- Markdown for news posts is rendered with `marked` (approved for the news task; zero dependencies of its own). No other markdown or front-matter library.
 
 Routing: `/ar/...` and `/en/...`. Root `/` redirects to `/ar`. Every page emits `hreflang` for both.
 
@@ -229,14 +230,27 @@ Genres are deliberately not the same list a big publisher would need (no RPG, no
 - `beta` — a small `--brass` text label.
 - `coming-soon` — a `--muted` text label, and the primary action is replaced with a non-interactive "Coming soon" instead of a CTA.
 
+### News
+
+Every post is one folder, `content/news/<slug>/` (the folder name is the web address). `NEWS-GUIDE.md` is the step-by-step guide for adding one.
+
+- `meta.json`: `{ "date": "YYYY-MM-DD", "type": "...", "game": "<game slug>", "cover": "/news/<slug>/<file>", "featured": true }` — `game`, `cover` and `featured` are optional.
+- `ar.md` and `en.md`: a front-matter block (`title`, `summary`) between two `---` lines, then the body in markdown. Lines starting with `#` inside that block are editor notes, never shown.
+- `type` is a closed set, `NEWS_TYPES` in `src/types/news.ts`: `announcement`, `devlog`, `update`, `studio`, `event`. Each needs a translation under `News.types` in both locale files. `livestream` is planned as a type for a later task; it is not accepted yet.
+- Every post exists in both languages. `src/lib/news.ts` loads and validates everything at build time (both files present with a title and summary, valid type, existing game, real date, cover and inline images present under `public/news/<slug>/`, images have a description) and stops the build with a plain-language list naming each post and problem.
+- Rendering: raw HTML in markdown is shown as text, never injected; body headings start at h2 (the title is the page's h1) and stop at h3; inline images render as full-width 16:9 figures; site links written as `/games/x` get the page's language prefix.
+- Components: `NewsCard` (whole-card link, 16:9 cover or the section 5 placeholder, type · date, title, summary; a `featured` large variant), `NewsFilter` (client; type and game toggle buttons with `aria-pressed`, active in `--lapis`, friendly empty state), `NewsBody` (article text styles, `.news-body` in `globals.css`). Type labels are `--muted` text, never pills, never brass.
+
 ---
 
 ## 7. Pages
 
 - Site header on every page (`SiteHeader`, rendered in the locale layout): wordmark (links home) + Games / About / Support at the start, a language switch (same page, other locale) at the end. Active page marked with a 2px `--lapis` underline. Sticky: `--ink` at the top, `--ink-raised` + hairline once scrolled. Below md, a menu button opens a panel (closes on navigation and Escape). Includes a skip-to-content link targeting `#main-content`.
-- `/` Home — hero, featured game, games grid, studio statement
+- `/` Home — hero, featured game, games grid, latest news (3 newest posts, only when there are any), studio statement
 - `/games` — full catalogue
-- `/games/[slug]` — one template serving every game
+- `/games/[slug]` — one template serving every game; a News section with that game's posts appears only when it has any
+- `/news` — header in the /about style (no Kufi panel), the featured story large (newest `featured` post, else the newest), then every post in a `NewsFilter` grid: 1 column under 768px, 2 at 768, 3 at 1024+
+- `/news/[slug]` — type · date · game (linked), title, summary as the lead, 16:9 cover, `NewsBody`, one brass CTA to the game page when the post has a game (the page's only brass), "More news" (up to 3: same game first, then same type, then the newest others), back link. Statically generated for every post in both locales; unknown slugs are a 404. Metadata uses the summary as the description and the cover as the sharing image when there is one
 - `/about` — studio story, incl. the Arabic-first differentiator. No team section yet. Header with a `KufiPanel`, an image slot (`about/arabic-first`, 4:5) in the Arabic-first band, and an "Our games" strip of `GameTile`s.
 - `/support` — a per-game routing grid of `GameTile`s (coming-soon games excluded), each a `mailto:` with the game in the subject and a report template in the body (`Support.mailSubject` / `Support.mailBody`); then a contact form + FAQ; then a See also row. The contact form (`ContactForm`, server action in `src/app/[locale]/support/actions.ts`) sends through Resend's HTTP API with plain `fetch` — no SDK dependency. Configured only by env vars (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, see `.env.example`); without them it shows an "unavailable" state pointing to the email address. Spam protection is a honeypot plus a minimum time on page — no CAPTCHA (third-party).
 - `/privacy` and `/terms` — required for app store listings. Real copy will be supplied by the studio; use placeholder text until then.
@@ -311,7 +325,7 @@ None of these block the styleguide step.
 - [ ] Distribution model (affects `primaryAction` only)
 - [ ] Domain
 - [x] Support email address — placeholder for now (`support@marsad.example`, in `messages/{ar,en}.json` under `Support.email`), by explicit choice rather than blocking step 5 on it. Swap it for the real address in both locale files when one exists — it's the only place it's stored.
-- [ ] Whether Home carries a news/updates section
+- [x] Whether Home carries a news/updates section — yes: "Latest news", the 3 newest posts, after the games grid. It is not scroll-revealed: section 4.5 names Home's reveal sections, and adding one is a separate decision.
 - [ ] Analytics tool, and whether a consent banner is needed
 - [x] Contact form — approved by the studio (replaces the earlier "mailto only, no form" rule). Email delivery via Resend; needs a verified sending domain, so it goes live with the real domain.
 - [ ] Social media accounts — the Footer's X/Instagram/YouTube links were removed in step 5 rather than left as dead `#` links, since no real accounts exist yet. Add them back to `Footer.tsx` (and their labels to `messages/{ar,en}.json`) once there's somewhere real for them to point.

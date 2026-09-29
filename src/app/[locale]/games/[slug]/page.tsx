@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/Button";
+import { NewsCard } from "@/components/ui/NewsCard";
 import { Link } from "@/i18n/navigation";
 import { games } from "@/lib/games";
+import { getAllNews, toCardData } from "@/lib/news";
 
 export function generateStaticParams() {
   return games.map((game) => ({ slug: game.slug }));
@@ -68,6 +70,8 @@ export default async function GameDetailPage({
   const tPrimaryAction = await getTranslations("PrimaryAction");
   const tPlatforms = await getTranslations("Platforms");
   const tGenres = await getTranslations("Genres");
+  const tNews = await getTranslations("News");
+  const gameNews = getAllNews().filter((post) => post.game === game.slug);
 
   // Body line length cap, section 4: 62ch Latin, 58ch Arabic.
   const proseMaxWidth = locale === "ar" ? "max-w-[58ch]" : "max-w-[62ch]";
@@ -193,6 +197,28 @@ export default async function GameDetailPage({
           </p>
         )}
       </section>
+
+      {/* This game's news, newest first. Only when there is some. */}
+      {gameNews.length > 0 && (
+        <section
+          aria-labelledby="game-news-heading"
+          className="mx-auto flex max-w-[1280px] flex-col gap-8 px-6 pb-16 sm:px-12 sm:pb-24 lg:px-16"
+        >
+          <h2
+            id="game-news-heading"
+            className="font-display text-step-5 font-semibold leading-display text-parchment"
+          >
+            {t("newsHeading")}
+          </h2>
+          <ul className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+            {gameNews.map((post) => (
+              <li key={post.slug}>
+                <NewsCard post={toCardData(post, locale, (type) => tNews(`types.${type}`))} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </main>
   );
 }
