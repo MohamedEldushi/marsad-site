@@ -7,6 +7,17 @@
     "heading": "Marsad",
     "tagline": "We build worlds worth discovering"
   },
+  "Nav": {
+    "label": "Main navigation",
+    "homeLabel": "Marsad, home",
+    "games": "Games",
+    "about": "About",
+    "support": "Support",
+    "switchTo": "العربية",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "skip": "Skip to content"
+  },
   "Styleguide": {
     "title": "Style Tile",
     "intro": "The section 4 tokens from CLAUDE.md, built and checked here before any other page.",
@@ -102,7 +113,7 @@
   },
   "Support": {
     "heading": "Support",
-    "intro": "Have a question, found a bug, or want to talk business? Email us directly — there's no form, no ticket system, just a real inbox.",
+    "intro": "Have a question, found a bug, or want to talk business? Pick your game below or send us a message. A real person on the team reads every one.",
     "email": "support@marsad.example",
     "faqHeading": "Common questions",
     "faq": [

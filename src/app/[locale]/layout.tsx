@@ -9,6 +9,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/ui/Footer";
+import { SiteHeader } from "@/components/ui/SiteHeader";
 import { routing } from "@/i18n/routing";
 import { getSiteUrl } from "@/lib/site";
 import "../globals.css";
@@ -120,7 +121,12 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full font-body antialiased">
         <NextIntlClientProvider>
-          {children}
+          <SiteHeader />
+          {/* Skip-link target. tabIndex -1 so focus can land here without
+              adding it to the normal tab order. */}
+          <div id="main-content" tabIndex={-1} className="outline-none">
+            {children}
+          </div>
           <Footer locale={locale} />
         </NextIntlClientProvider>
       </body>

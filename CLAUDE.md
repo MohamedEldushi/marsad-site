@@ -233,6 +233,7 @@ Genres are deliberately not the same list a big publisher would need (no RPG, no
 
 ## 7. Pages
 
+- Site header on every page (`SiteHeader`, rendered in the locale layout): wordmark (links home) + Games / About / Support at the start, a language switch (same page, other locale) at the end. Active page marked with a 2px `--lapis` underline. Sticky: `--ink` at the top, `--ink-raised` + hairline once scrolled. Below md, a menu button opens a panel (closes on navigation and Escape). Includes a skip-to-content link targeting `#main-content`.
 - `/` Home — hero, featured game, games grid, studio statement
 - `/games` — full catalogue
 - `/games/[slug]` — one template serving every game
