@@ -119,14 +119,35 @@
         "answer": "Same address. Put \"press\" or \"partnership\" in the subject line and it'll reach the right person faster."
       }
     ],
-    "emailCta": "Email support",
-    "emailLabel": "or copy the address",
     "gamesHeading": "Choose your game",
     "gameAction": "Email about this game",
     "otherHeading": "Anything else?",
     "seeAlsoHeading": "See also",
     "mailSubject": "[{game}] Support request",
-    "mailBody": "Device and OS version:\n\nWhat happened:\n\nWhat you were doing just before:\n\n\nAttach a screenshot or short clip if you can. It helps a lot."
+    "mailBody": "Device and OS version:\n\nWhat happened:\n\nWhat you were doing just before:\n\n\nAttach a screenshot or short clip if you can. It helps a lot.",
+    "directLabel": "Or email us directly at",
+    "form": {
+      "name": "Name",
+      "email": "Your email",
+      "game": "About",
+      "gameChoose": "Choose…",
+      "gameOther": "Something else (press, partnership, other)",
+      "message": "Your message",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "sent": "Message sent. We'll reply to your email.",
+      "error": "The message couldn't be sent. Try again, or email us directly at",
+      "unavailable": "The form isn't available right now. Email us directly at",
+      "honeypot": "Leave this field empty",
+      "errors": {
+        "nameRequired": "Enter your name.",
+        "emailRequired": "Enter your email so we can reply.",
+        "emailInvalid": "That email address doesn't look right.",
+        "gameRequired": "Choose a game, or \"Something else\".",
+        "messageShort": "That's a bit short. Tell us a little more.",
+        "tooLong": "That's longer than allowed."
+      }
+    }
   },
   "Legal": {
     "noticeBody": "This page is a placeholder. Marsad will provide the final legal text, and this notice will be removed once it's published.",

@@ -237,7 +237,7 @@ Genres are deliberately not the same list a big publisher would need (no RPG, no
 - `/games` — full catalogue
 - `/games/[slug]` — one template serving every game
 - `/about` — studio story, incl. the Arabic-first differentiator. No team section yet. Header with a `KufiPanel`, an image slot (`about/arabic-first`, 4:5) in the Arabic-first band, and an "Our games" strip of `GameTile`s.
-- `/support` — `mailto:` links only (no form, no third-party service, no backend — revisit if volume justifies it). A per-game routing grid of `GameTile`s (coming-soon games excluded), each a `mailto:` with the game in the subject and a report template in the body (`Support.mailSubject` / `Support.mailBody`); then contact + FAQ; then a See also row.
+- `/support` — a per-game routing grid of `GameTile`s (coming-soon games excluded), each a `mailto:` with the game in the subject and a report template in the body (`Support.mailSubject` / `Support.mailBody`); then a contact form + FAQ; then a See also row. The contact form (`ContactForm`, server action in `src/app/[locale]/support/actions.ts`) sends through Resend's HTTP API with plain `fetch` — no SDK dependency. Configured only by env vars (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, see `.env.example`); without them it shows an "unavailable" state pointing to the email address. Spam protection is a honeypot plus a minimum time on page — no CAPTCHA (third-party).
 - `/privacy` and `/terms` — required for app store listings. Real copy will be supplied by the studio; use placeholder text until then.
 - `404`
 
@@ -312,4 +312,5 @@ None of these block the styleguide step.
 - [x] Support email address — placeholder for now (`support@marsad.example`, in `messages/{ar,en}.json` under `Support.email`), by explicit choice rather than blocking step 5 on it. Swap it for the real address in both locale files when one exists — it's the only place it's stored.
 - [ ] Whether Home carries a news/updates section
 - [ ] Analytics tool, and whether a consent banner is needed
+- [x] Contact form — approved by the studio (replaces the earlier "mailto only, no form" rule). Email delivery via Resend; needs a verified sending domain, so it goes live with the real domain.
 - [ ] Social media accounts — the Footer's X/Instagram/YouTube links were removed in step 5 rather than left as dead `#` links, since no real accounts exist yet. Add them back to `Footer.tsx` (and their labels to `messages/{ar,en}.json`) once there's somewhere real for them to point.

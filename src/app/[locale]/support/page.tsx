@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/ui/Button";
+import { ContactForm } from "@/components/ui/ContactForm";
 import { GameTile } from "@/components/ui/GameTile";
 import { KufiDivider } from "@/components/ui/KufiDivider";
 import { KufiPanel } from "@/components/ui/KufiPanel";
 import { Link } from "@/i18n/navigation";
 import { games } from "@/lib/games";
+import { sendContactMessage } from "./actions";
 
 export async function generateMetadata({
   params,
@@ -31,8 +32,9 @@ type FaqEntry = { question: string; answer: string };
 //      with the game in the subject and a short report template in the
 //      body, so every email arrives already sorted and detailed.
 //   3. Kufi divider band.
-//   4. Anything else: contact (brass button, the page's only brass) +
-//      FAQ with hairlines. Contact column is sticky on desktop.
+//   4. Anything else: the contact form (its submit button is the page's
+//      only brass) + FAQ with hairlines. The direct address stays under
+//      the form for anyone who prefers their own mail app.
 //   5. See also: quiet text links to About / Privacy / Terms.
 export default async function SupportPage({
   params,
@@ -44,6 +46,7 @@ export default async function SupportPage({
   const tFooter = await getTranslations("Footer");
   const email = t("email");
   const faq = t.raw("faq") as FaqEntry[];
+  const tForm = await getTranslations("Support.form");
 
   // Coming-soon games have no players yet, so no support tile.
   const supportedGames = games.filter((game) => game.status !== "coming-soon");
@@ -119,28 +122,46 @@ export default async function SupportPage({
       <div className={`${container} grid grid-cols-1 gap-y-16 py-16 sm:py-24 lg:grid-cols-12 lg:gap-x-8`}>
         <section
           aria-labelledby="support-other-heading"
-          className="flex flex-col gap-8 lg:sticky lg:top-8 lg:col-span-5 lg:self-start"
+          className="flex flex-col gap-8 lg:col-span-5"
         >
           <h2 id="support-other-heading" className={sectionHeading}>
             {t("otherHeading")}
           </h2>
-          <div className="flex flex-col items-start gap-4 border-t border-muted/40 pt-8">
-            <Button as="a" href={`mailto:${email}`} variant="primary">
-              {t("emailCta")}
-            </Button>
-            <div className="flex flex-col gap-1">
-              <span className="font-body text-step-1 text-muted">{t("emailLabel")}</span>
-              {/* Always Latin, so dir="ltr" keeps the @ and . in order
-                  inside an RTL page. break-all guards long real addresses
-                  at 320px. */}
-              <span
-                dir="ltr"
-                className="select-all break-all font-body text-step-3 font-medium text-parchment sm:text-step-4"
-              >
-                {email}
-              </span>
-            </div>
+          <div className="relative border-t border-muted/40 pt-8">
+            <ContactForm
+              action={sendContactMessage.bind(null, locale)}
+              email={email}
+              gameOptions={supportedGames.map((game) => ({
+                value: game.slug,
+                label: game.title[locale],
+              }))}
+              labels={{
+                name: tForm("name"),
+                email: tForm("email"),
+                game: tForm("game"),
+                gameChoose: tForm("gameChoose"),
+                gameOther: tForm("gameOther"),
+                message: tForm("message"),
+                submit: tForm("submit"),
+                sending: tForm("sending"),
+                sent: tForm("sent"),
+                error: tForm("error"),
+                unavailable: tForm("unavailable"),
+                honeypot: tForm("honeypot"),
+              }}
+            />
           </div>
+          <p className="font-body text-step-1 leading-body text-muted">
+            {t("directLabel")}{" "}
+            {/* Always Latin, so dir="ltr" keeps the @ and . in order. */}
+            <a
+              href={`mailto:${email}`}
+              dir="ltr"
+              className="select-all break-all text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+            >
+              {email}
+            </a>
+          </p>
         </section>
 
         <section
