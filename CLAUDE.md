@@ -82,7 +82,7 @@ Nine tokens. Nothing outside this set without asking.
 |---|---|---|
 | `--ink` | `#0A1228` | Page base. A true blue-black, not a tinted grey. |
 | `--ink-raised` | `#131E3A` | Raised surfaces, cards, nav on scroll. |
-| `--lapis` | `#4A7BE8` | Interactive on `--ink`: links, focus rings, active states, any blue text (≈4.7:1 on ink). |
+| `--lapis` | `#5A8AEB` | Interactive on `--ink`: links, focus rings, active states, any blue text (≈5.5:1 on ink). |
 | `--lapis-deep` | `#2449C4` | Filled surfaces only (buttons, tags), with `--parchment` text on top (≈6:1). Never used as text on `--ink`. |
 | `--brass` | `#C9953F` | The one loud accent. Rare. Primary CTA and nothing else by default. |
 | `--parchment` | `#EDE6D8` | Body and heading text. Never pure white. |
