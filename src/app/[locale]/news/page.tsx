@@ -33,9 +33,9 @@ export async function generateMetadata({
   };
 }
 
-// Same opening as /about: a small title over a hairline, then one large
-// line. No Kufi panel here. Then the featured story large, then every
-// post in a filterable grid.
+// A compact title row (title at the start, the intro line at the end),
+// so the first screen is a story, not a heading. Then the cinematic
+// featured story, then the pinned filter bar and the editorial grid.
 export default async function NewsIndexPage({
   params,
 }: {
@@ -58,28 +58,28 @@ export default async function NewsIndexPage({
 
   return (
     <main aria-labelledby="news-heading">
-      <header className={`${container} pt-16 sm:pt-24`}>
-        <h1
-          id="news-heading"
-          className="border-b border-muted/40 pb-4 font-body text-step-3 font-medium text-muted"
-        >
-          {t("heading")}
-        </h1>
-        <p className="mt-12 max-w-[20ch] font-display text-step-5 font-semibold leading-display text-parchment sm:text-step-7">
-          {t("intro")}
-        </p>
+      <header className={`${container} pt-12 sm:pt-16`}>
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-8">
+          <h1
+            id="news-heading"
+            className="font-display text-step-6 font-semibold leading-display text-parchment sm:text-step-7"
+          >
+            {t("heading")}
+          </h1>
+          <p className="max-w-[40ch] font-body text-step-3 leading-body text-muted md:pb-2">{t("intro")}</p>
+        </div>
       </header>
 
       {featured ? (
         <>
-          <section aria-label={featured[locale].title} className={`${container} py-16 sm:py-24`}>
-            <NewsCard post={toCardData(featured, locale, typeLabel)} featured headingLevel="h2" />
+          <section aria-label={featured[locale].title} className={`${container} pt-8 pb-16 sm:pt-12 sm:pb-24`}>
+            <NewsCard post={toCardData(featured, locale, typeLabel)} size="featured" headingLevel="h2" idPrefix="featured" />
           </section>
 
           <section aria-labelledby="news-list-heading" className={`${container} pb-16 sm:pb-24`}>
             <h2
               id="news-list-heading"
-              className="mb-8 font-display text-step-4 font-semibold leading-display text-parchment sm:text-step-5"
+              className="sr-only"
             >
               {t("listHeading")}
             </h2>

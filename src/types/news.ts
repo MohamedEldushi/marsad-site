@@ -46,4 +46,8 @@ export interface NewsCardData {
   title: string;
   summary: string;
   cover?: string;
+  /** Estimated reading time, whole minutes, at least 1. */
+  readingMinutes: number;
+  /** Big text on a generated cover: the game's name, else the post type. */
+  coverLabel: string;
 }

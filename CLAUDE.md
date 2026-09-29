@@ -113,14 +113,14 @@ Avoid: all-caps eyebrow labels above headings; accenting a single word in a head
 
 ### Texture
 
-Kufic-inspired geometric tiling (SVG) appears in exactly three places: behind the hero, as a divider band between major sections, and in one framed `KufiPanel` in the header of a text page (/about, /support — approved by the studio; static, no motion). Max 6% opacity, one scale across the whole site. Never behind body text. Never inside a card. Nowhere else without asking first.
+Kufic-inspired geometric tiling (SVG) appears in exactly four places: behind the hero, as a divider band between major sections, in one framed `KufiPanel` in the header of a text page (/about, /support — approved by the studio; static, no motion), and in generated news covers (`NewsCover`, only when a post has no artwork — approved by the studio; static, no motion). Max 6% opacity, one scale across the whole site. Never behind body text. Never inside a card, except a generated news cover. Nowhere else without asking first.
 
 ### Layout and motion
 
 - 12-column grid, 1280px max content width, full-bleed heroes allowed to break out.
 - Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 128px. Nothing off-scale.
 - Radii: 0 for structural surfaces, 4px for controls. Not every element gets the same radius.
-- **Motion:** one orchestrated reveal on page load, in the hero only. Everything else moves only in response to a user action, except for the hero's ambient pool drift and Home's scoped scroll reveals specified in section 4.5. Section 4.5 defines the full motion rules, including card hover behaviour; Home's scroll reveals are not a site-wide pattern. Always respect `prefers-reduced-motion`.
+- **Motion:** one orchestrated reveal on page load, in the hero only. Everything else moves only in response to a user action, except for the hero's ambient pool drift and the scoped scroll reveals on Home and News specified in section 4.5. Section 4.5 defines the full motion rules, including card hover behaviour; Scroll reveals are not a site-wide pattern: Home and News only. Always respect `prefers-reduced-motion`.
 
 ---
 
@@ -131,7 +131,7 @@ The full spec behind the one-line rule above.
 Two rules govern everything:
 
 - **One orchestrated reveal on page load, hero only.** Nothing else animates on mount or on scrolling into view.
-- **Everything else moves only in direct response to a user action** — hover, press, focus. No ambient motion outside the hero's pool drift below, no autoplay. The one scoped exception is the Home page's scroll reveal, below.
+- **Everything else moves only in direct response to a user action** — hover, press, focus. No ambient motion outside the hero's pool drift below, no autoplay. The one scoped exception is the scroll reveal on Home and News, below.
 
 `prefers-reduced-motion: reduce` disables every animation and transition this section describes. The end state still renders — reduced motion removes the *motion*, not the result.
 
@@ -167,13 +167,18 @@ The hero's pool gradient drifts slowly — 20s or longer per cycle, subtle enoug
 
 - **Buttons:** a brightness lift on hover, a slight scale-down on press. 200ms.
 - **Cards:** raise 4px and lighten the border on hover. No rotation, no shadow bloom.
+- **News cards:** lighten the frame's border, zoom the cover 4% inside the frame (it never grows past the frame), and slide the "read" arrow forward in the reading direction. 200ms. No raise.
+- **Tabs (news filter):** the active tab's `--lapis` underline grows in from nothing, 200ms.
+- **Reading progress (news articles):** a 2px `--lapis` line along the bottom of the site header, tracking the reader's own scroll directly (no transition). Fills from the start edge.
 - **Focus rings:** appear instantly. Never animated — a focus ring that fades in is briefly invisible to the person who needs it most.
 
-### Scroll reveal (Home only)
+### Scroll reveal (Home and News only)
 
 The single named exception to "everything else moves on user action only." Home page sections below the hero (Featured game, Games grid, Studio statement) fade up 16px once, the first time each scrolls into view, at the entrance duration and house easing. Once triggered, a section never re-animates — scrolling away and back does nothing.
 
 This is scoped to Home's own sections. It is not a general pattern to reach for on other pages without the same explicit decision. The Footer moved to the shared layout in step 4 (it now renders on every page, not just Home) and lost its scroll-reveal treatment in the move — for the same reason, it isn't a site-wide pattern without a fresh decision to make it one.
+
+News (approved by the studio): each card in the /news grid fades up 16px the first time it scrolls into view, same duration and easing, staggered 80ms across a row. Changing a news filter re-runs the reveal for the new results — a direct response to the user's action.
 
 ---
 

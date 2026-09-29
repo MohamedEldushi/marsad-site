@@ -122,13 +122,16 @@
     "intro": "What we're making, what's changed, and what's next.",
     "listHeading": "All news",
     "noPosts": "No news yet. Check back soon.",
+    "read": "Read story",
+    "readingTime": "{count, plural, one {{minutes} min read} other {{minutes} min read}}",
     "filter": {
       "type": "Type",
       "game": "Game",
       "all": "All",
       "allGames": "All games",
       "empty": "Nothing here yet for this combination. Try another filter.",
-      "showAll": "Show all news"
+      "showAll": "Show all news",
+      "count": "{count, plural, one {{n} post} other {{n} posts}}"
     },
     "types": {
       "announcement": "Announcement",
@@ -140,7 +143,9 @@
     "article": {
       "back": "All news",
       "moreNews": "More news",
-      "gameCta": "Explore {game}"
+      "gameCta": "Explore {game}",
+      "newer": "Newer",
+      "older": "Older"
     }
   },
   "Support": {

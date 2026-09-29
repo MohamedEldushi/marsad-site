@@ -195,7 +195,7 @@ body {
 }
 
 /*
- * Home-only scroll reveal — CLAUDE.md 4.5's documented exception to "no
+ * Scroll reveal (Home and News only) — CLAUDE.md 4.5's documented exception to "no
  * scroll-triggered reveals." Base state is fully visible so it degrades
  * safely with JS disabled; only under no-preference motion does it start
  * hidden, waiting for ScrollReveal.tsx to flip data-revealed once.
@@ -343,4 +343,25 @@ body {
   margin-block: 48px;
   border: 0;
   border-block-start: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
+}
+
+/*
+ * Generated news covers (approved extension of the texture rule: the
+ * tiling may appear inside a news cover when the post has no artwork).
+ * A static lit pool whose centre varies per post (--pool-x / --pool-y),
+ * with the tiling masked to the same spot. Tiling stays at the 6%
+ * ceiling; the mask only subtracts. No ambient motion.
+ */
+.news-cover-pool {
+  background: radial-gradient(
+    ellipse 75% 85% at var(--pool-x, 50%) var(--pool-y, 40%),
+    #2c4a8f 0%,
+    #16274d 32%,
+    var(--ink) 68%,
+    #080c1e 100%
+  );
+}
+.news-cover-mask {
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at var(--pool-x, 50%) var(--pool-y, 40%), #fff 0%, #fff 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 60% 70% at var(--pool-x, 50%) var(--pool-y, 40%), #fff 0%, #fff 20%, transparent 75%);
 }

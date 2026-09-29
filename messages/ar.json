@@ -122,13 +122,16 @@
     "intro": "ما نصنعه، وما تغيّر، وما هو قادم.",
     "listHeading": "كل الأخبار",
     "noPosts": "لا أخبار بعد. عُد إلينا قريبًا.",
+    "read": "اقرأ المقال",
+    "readingTime": "{count, plural, one {دقيقة قراءة} two {دقيقتا قراءة} few {{minutes} دقائق قراءة} many {{minutes} دقيقة قراءة} other {{minutes} دقيقة قراءة}}",
     "filter": {
       "type": "النوع",
       "game": "اللعبة",
       "all": "الكل",
       "allGames": "كل الألعاب",
       "empty": "لا يوجد شيء هنا بعد لهذا الاختيار. جرّب تصفية أخرى.",
-      "showAll": "اعرض كل الأخبار"
+      "showAll": "اعرض كل الأخبار",
+      "count": "{count, plural, zero {لا منشورات} one {منشور واحد} two {منشوران} few {{n} منشورات} many {{n} منشورًا} other {{n} منشور}}"
     },
     "types": {
       "announcement": "إعلان",
@@ -140,7 +143,9 @@
     "article": {
       "back": "كل الأخبار",
       "moreNews": "أخبار أخرى",
-      "gameCta": "استكشف {game}"
+      "gameCta": "استكشف {game}",
+      "newer": "الأحدث",
+      "older": "الأقدم"
     }
   },
   "Support": {

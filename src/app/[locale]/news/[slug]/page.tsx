@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/Button";
 import { NewsBody } from "@/components/ui/NewsBody";
 import { NewsCard } from "@/components/ui/NewsCard";
+import { NewsCover } from "@/components/ui/NewsCover";
+import { ReadingProgress } from "@/components/ui/ReadingProgress";
 import { Link } from "@/i18n/navigation";
 import { games } from "@/lib/games";
 import {
@@ -12,6 +13,8 @@ import {
   getAllNews,
   getNewsPost,
   getRelatedNews,
+  getAdjacentNews,
+  readingMinutes,
   toCardData,
 } from "@/lib/news";
 import type { NewsType } from "@/types/news";
@@ -81,6 +84,8 @@ export default async function NewsArticlePage({
   const typeLabel = (type: NewsType) => t(`types.${type}`);
   const game = post.game ? games.find((g) => g.slug === post.game) : undefined;
   const related = getRelatedNews(post);
+  const { newer, older } = getAdjacentNews(post);
+  const minutes = readingMinutes(post[locale].html);
   const text = post[locale];
 
   const container = "mx-auto w-full max-w-[1280px] px-6 sm:px-12 lg:px-16";
@@ -90,18 +95,22 @@ export default async function NewsArticlePage({
 
   return (
     <main>
+      <ReadingProgress targetId="article" />
       <div className={`${container} pt-8`}>
         <Link href="/news" className={`inline-flex font-body text-step-2 ${quietLink}`}>
           {t("article.back")}
         </Link>
       </div>
 
-      <article aria-labelledby="article-title" className={`${container} pt-12 pb-16 sm:pt-16 sm:pb-24`}>
+      <article id="article" aria-labelledby="article-title" className={`${container} pt-12 pb-16 sm:pt-16 sm:pb-24`}>
         <header className="flex max-w-[960px] flex-col gap-6">
-          <p className="font-body text-step-2 text-muted">
-            <span className="font-medium">{typeLabel(post.type)}</span>
-            <span aria-hidden="true"> · </span>
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-2 font-body text-step-2 text-muted">
+            <span className="rounded-sm bg-lapis-deep px-2 py-1 text-step-1 font-medium leading-none text-parchment">
+              {typeLabel(post.type)}
+            </span>
             <time dateTime={post.date}>{formatNewsDate(post.date, locale)}</time>
+            <span aria-hidden="true">·</span>
+            <span>{t("readingTime", { count: minutes, minutes: String(minutes) })}</span>
             {game && (
               <>
                 <span aria-hidden="true"> · </span>
@@ -120,21 +129,15 @@ export default async function NewsArticlePage({
           <p className={`${proseMaxWidth} font-body text-step-3 leading-body text-muted sm:text-step-4`}>
             {text.summary}
           </p>
-          <div className="relative mt-6 aspect-video w-full bg-ink-raised">
-            {post.cover ? (
-              <Image
-                src={post.cover}
-                alt={text.title}
-                fill
-                priority
-                sizes="(min-width: 1024px) 960px, 100vw"
-                className="object-cover"
-              />
-            ) : (
-              <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-body text-step-1 text-muted">
-                {`news/${post.slug}/cover`}
-              </span>
-            )}
+          <div className="relative mt-6 aspect-video w-full overflow-hidden border border-muted/20 bg-ink">
+            <NewsCover
+              slug={post.slug}
+              cover={post.cover}
+              label={game ? game.title[locale] : typeLabel(post.type)}
+              idPrefix="article"
+              sizes="(min-width: 1024px) 960px, 100vw"
+              priority
+            />
           </div>
         </header>
 
@@ -151,6 +154,32 @@ export default async function NewsArticlePage({
           </div>
         )}
       </article>
+
+      {(newer || older) && (
+        <nav aria-label={t("article.moreNews")} className={`${container} pb-16 sm:pb-24`}>
+          <div className="grid grid-cols-1 gap-4 border-y border-muted/40 py-6 sm:grid-cols-2">
+            {[
+              { post: older, label: t("article.older"), end: false },
+              { post: newer, label: t("article.newer"), end: true },
+            ].map(({ post: other, label, end }) =>
+              other ? (
+                <Link
+                  key={label}
+                  href={`/news/${other.slug}`}
+                  className={`group flex flex-col gap-1 ${end ? "sm:items-end sm:text-end" : ""} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-4 focus-visible:ring-offset-ink`}
+                >
+                  <span className="font-body text-step-1 text-muted">{label}</span>
+                  <span className="font-display text-step-3 font-semibold leading-display text-parchment transition-colors duration-200 ease-[var(--ease-entrance)] group-hover:text-lapis">
+                    {other[locale].title}
+                  </span>
+                </Link>
+              ) : (
+                <span key={label} aria-hidden="true" />
+              ),
+            )}
+          </div>
+        </nav>
+      )}
 
       {related.length > 0 && (
         <section aria-labelledby="more-news-heading" className={`${container} pb-16 sm:pb-24`}>

@@ -329,6 +329,19 @@ export function formatNewsDate(date: string, locale: Locale) {
   }).format(new Date(`${date}T00:00:00Z`));
 }
 
+/** ~200 words a minute, from the rendered body (tags stripped). */
+export function readingMinutes(html: string) {
+  const words = html.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+/** The post published just before and just after this one, by date. */
+export function getAdjacentNews(post: NewsPost) {
+  const posts = getAllNews(); // newest first
+  const index = posts.findIndex((other) => other.slug === post.slug);
+  return { newer: posts[index - 1], older: posts[index + 1] };
+}
+
 export function toCardData(
   post: NewsPost,
   locale: Locale,
@@ -344,5 +357,9 @@ export function toCardData(
     title: post[locale].title,
     summary: post[locale].summary,
     cover: post.cover,
+    readingMinutes: readingMinutes(post[locale].html),
+    coverLabel: post.game
+      ? (games.find((game) => game.slug === post.game)?.title[locale] ?? typeLabel(post.type))
+      : typeLabel(post.type),
   };
 }

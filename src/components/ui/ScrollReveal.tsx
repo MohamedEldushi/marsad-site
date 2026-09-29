@@ -3,17 +3,20 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
- * Home-only exception to CLAUDE.md 4.5's "no scroll-triggered reveals"
- * rule — see that section for the amendment. Fades a section up 16px
+ * Scroll reveal, allowed on Home and News only (CLAUDE.md 4.5's scoped
+ * exception to "no scroll-triggered reveals"). Fades a section up 16px
  * the first time it enters the viewport, then disconnects its observer
  * so it can never re-trigger on scrolling back past it.
  */
 export function ScrollReveal({
   children,
   className = "",
+  delay = 0,
 }: {
   children: ReactNode;
   className?: string;
+  /** Stagger, in ms, for items revealed together (e.g. a grid row). */
+  delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [revealed, setRevealed] = useState(false);
@@ -37,7 +40,12 @@ export function ScrollReveal({
   }, []);
 
   return (
-    <div ref={ref} data-revealed={revealed} className={`reveal ${className}`}>
+    <div
+      ref={ref}
+      data-revealed={revealed}
+      className={`reveal ${className}`}
+      style={delay ? { animationDelay: `${delay}ms` } : undefined}
+    >
       {children}
     </div>
   );
