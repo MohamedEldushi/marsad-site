@@ -112,7 +112,7 @@ Avoid: all-caps eyebrow labels above headings; accenting a single word in a head
 
 ### Texture
 
-Kufic-inspired geometric tiling (SVG) appears in exactly two places: behind the hero, and as a divider band between major sections. Max 6% opacity, one scale across the whole site. Never behind body text. Never inside a card. Nowhere else without asking first.
+Kufic-inspired geometric tiling (SVG) appears in exactly three places: behind the hero, as a divider band between major sections, and in one framed `KufiPanel` in the header of a text page (/about, /support — approved by the studio; static, no motion). Max 6% opacity, one scale across the whole site. Never behind body text. Never inside a card. Nowhere else without asking first.
 
 ### Layout and motion
 
@@ -236,8 +236,8 @@ Genres are deliberately not the same list a big publisher would need (no RPG, no
 - `/` Home — hero, featured game, games grid, studio statement
 - `/games` — full catalogue
 - `/games/[slug]` — one template serving every game
-- `/about` — studio story, incl. the Arabic-first differentiator. No team section yet.
-- `/support` — `mailto:` link only (no form, no third-party service, no backend — revisit if volume justifies it), FAQ
+- `/about` — studio story, incl. the Arabic-first differentiator. No team section yet. Header with a `KufiPanel`, an image slot (`about/arabic-first`, 4:5) in the Arabic-first band, and an "Our games" strip of `GameTile`s.
+- `/support` — `mailto:` links only (no form, no third-party service, no backend — revisit if volume justifies it). A per-game routing grid of `GameTile`s (coming-soon games excluded), each a `mailto:` with the game in the subject and a report template in the body (`Support.mailSubject` / `Support.mailBody`); then contact + FAQ; then a See also row.
 - `/privacy` and `/terms` — required for app store listings. Real copy will be supplied by the studio; use placeholder text until then.
 - `404`
 

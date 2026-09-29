@@ -223,3 +223,24 @@ body {
     animation: reveal-fade-up var(--duration-entrance) var(--ease-entrance) forwards;
   }
 }
+
+/*
+ * Page-header Kufi panel (approved extension of the texture rule: the
+ * tiling may also appear in one framed panel in a text page's header).
+ * Same lit-pool idea as the hero, but static -- no load sequence and no
+ * drift, since section 4.5 keeps motion to the hero. The tiling stays at
+ * the 6% ceiling; the mask only ever subtracts from it.
+ */
+.panel-pool {
+  background: radial-gradient(
+    ellipse 70% 70% at 50% 55%,
+    #2c4a8f 0%,
+    #16274d 30%,
+    var(--ink) 65%,
+    #080c1e 100%
+  );
+}
+.panel-tiling-mask {
+  -webkit-mask-image: radial-gradient(ellipse 65% 65% at 50% 55%, #fff 0%, #fff 25%, transparent 80%);
+  mask-image: radial-gradient(ellipse 65% 65% at 50% 55%, #fff 0%, #fff 25%, transparent 80%);
+}

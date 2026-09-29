@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { GameTile } from "@/components/ui/GameTile";
+import { KufiPanel } from "@/components/ui/KufiPanel";
+import { Link } from "@/i18n/navigation";
+import { games } from "@/lib/games";
 
 export async function generateMetadata({
   params,
@@ -22,7 +26,8 @@ type AboutSection = { heading: string; lead?: string; body: string };
 
 // Structure borrowed from the Hazelight footer (references/NOTES.md): a
 // quiet label column, a hairline rule, and generous space doing the work.
-// No hero, no texture, no imagery -- scale, columns and rules only.
+// No hero. Visual weight comes from the header's Kufi panel, the image
+// slot in the Arabic-first band, and the games strip at the end.
 //
 // Scale steps: statement step-8 (lg) -> band lead step-5 -> headings/body
 // step-3. The jump from the statement to everything else is the one
@@ -37,6 +42,7 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("About");
+  const tFooter = await getTranslations("Footer");
   const sections = t.raw("sections") as AboutSection[];
 
   // Body line length cap, section 4: 62ch Latin, 58ch Arabic.
@@ -52,7 +58,9 @@ export default async function AboutPage({
 
   return (
     <main aria-labelledby="about-heading">
-      {/* Opening: small title over a hairline, then the statement large. */}
+      {/* Opening: title over a hairline, then the statement beside the
+          Kufi panel on desktop; the panel drops below it on smaller
+          screens. */}
       <header className={`${container} pt-16 sm:pt-24`}>
         <h1
           id="about-heading"
@@ -60,9 +68,15 @@ export default async function AboutPage({
         >
           {t("heading")}
         </h1>
-        <p className="mt-12 max-w-[20ch] font-display text-step-5 font-semibold leading-display text-parchment sm:text-step-7 lg:text-step-8">
-          {t("statement")}
-        </p>
+        <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-x-8">
+          <p className="max-w-[20ch] font-display text-step-5 font-semibold leading-display text-parchment sm:text-step-7 lg:col-span-7">
+            {t("statement")}
+          </p>
+          <KufiPanel
+            id="about-kufi-panel"
+            className="aspect-[16/9] w-full lg:col-span-5 lg:aspect-[4/3]"
+          />
+        </div>
       </header>
 
       {sections.map((section, index) => {
@@ -76,11 +90,22 @@ export default async function AboutPage({
               aria-labelledby={headingId}
               className="bg-ink-raised py-16 sm:py-24"
             >
-              <div className={`${container} ${row}`}>
-                <h2 id={headingId} className={headingCell}>
-                  {section.heading}
-                </h2>
-                <div className={textCell}>
+              <div className={`${container} grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-x-8`}>
+                {/* Image slot, CLAUDE.md section 5 placeholder treatment.
+                    Real artwork: see LAUNCH-CHECKLIST.md. */}
+                <div
+                  role="img"
+                  aria-label={t("artLabel")}
+                  className="relative aspect-[4/5] w-full max-w-[420px] bg-ink lg:col-span-5 lg:max-w-none"
+                >
+                  <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-body text-step-1 text-muted">
+                    about/arabic-first
+                  </span>
+                </div>
+                <div className="flex flex-col gap-8 lg:col-span-7">
+                  <h2 id={headingId} className={headingCell}>
+                    {section.heading}
+                  </h2>
                   <p className="font-display text-step-4 font-semibold leading-display text-parchment sm:text-step-5">
                     {section.lead}
                   </p>
@@ -112,6 +137,41 @@ export default async function AboutPage({
           </section>
         );
       })}
+
+      {/* Our games: every game, linking to its page. Thumbnails are the
+          existing 3:4 slots, so real art fills in with no layout change. */}
+      <section
+        aria-labelledby="about-games-heading"
+        className={`${container} pb-16 sm:pb-24`}
+      >
+        <div className="flex flex-wrap items-baseline justify-between gap-4 border-t border-muted/40 pt-8">
+          <h2 id="about-games-heading" className={headingCell}>
+            {t("gamesHeading")}
+          </h2>
+          <Link
+            href="/games"
+            className="font-body text-step-2 text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+          >
+            {tFooter("gamesAll")}
+          </Link>
+        </div>
+        <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-3 lg:gap-x-8">
+          {games.map((game) => (
+            <li key={game.slug}>
+              <GameTile
+                thumbnail={game.thumbnail}
+                title={game.title[locale]}
+                line={game.tagline[locale]}
+                link={(className, children) => (
+                  <Link href={`/games/${game.slug}`} className={className}>
+                    {children}
+                  </Link>
+                )}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
     </main>
   );
 }

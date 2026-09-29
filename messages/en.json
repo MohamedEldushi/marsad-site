@@ -89,14 +89,16 @@
       },
       {
         "heading": "Arabic first",
-        "lead": "Most games made for Arabic-speaking players are translated into Arabic after the fact — built in English, then localised. Marsad works the other way around.",
+        "lead": "Most games made for Arabic-speaking players are translated into Arabic after the fact — built in English, then localised. Marsad works the other way around.",
         "body": "Arabic is the language the studio designs in first: the wordmark, the interface, the pacing of a sentence in a menu. English comes second, as a genuine second language for the games, not a set of subtitles bolted onto an English original. It changes real decisions — how much space a heading needs, how a layout mirrors, which words actually fit a button — not just which font renders."
       },
       {
         "heading": "Craft and language, one decision",
         "body": "None of this makes a game good by itself. It just means every game that reaches a player has already been through a studio that treats craft, and the language it's built in, as the same decision."
       }
-    ]
+    ],
+    "gamesHeading": "Our games",
+    "artLabel": "Artwork: Arabic first"
   },
   "Support": {
     "heading": "Support",
@@ -118,7 +120,13 @@
       }
     ],
     "emailCta": "Email support",
-    "emailLabel": "or copy the address"
+    "emailLabel": "or copy the address",
+    "gamesHeading": "Choose your game",
+    "gameAction": "Email about this game",
+    "otherHeading": "Anything else?",
+    "seeAlsoHeading": "See also",
+    "mailSubject": "[{game}] Support request",
+    "mailBody": "Device and OS version:\n\nWhat happened:\n\nWhat you were doing just before:\n\n\nAttach a screenshot or short clip if you can. It helps a lot."
   },
   "Legal": {
     "noticeBody": "This page is a placeholder. Marsad will provide the final legal text, and this notice will be removed once it's published.",
