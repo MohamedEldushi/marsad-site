@@ -16,11 +16,20 @@ export async function generateMetadata({
   };
 }
 
-// Quiet and typographic, per the brief -- no hero, no texture, no image
-// slots. Start-aligned like every other body-copy page rather than
-// centred: Home's studio statement is centred as a one-off "quiet
-// pause" within a longer page rhythm, not a general pattern for a page
-// that's entirely paragraphs.
+// A section with a `lead` is the page's emphasis band: the lead is set as
+// display type on a raised surface, and the body follows at reading size.
+type AboutSection = { heading: string; lead?: string; body: string };
+
+// Structure borrowed from the Hazelight footer (references/NOTES.md): a
+// quiet label column, a hairline rule, and generous space doing the work.
+// No hero, no texture, no imagery -- scale, columns and rules only.
+//
+// Scale steps: statement step-8 (lg) -> band lead step-5 -> headings/body
+// step-3. The jump from the statement to everything else is the one
+// decisive drop the page is built around.
+//
+// No numbering on sections: they are three facets of one argument, not a
+// sequence, so 01/02/03 markers would imply an order that isn't there.
 export default async function AboutPage({
   params,
 }: {
@@ -28,37 +37,81 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("About");
-  const paragraphs = t.raw("paragraphs") as string[];
+  const sections = t.raw("sections") as AboutSection[];
 
   // Body line length cap, section 4: 62ch Latin, 58ch Arabic.
   const proseMaxWidth = locale === "ar" ? "max-w-[58ch]" : "max-w-[62ch]";
+  const container = "mx-auto w-full max-w-[1280px] px-6 sm:px-12 lg:px-16";
+
+  // 12-column row: heading in the start 4 columns, text from column 6.
+  // Below lg the two stack, heading first.
+  const row = "grid grid-cols-1 gap-y-6 lg:grid-cols-12 lg:gap-x-8";
+  const headingCell =
+    "font-display text-step-3 font-semibold leading-display text-parchment lg:col-span-4";
+  const textCell = "flex flex-col gap-8 lg:col-span-7 lg:col-start-6";
 
   return (
-    <main>
-      <section
-        aria-labelledby="about-heading"
-        className="mx-auto flex max-w-[1280px] flex-col gap-8 px-6 py-16 sm:px-12 sm:py-24 lg:px-16"
-      >
-        <div className="flex flex-col gap-3">
-          <h1
-            id="about-heading"
-            className="font-display text-step-7 font-semibold leading-display text-parchment"
-          >
-            {t("heading")}
-          </h1>
-          <p className={`${proseMaxWidth} font-body text-step-3 leading-body text-muted`}>
-            {t("intro")}
-          </p>
-        </div>
+    <main aria-labelledby="about-heading">
+      {/* Opening: small title over a hairline, then the statement large. */}
+      <header className={`${container} pt-16 sm:pt-24`}>
+        <h1
+          id="about-heading"
+          className="border-b border-muted/40 pb-4 font-body text-step-3 font-medium text-muted"
+        >
+          {t("heading")}
+        </h1>
+        <p className="mt-12 max-w-[20ch] font-display text-step-5 font-semibold leading-display text-parchment sm:text-step-7 lg:text-step-8">
+          {t("statement")}
+        </p>
+      </header>
 
-        <div className={`${proseMaxWidth} flex flex-col gap-6`}>
-          {paragraphs.map((paragraph, index) => (
-            <p key={index} className="font-body text-step-2 leading-body text-muted">
-              {paragraph}
-            </p>
-          ))}
-        </div>
-      </section>
+      {sections.map((section, index) => {
+        const headingId = `about-section-${index}`;
+
+        if (section.lead) {
+          // Emphasis band: full-bleed raised surface, lead at display size.
+          return (
+            <section
+              key={index}
+              aria-labelledby={headingId}
+              className="bg-ink-raised py-16 sm:py-24"
+            >
+              <div className={`${container} ${row}`}>
+                <h2 id={headingId} className={headingCell}>
+                  {section.heading}
+                </h2>
+                <div className={textCell}>
+                  <p className="font-display text-step-4 font-semibold leading-display text-parchment sm:text-step-5">
+                    {section.lead}
+                  </p>
+                  <p className={`${proseMaxWidth} font-body text-step-3 leading-body text-muted`}>
+                    {section.body}
+                  </p>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        return (
+          <section
+            key={index}
+            aria-labelledby={headingId}
+            className={`${container} py-16 sm:py-24`}
+          >
+            <div className={`${row} border-t border-muted/40 pt-8`}>
+              <h2 id={headingId} className={headingCell}>
+                {section.heading}
+              </h2>
+              <div className={textCell}>
+                <p className={`${proseMaxWidth} font-body text-step-3 leading-body text-muted`}>
+                  {section.body}
+                </p>
+              </div>
+            </div>
+          </section>
+        );
+      })}
     </main>
   );
 }

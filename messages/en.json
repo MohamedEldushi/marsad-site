@@ -81,10 +81,21 @@
   "About": {
     "heading": "About Marsad",
     "intro": "How we build, and why we build it this way.",
-    "paragraphs": [
-      "Marsad builds small, focused worlds instead of sprawling ones. That's not a resource constraint dressed up as a philosophy — it's the actual bet: that a game built around one idea, followed all the way through, ends up more worth a player's time than ten ideas each explored halfway. Every project here starts from a single mechanic, mood, or question, and stays in development until that one thing is done right.",
-      "Most games made for Arabic-speaking players are translated into Arabic after the fact — built in English, then localised. Marsad works the other way around. Arabic is the language the studio designs in first: the wordmark, the interface, the pacing of a sentence in a menu. English comes second, as a genuine second language for the games, not a set of subtitles bolted onto an English original. It changes real decisions — how much space a heading needs, how a layout mirrors, which words actually fit a button — not just which font renders.",
-      "None of this makes a game good by itself. It just means every game that reaches a player has already been through a studio that treats craft, and the language it's built in, as the same decision."
+    "statement": "Marsad builds small, focused worlds instead of sprawling ones.",
+    "sections": [
+      {
+        "heading": "One idea, all the way through",
+        "body": "That's not a resource constraint dressed up as a philosophy — it's the actual bet: that a game built around one idea, followed all the way through, ends up more worth a player's time than ten ideas each explored halfway. Every project here starts from a single mechanic, mood, or question, and stays in development until that one thing is done right."
+      },
+      {
+        "heading": "Arabic first",
+        "lead": "Most games made for Arabic-speaking players are translated into Arabic after the fact — built in English, then localised. Marsad works the other way around.",
+        "body": "Arabic is the language the studio designs in first: the wordmark, the interface, the pacing of a sentence in a menu. English comes second, as a genuine second language for the games, not a set of subtitles bolted onto an English original. It changes real decisions — how much space a heading needs, how a layout mirrors, which words actually fit a button — not just which font renders."
+      },
+      {
+        "heading": "Craft and language, one decision",
+        "body": "None of this makes a game good by itself. It just means every game that reaches a player has already been through a studio that treats craft, and the language it's built in, as the same decision."
+      }
     ]
   },
   "Support": {
@@ -105,7 +116,9 @@
         "question": "Press or business inquiries?",
         "answer": "Same address. Put \"press\" or \"partnership\" in the subject line and it'll reach the right person faster."
       }
-    ]
+    ],
+    "emailCta": "Email support",
+    "emailLabel": "or copy the address"
   },
   "Legal": {
     "noticeBody": "This page is a placeholder. Marsad will provide the final legal text, and this notice will be removed once it's published.",
