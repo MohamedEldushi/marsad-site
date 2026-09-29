@@ -64,7 +64,7 @@ After building anything, check it in both locales at 390px, 768px, and 1440px (t
 
 **The idea:** architectural, not cute. Dark, deep, and built from geometry. Visual texture comes from Kufic-inspired angular letterforms and geometric tiling rendered as SVG, not from stock decoration. This is deliberate — it connects to the Arabic script the site is already built around, and it gives the site richness without depending on art assets.
 
-The name means "observatory" — a structure built for watching. The wordmark is the four Arabic letters م ر ص د set in Noto Kufi Arabic at weight 900, and it is the single boldest element on the site. Everything else stays quieter than it.
+The name means "observatory" — a structure built for watching. The logo is "Star Trail": custom lettering of مرصد in which the tail of ر is the trail of a shooting star, and a 4-point brass star leads the word right to left, in the Arabic reading direction. The artwork lives only in `src/components/ui/Logo.tsx` (variants: `primary` Arabic wordmark, `symbol` star + streak, `small` favicon mark). English contexts use the English lockup: symbol + "Marsad" in Archivo 800, expanded. Minimum sizes: primary 96px wide, symbol 24px, small mark 16px. The logo is the single boldest element on the site. Everything else stays quieter than it.
 
 Reference synthesis:
 - Information architecture follows the Supercell model (a studio holding many games).
@@ -85,13 +85,13 @@ Nine tokens. Nothing outside this set without asking.
 | `--ink-raised` | `#131E3A` | Raised surfaces, cards, nav on scroll. |
 | `--lapis` | `#5A8AEB` | Interactive on `--ink`: links, focus rings, active states, any blue text (≈5.5:1 on ink). |
 | `--lapis-deep` | `#2449C4` | Filled surfaces only (buttons, tags), with `--parchment` text on top (≈6:1). Never used as text on `--ink`. |
-| `--brass` | `#C9953F` | The one loud accent. Rare. Primary CTA and nothing else by default. |
+| `--brass` | `#C9953F` | The one loud accent. Rare. Primary CTA and nothing else by default — plus the logo's star (approved by the studio). |
 | `--parchment` | `#EDE6D8` | Body and heading text. Never pure white. |
 | `--muted` | `#8A94AE` | Secondary text, borders, disabled states. |
 | `--error` | `#EA6469` | Form feedback only. Not decoration. |
 | `--success` | `#46A758` | Form feedback only. Not decoration. |
 
-Brass is the single place boldness is spent. If it appears more than twice on a screen, it has stopped working. Status labels (including beta) are explicitly exempt from this brass budget because they are small metadata, not calls to action. `--error`/`--success` exist only for form validation states — never used to color a badge, label, or other UI decoration.
+Brass is the single place boldness is spent. If it appears more than twice on a screen, it has stopped working. Status labels (including beta) are explicitly exempt from this brass budget because they are small metadata, not calls to action. The logo's star is also exempt: it is part of the brand mark, not a call to action. `--error`/`--success` exist only for form validation states — never used to color a badge, label, or other UI decoration.
 
 ### Type
 
@@ -149,13 +149,13 @@ Three duration bands. Nothing outside them:
 
 ### Hero load sequence
 
-On mount, once, staggered 80ms apart:
+On mount, once:
 
-1. Tiling pattern fades in from 0 to its resting state.
-2. Pool gradient expands slightly outward.
-3. Wordmark fades up 16px.
-4. Headline fades up 16px.
-5. CTA fades up 16px.
+1. Tiling pattern fades in from 0 to its resting state (0ms).
+2. Pool gradient expands slightly outward (80ms).
+3. The logo's load moment (from 160ms), adapted from the logo's splash storyboard: the brass star streaks in from the right, the trail draws behind it into the ر, then the letters appear — three parts at 160ms, 310ms and 610ms. English: the symbol animates and "Marsad" fades up 16px. The star always travels right to left; never mirrored.
+4. Headline fades up 16px (460ms).
+5. CTA fades up 16px (540ms).
 
 Each step runs at the entrance duration (600ms) with the house easing curve. This sequence is the one exception to "everything else moves on user action only" — it runs once, on load, in the hero and nowhere else.
 
@@ -244,13 +244,13 @@ Every post is one folder, `content/news/<slug>/` (the folder name is the web add
 - `type` is a closed set, `NEWS_TYPES` in `src/types/news.ts`: `announcement`, `devlog`, `update`, `studio`, `event`. Each needs a translation under `News.types` in both locale files. `livestream` is planned as a type for a later task; it is not accepted yet.
 - Every post exists in both languages. `src/lib/news.ts` loads and validates everything at build time (both files present with a title and summary, valid type, existing game, real date, cover and inline images present under `public/news/<slug>/`, images have a description) and stops the build with a plain-language list naming each post and problem.
 - Rendering: raw HTML in markdown is shown as text, never injected; body headings start at h2 (the title is the page's h1) and stop at h3; inline images render as full-width 16:9 figures; site links written as `/games/x` get the page's language prefix.
-- Components: `NewsCard` (whole-card link, 16:9 cover or the section 5 placeholder, type · date, title, summary; a `featured` large variant), `NewsFilter` (client; type and game toggle buttons with `aria-pressed`, active in `--lapis`, friendly empty state), `NewsBody` (article text styles, `.news-body` in `globals.css`). Type labels are `--muted` text, never pills, never brass.
+- Components: `NewsCard` (whole-card link; sizes `default`, `large` and `featured` — the cinematic story at the top of /news; 16:9 cover or a generated `NewsCover`; a filled type tag in `--lapis-deep` with parchment text, date, reading time, title, summary, a "read" arrow), `NewsCover` (the post's artwork, or a generated cover: lit pool + Kufic tiling + the game's name), `NewsFilter` (client; pinned bar of type tabs with a `--lapis` underline, a game dropdown and a live post count; editorial grid with scroll reveals; friendly empty state), `NewsBody` (article text styles, `.news-body` in `globals.css`), `ReadingProgress` (articles). Type tags are never brass.
 
 ---
 
 ## 7. Pages
 
-- Site header on every page (`SiteHeader`, rendered in the locale layout): wordmark (links home) + Games / About / Support at the start, a language switch (same page, other locale) at the end. Active page marked with a 2px `--lapis` underline. Sticky: `--ink` at the top, `--ink-raised` + hairline once scrolled. Below md, a menu button opens a panel (closes on navigation and Escape). Includes a skip-to-content link targeting `#main-content`.
+- Site header on every page (`SiteHeader`, rendered in the locale layout): the logo (links home; primary logo in Arabic, English lockup in English) + Games / About / Support at the start, a language switch (same page, other locale) at the end. Active page marked with a 2px `--lapis` underline. Sticky: `--ink` at the top, `--ink-raised` + hairline once scrolled. Below md, a menu button opens a panel (closes on navigation and Escape). Includes a skip-to-content link targeting `#main-content`.
 - `/` Home — hero, featured game, games grid, latest news (3 newest posts, only when there are any), studio statement
 - `/games` — full catalogue
 - `/games/[slug]` — one template serving every game; a News section with that game's posts appears only when it has any

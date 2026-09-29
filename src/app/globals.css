@@ -365,3 +365,54 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 60% 70% at var(--pool-x, 50%) var(--pool-y, 40%), #fff 0%, #fff 20%, transparent 75%);
   mask-image: radial-gradient(ellipse 60% 70% at var(--pool-x, 50%) var(--pool-y, 40%), #fff 0%, #fff 20%, transparent 75%);
 }
+
+/*
+ * Logo load moment -- the hero's step 3 (CLAUDE.md 4.5), adapted from
+ * the logo's splash storyboard. Three 600ms entrance-band parts:
+ *   1. the star streaks in from the right (0ms)
+ *   2. the trail draws behind it, right to left, into the ر (150ms)
+ *   3. the letters appear (450ms)
+ * Offset by the hero's own 160ms step-3 delay. Never mirrored: the star
+ * always travels right to left, the Arabic reading direction.
+ */
+@keyframes logo-star-in {
+  from {
+    opacity: 0;
+    transform: translateX(160px);
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes logo-trail-draw {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes logo-letters-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .logo-animate .logo-star {
+    transform-box: fill-box;
+    animation: logo-star-in var(--duration-entrance) var(--ease-entrance) 160ms both;
+  }
+  .logo-animate .logo-trail {
+    animation: logo-trail-draw var(--duration-entrance) var(--ease-entrance) 310ms both;
+  }
+  .logo-animate .logo-letters {
+    animation: logo-letters-in var(--duration-entrance) var(--ease-entrance) 610ms both;
+  }
+}

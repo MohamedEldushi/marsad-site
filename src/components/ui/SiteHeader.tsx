@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
+import { Logo } from "./Logo";
 
 /**
  * Site-wide header. Structure after the Supercell studio nav (wordmark +
@@ -82,12 +83,24 @@ export function SiteHeader() {
 
       <div className="mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between gap-8 px-6 sm:px-12 lg:px-16">
         <div className="flex items-center gap-12">
+          {/* Arabic: the primary logo (40px tall = 100px wide, above the
+              96px minimum). English: the English lockup, symbol + "Marsad".
+              The link's aria-label names it, so the logo is decorative. */}
           <Link
             href="/"
             aria-label={t("homeLabel")}
-            className={`font-display text-step-4 font-black leading-none text-parchment ${focusRing}`}
+            className={`flex items-center gap-3 text-parchment ${focusRing}`}
           >
-            {tBoot("heading")}
+            {locale === "ar" ? (
+              <Logo variant="primary" height={40} />
+            ) : (
+              <>
+                <Logo variant="symbol" height={28} />
+                <span className="font-display text-step-3 font-extrabold leading-none [font-stretch:125%]">
+                  {tBoot("heading")}
+                </span>
+              </>
+            )}
           </Link>
 
           <nav aria-label={t("label")} className="hidden md:block">

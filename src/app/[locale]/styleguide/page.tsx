@@ -297,7 +297,7 @@ export default async function StyleguidePage({
         <h2 id="hero-heading" className="px-6 font-display text-step-5 font-semibold leading-display text-parchment sm:px-12">
           {t("hero.heading")}
         </h2>
-        <Hero wordmark={tBoot("heading")} headline={tBoot("tagline")}>
+        <Hero wordmark={tBoot("heading")} locale={locale} headline={tBoot("tagline")}>
           <Button as="a" href="#" variant="primary">
             {t("hero.cta")}
           </Button>

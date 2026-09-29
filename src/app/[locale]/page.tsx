@@ -30,7 +30,7 @@ export default async function Home({
 
   return (
     <main>
-      <Hero wordmark={tBoot("heading")} headline={tBoot("tagline")}>
+      <Hero wordmark={tBoot("heading")} locale={locale} headline={tBoot("tagline")}>
         <Button as={Link} href="/games" variant="primary">
           {tHome("hero.cta")}
         </Button>

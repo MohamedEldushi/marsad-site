@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { games } from "@/lib/games";
+import { Logo } from "./Logo";
 
 export async function Footer({ locale }: { locale: "ar" | "en" }) {
   const t = await getTranslations("Footer");
@@ -21,9 +22,17 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
         */}
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div className="flex flex-col gap-2">
-            <span className="font-display text-step-5 font-black leading-display text-parchment">
-              {tBoot("heading")}
-            </span>
+            {/* Same lockup rule as the header, larger. */}
+            {locale === "ar" ? (
+              <Logo variant="primary" height={60} label={tBoot("heading")} className="text-parchment" />
+            ) : (
+              <span className="flex items-center gap-3 text-parchment">
+                <Logo variant="symbol" height={40} />
+                <span className="font-display text-step-5 font-extrabold leading-none [font-stretch:125%]">
+                  {tBoot("heading")}
+                </span>
+              </span>
+            )}
             <p className="max-w-[32ch] font-body text-step-2 leading-body text-muted">
               {tBoot("tagline")}
             </p>
