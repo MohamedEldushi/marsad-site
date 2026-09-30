@@ -53,14 +53,16 @@ export default async function LivePage({
   return (
     <main aria-labelledby="live-heading">
       <header className={`${container} pt-12 sm:pt-16`}>
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between md:gap-8">
+        {/* Side by side only from lg: at md the long English title would
+            share the row with the intro and break into three lines. */}
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between lg:gap-8">
           <h1
             id="live-heading"
             className="font-display text-step-6 font-semibold leading-display text-parchment sm:text-step-7"
           >
             {t("heading")}
           </h1>
-          <p className="max-w-[44ch] font-body text-step-3 leading-body text-muted md:pb-2">{t("intro")}</p>
+          <p className="max-w-[44ch] font-body text-step-3 leading-body text-muted lg:pb-2">{t("intro")}</p>
         </div>
       </header>
 

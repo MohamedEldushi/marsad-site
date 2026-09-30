@@ -42,7 +42,10 @@ let cache: LiveItem[] | null = null;
 export const BUILT_AT = Math.floor(Date.now() / 60_000) * 60_000;
 
 export function getAllLive(): LiveItem[] {
-  if (cache) return cache;
+  // Cached for production builds. In development it's re-read on every
+  // call (like src/lib/news.ts), so a stream or episode added while
+  // previewing shows up on refresh without restarting `npm run dev`.
+  if (process.env.NODE_ENV === "production" && cache) return cache;
   if (!fs.existsSync(LIVE_DIR)) return (cache = []);
 
   const problems: string[] = [];
