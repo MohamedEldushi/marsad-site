@@ -1,0 +1,23 @@
+{
+  "kind": "stream",
+  "start": "2026-11-05T19:00:00+03:00",
+  "end": "2026-11-05T20:30:00+03:00",
+  "links": [
+    {
+      "platform": "tiktok",
+      "url": "https://www.tiktok.com/@marsad-placeholder"
+    },
+    {
+      "platform": "kick",
+      "url": "https://kick.com/marsad-placeholder"
+    }
+  ],
+  "ar": {
+    "title": "أسئلة مباشرة: كيف نصمّم واجهة لعبة بالعربية؟",
+    "summary": "جلسة مفتوحة عن الخطوط والاتجاه من اليمين إلى اليسار وكل ما يتغيّر عندما تبدأ بالعربية."
+  },
+  "en": {
+    "title": "Live Q&A: designing a game interface in Arabic",
+    "summary": "An open session on type, right-to-left layout, and everything that changes when you start in Arabic."
+  }
+}

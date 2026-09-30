@@ -17,7 +17,9 @@
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
     "skip": "Skip to content",
-    "news": "News"
+    "news": "News",
+    "live": "Streams & Podcasts",
+    "liveNow": "Live now"
   },
   "Styleguide": {
     "title": "Style Tile",
@@ -147,6 +149,40 @@
       "newer": "Newer",
       "older": "Older"
     }
+  },
+  "Live": {
+    "heading": "Streams & Podcasts",
+    "intro": "Live sessions from inside the studio, and conversations about making games. Watch or listen wherever you like.",
+    "kinds": {
+      "stream": "Stream",
+      "podcast": "Podcast"
+    },
+    "tabs": {
+      "all": "All",
+      "streams": "Streams",
+      "podcasts": "Podcasts"
+    },
+    "platforms": {
+      "youtube": "YouTube",
+      "tiktok": "TikTok",
+      "twitch": "Twitch",
+      "kick": "Kick"
+    },
+    "liveNow": "Live now",
+    "watchNowOn": "Watch now on {platform}",
+    "watchOn": "Watch on {platform}",
+    "listenOn": "Listen on {platform}",
+    "alsoOn": "Also on {platform}",
+    "comingUp": "Coming up",
+    "startingSoon": "Starting any minute",
+    "pastHeading": "Past streams & episodes",
+    "episode": "Episode {n}",
+    "count": "{count, plural, one {{n} item} other {{n} items}}",
+    "empty": "Nothing here yet. Check back soon.",
+    "channelsHeading": "Follow us",
+    "channelsIntro": "Subscribe to hear when the next stream starts.",
+    "newTab": "(opens in a new tab)",
+    "replay": "Replay"
   },
   "Support": {
     "heading": "Support",
@@ -319,7 +355,8 @@
       "terms": "Terms of Service"
     },
     "copyright": "© {year} Marsad. All rights reserved.",
-    "news": "News"
+    "news": "News",
+    "live": "Streams & Podcasts"
   },
   "PrimaryAction": {
     "store": "View on store",

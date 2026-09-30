@@ -1,0 +1,21 @@
+{
+  "kind": "stream",
+  "start": "2026-09-18T20:00:00+03:00",
+  "end": "2026-09-18T21:45:00+03:00",
+  "duration": 105,
+  "game": "salt-and-signal",
+  "links": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@marsad-placeholder"
+    }
+  ],
+  "ar": {
+    "title": "نلعب النسخة التجريبية من ملح وإشارة",
+    "summary": "جولة كاملة في النسخة التجريبية الجديدة، مع أفكار من المجتمع لما يأتي بعدها."
+  },
+  "en": {
+    "title": "Playing the Salt & Signal beta",
+    "summary": "A full run through the new beta, with community ideas for what comes next."
+  }
+}

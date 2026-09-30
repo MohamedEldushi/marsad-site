@@ -17,7 +17,9 @@
     "menuOpen": "افتح القائمة",
     "menuClose": "أغلق القائمة",
     "skip": "تخطَّ إلى المحتوى",
-    "news": "الأخبار"
+    "news": "الأخبار",
+    "live": "البث والبودكاست",
+    "liveNow": "مباشر الآن"
   },
   "Styleguide": {
     "title": "لوحة الأنماط",
@@ -147,6 +149,40 @@
       "newer": "الأحدث",
       "older": "الأقدم"
     }
+  },
+  "Live": {
+    "heading": "البث والبودكاست",
+    "intro": "بثوث مباشرة من داخل الاستوديو، وحلقات عن صناعة الألعاب — شاهد أو استمع على منصتك المفضّلة.",
+    "kinds": {
+      "stream": "بث",
+      "podcast": "بودكاست"
+    },
+    "tabs": {
+      "all": "الكل",
+      "streams": "البثوث",
+      "podcasts": "البودكاست"
+    },
+    "platforms": {
+      "youtube": "يوتيوب",
+      "tiktok": "تيك توك",
+      "twitch": "تويتش",
+      "kick": "كيك"
+    },
+    "liveNow": "مباشر الآن",
+    "watchNowOn": "شاهد الآن على {platform}",
+    "watchOn": "شاهد على {platform}",
+    "listenOn": "استمع على {platform}",
+    "alsoOn": "أو على {platform}",
+    "comingUp": "القادم",
+    "startingSoon": "يبدأ الآن تقريبًا",
+    "pastHeading": "البثوث والحلقات السابقة",
+    "episode": "الحلقة {n}",
+    "count": "{count, plural, zero {لا شيء} one {عنصر واحد} two {عنصران} few {{n} عناصر} many {{n} عنصرًا} other {{n} عنصر}}",
+    "empty": "لا شيء هنا بعد. عُد إلينا قريبًا.",
+    "channelsHeading": "تابعنا",
+    "channelsIntro": "اشترك لتعرف متى نبدأ البث التالي.",
+    "newTab": "(يفتح في نافذة جديدة)",
+    "replay": "إعادة البث"
   },
   "Support": {
     "heading": "الدعم",
@@ -319,7 +355,8 @@
       "terms": "شروط الخدمة"
     },
     "copyright": "© {year} مرصد. جميع الحقوق محفوظة.",
-    "news": "الأخبار"
+    "news": "الأخبار",
+    "live": "البث والبودكاست"
   },
   "PrimaryAction": {
     "store": "عرض في المتجر",

@@ -1,0 +1,20 @@
+{
+  "kind": "podcast",
+  "start": "2026-08-27T18:00:00+03:00",
+  "episode": 1,
+  "duration": 41,
+  "links": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@marsad-placeholder"
+    }
+  ],
+  "ar": {
+    "title": "لماذا مرصد؟",
+    "summary": "الحلقة الأولى: من أين جاء الاسم، وما الذي نريد أن نبنيه."
+  },
+  "en": {
+    "title": "Why Marsad?",
+    "summary": "Episode one: where the name comes from, and what we want to build."
+  }
+}

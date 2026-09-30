@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Logo } from "./Logo";
+import { liveStatus, useNow } from "@/lib/useNow";
 
 /**
  * Site-wide header. Structure after the Supercell studio nav (wordmark +
@@ -16,7 +17,7 @@ import { Logo } from "./Logo";
  * - Sticky. Plain --ink at the top of the page; --ink-raised with a
  *   hairline once scrolled (the "nav on scroll" use in the colour table).
  *   The colour change responds to the user's scroll, 200ms, house easing.
- * - Below md: a menu button opens a panel with the same links. Closes on
+ * - Below lg (1024px; five links no longer fit a tablet row): a menu button opens a panel with the same links. Closes on
  *   navigation and on Escape. No open/close animation.
  *
  * Every direction is logical (start/end), so RTL mirrors automatically.
@@ -25,12 +26,30 @@ import { Logo } from "./Logo";
 const LINKS = [
   { href: "/games", key: "games" },
   { href: "/news", key: "news" },
+  { href: "/live", key: "live" },
   { href: "/about", key: "about" },
   { href: "/support", key: "support" },
 ] as const;
 
-export function SiteHeader() {
+export function SiteHeader({
+  streamWindows = [],
+  builtAt,
+}: {
+  /** Every stream's start/end, so the header can mark "live now". */
+  streamWindows?: { start: string; end: string }[];
+  builtAt: number;
+}) {
   const t = useTranslations("Nav");
+  // A still --lapis dot beside "Streams & Podcasts" while any stream is
+  // live, on every page. Not pulsing: no ambient motion (CLAUDE.md 4.5).
+  const now = useNow(builtAt);
+  const isLiveNow = streamWindows.some((w) => liveStatus({ kind: "stream", ...w }, now) === "live");
+  const liveMarker = (
+    <>
+      <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full bg-lapis" />
+      <span className="sr-only">{`(${t("liveNow")})`}</span>
+    </>
+  );
   const tBoot = useTranslations("Boot");
   const locale = useLocale();
   const pathname = usePathname();
@@ -103,7 +122,7 @@ export function SiteHeader() {
             )}
           </Link>
 
-          <nav aria-label={t("label")} className="hidden md:block">
+          <nav aria-label={t("label")} className="hidden lg:block">
             <ul className="flex items-center gap-8">
               {LINKS.map(({ href, key }) => {
                 const active = isActive(href);
@@ -112,11 +131,14 @@ export function SiteHeader() {
                     <Link
                       href={href}
                       aria-current={active ? "page" : undefined}
-                      className={`relative flex h-16 items-center font-body text-step-2 font-medium transition-colors duration-200 ease-[var(--ease-entrance)] ${
+                      className={`relative flex h-16 items-center whitespace-nowrap font-body text-step-2 font-medium transition-colors duration-200 ease-[var(--ease-entrance)] ${
                         active ? "text-parchment" : "text-muted hover:text-parchment"
                       } ${focusRing}`}
                     >
-                      {t(key)}
+                      <span className="inline-flex items-center gap-2">
+                        {t(key)}
+                        {key === "live" && isLiveNow && liveMarker}
+                      </span>
                       {active && (
                         <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 bg-lapis" />
                       )}
@@ -134,7 +156,7 @@ export function SiteHeader() {
             locale={otherLocale}
             lang={otherLocale}
             hrefLang={otherLocale}
-            className={`hidden rounded border border-muted/40 px-3 py-1 font-body text-step-1 font-medium text-parchment transition-colors duration-200 ease-[var(--ease-entrance)] hover:border-muted md:inline-block ${focusRing}`}
+            className={`hidden rounded border border-muted/40 px-3 py-1 font-body text-step-1 font-medium text-parchment transition-colors duration-200 ease-[var(--ease-entrance)] hover:border-muted lg:inline-block ${focusRing}`}
           >
             {t("switchTo")}
           </Link>
@@ -145,7 +167,7 @@ export function SiteHeader() {
             aria-controls="mobile-menu"
             aria-label={menuOpen ? t("menuClose") : t("menuOpen")}
             onClick={() => setMenuOpen((open) => !open)}
-            className={`flex h-10 w-10 items-center justify-center rounded text-parchment md:hidden ${focusRing}`}
+            className={`flex h-10 w-10 items-center justify-center rounded text-parchment lg:hidden ${focusRing}`}
           >
             {/* Symmetric icon: identical in both directions, so no mirroring. */}
             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -163,7 +185,7 @@ export function SiteHeader() {
         <nav
           id="mobile-menu"
           aria-label={t("label")}
-          className="border-t border-muted/20 bg-ink-raised md:hidden"
+          className="border-t border-muted/20 bg-ink-raised lg:hidden"
         >
           <ul className="mx-auto flex max-w-[1280px] flex-col px-6 py-4 sm:px-12">
             {LINKS.map(({ href, key }) => {
@@ -179,6 +201,7 @@ export function SiteHeader() {
                   >
                     {active && <span aria-hidden="true" className="h-6 w-0.5 bg-lapis" />}
                     {t(key)}
+                    {key === "live" && isLiveNow && liveMarker}
                   </Link>
                 </li>
               );

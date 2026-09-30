@@ -113,14 +113,14 @@ Avoid: all-caps eyebrow labels above headings; accenting a single word in a head
 
 ### Texture
 
-Kufic-inspired geometric tiling (SVG) appears in exactly four places: behind the hero, as a divider band between major sections, in one framed `KufiPanel` in the header of a text page (/about, /support — approved by the studio; static, no motion), and in generated news covers (`NewsCover`, only when a post has no artwork — approved by the studio; static, no motion). Max 6% opacity, one scale across the whole site. Never behind body text. Never inside a card, except a generated news cover. Nowhere else without asking first.
+Kufic-inspired geometric tiling (SVG) appears in exactly four places: behind the hero, as a divider band between major sections, in one framed `KufiPanel` in the header of a text page (/about, /support — approved by the studio; static, no motion), and in generated covers (`NewsCover`, only when a news post, stream or episode has no artwork — approved by the studio; static, no motion). Max 6% opacity, one scale across the whole site. Never behind body text. Never inside a card, except a generated cover. Nowhere else without asking first.
 
 ### Layout and motion
 
 - 12-column grid, 1280px max content width, full-bleed heroes allowed to break out.
 - Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 128px. Nothing off-scale.
 - Radii: 0 for structural surfaces, 4px for controls. Not every element gets the same radius.
-- **Motion:** one orchestrated reveal on page load, in the hero only. Everything else moves only in response to a user action, except for the hero's ambient pool drift and the scoped scroll reveals on Home and News specified in section 4.5. Section 4.5 defines the full motion rules, including card hover behaviour; Scroll reveals are not a site-wide pattern: Home and News only. Always respect `prefers-reduced-motion`.
+- **Motion:** one orchestrated reveal on page load, in the hero only. Everything else moves only in response to a user action, except for the hero's ambient pool drift and the scoped scroll reveals on Home, News and Streams & Podcasts specified in section 4.5. Section 4.5 defines the full motion rules, including card hover behaviour; Scroll reveals are not a site-wide pattern: Home, News and Streams & Podcasts only. Always respect `prefers-reduced-motion`.
 
 ---
 
@@ -131,7 +131,7 @@ The full spec behind the one-line rule above.
 Two rules govern everything:
 
 - **One orchestrated reveal on page load, hero only.** Nothing else animates on mount or on scrolling into view.
-- **Everything else moves only in direct response to a user action** — hover, press, focus. No ambient motion outside the hero's pool drift below, no autoplay. The one scoped exception is the scroll reveal on Home and News, below.
+- **Everything else moves only in direct response to a user action** — hover, press, focus. No ambient motion outside the hero's pool drift below, no autoplay. The one scoped exception is the scroll reveal on Home, News and Streams & Podcasts, below.
 
 `prefers-reduced-motion: reduce` disables every animation and transition this section describes. The end state still renders — reduced motion removes the *motion*, not the result.
 
@@ -172,13 +172,15 @@ The hero's pool gradient drifts slowly — 20s or longer per cycle, subtle enoug
 - **Reading progress (news articles):** a 2px `--lapis` line along the bottom of the site header, tracking the reader's own scroll directly (no transition). Fills from the start edge.
 - **Focus rings:** appear instantly. Never animated — a focus ring that fades in is briefly invisible to the person who needs it most.
 
-### Scroll reveal (Home and News only)
+### Scroll reveal (Home, News and Streams & Podcasts only)
 
 The single named exception to "everything else moves on user action only." Home page sections below the hero (Featured game, Games grid, Studio statement) fade up 16px once, the first time each scrolls into view, at the entrance duration and house easing. Once triggered, a section never re-animates — scrolling away and back does nothing.
 
 This is scoped to Home's own sections. It is not a general pattern to reach for on other pages without the same explicit decision. The Footer moved to the shared layout in step 4 (it now renders on every page, not just Home) and lost its scroll-reveal treatment in the move — for the same reason, it isn't a site-wide pattern without a fresh decision to make it one.
 
 News (approved by the studio): each card in the /news grid fades up 16px the first time it scrolls into view, same duration and easing, staggered 80ms across a row. Changing a news filter re-runs the reveal for the new results — a direct response to the user's action.
+
+Streams & Podcasts (approved by the studio): the "Coming up" cards and the replays grid reveal the same way, staggered 80ms across a row; changing the tab re-runs the reveal. The "live now" dot (on the page and in the header) never pulses — no ambient motion.
 
 ---
 
@@ -250,12 +252,13 @@ Every post is one folder, `content/news/<slug>/` (the folder name is the web add
 
 ## 7. Pages
 
-- Site header on every page (`SiteHeader`, rendered in the locale layout): the logo (links home; primary logo in Arabic, English lockup in English) + Games / News / About / Support at the start, a language switch (same page, other locale) at the end. Active page marked with a 2px `--lapis` underline. Sticky: `--ink` at the top, `--ink-raised` + hairline once scrolled. Below md, a menu button opens a panel (closes on navigation and Escape). Includes a skip-to-content link targeting `#main-content`.
+- Site header on every page (`SiteHeader`, rendered in the locale layout): the logo (links home; primary logo in Arabic, English lockup in English) + Games / News / Streams & Podcasts / About / Support at the start, a language switch (same page, other locale) at the end. Active page marked with a 2px `--lapis` underline. Sticky: `--ink` at the top, `--ink-raised` + hairline once scrolled. Below lg (1024px — five links don't fit a tablet row), a menu button opens a panel (closes on navigation and Escape). Includes a skip-to-content link targeting `#main-content`. While any stream is live (by the viewer's clock), a still `--lapis` dot marks "Streams & Podcasts" in both menus.
 - `/` Home — hero, featured game, games grid, latest news (3 newest posts, only when there are any), studio statement
 - `/games` — full catalogue
 - `/games/[slug]` — one template serving every game; a News section with that game's posts appears only when it has any
 - `/news` — header in the /about style (no Kufi panel), the featured story large (newest `featured` post, else the newest), then every post in a `NewsFilter` grid: 1 column under 768px, 2 at 768, 3 at 1024+
 - `/news/[slug]` — type · date · game (linked), title, summary as the lead, 16:9 cover, `NewsBody`, one brass CTA to the game page when the post has a game (the page's only brass), "More news" (up to 3: same game first, then same type, then the newest others), back link. Statically generated for every post in both locales; unknown slugs are a 404. Metadata uses the summary as the description and the cover as the sharing image when there is one
+- `/live` — Streams & Podcasts ("البث والبودكاست"). One JSON file per stream or episode in `content/live/` (both languages required, validated at build; `LIVE-GUIDE.md` explains every field) plus `content/live/channels.json`. Nothing is embedded: every card links out to YouTube, TikTok, Twitch or Kick in a new tab, with an external-link icon and a screen-reader note — no third-party player or tracking loads on the site. Live / upcoming / replay is decided in the browser by the viewer's clock (`src/lib/useNow.ts`, re-checked each minute; build time before hydration, so no mismatch): a "Live now" cinematic banner with the page's one brass button (only while live), "Coming up" (soonest 3, calendar tile, local time with time zone, countdown), a pinned All / Streams / Podcasts tab bar with a count, and a replays/episodes grid (episode number or "Replay" badge, duration badge, generated or real cover). Then a "Follow us" row of channel links. Components: `LiveHub` (client), `LiveNowCard`, `UpcomingCard`, `ReplayCard`, `ExternalIcon` (in `LiveCards.tsx`).
 - `/about` — studio story, incl. the Arabic-first differentiator. No team section yet. Header with a `KufiPanel`, an image slot (`about/arabic-first`, 4:5) in the Arabic-first band, and an "Our games" strip of `GameTile`s.
 - `/support` — a per-game routing grid of `GameTile`s (coming-soon games excluded), each a `mailto:` with the game in the subject and a report template in the body (`Support.mailSubject` / `Support.mailBody`); then a contact form + FAQ; then a See also row. The contact form (`ContactForm`, server action in `src/app/[locale]/support/actions.ts`) sends through Resend's HTTP API with plain `fetch` — no SDK dependency. Configured only by env vars (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, see `.env.example`); without them it shows an "unavailable" state pointing to the email address. Spam protection is a honeypot plus a minimum time on page — no CAPTCHA (third-party).
 - `/privacy` and `/terms` — required for app store listings. Real copy will be supplied by the studio; use placeholder text until then.

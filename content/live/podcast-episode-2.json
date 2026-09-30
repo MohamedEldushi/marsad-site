@@ -1,0 +1,24 @@
+{
+  "kind": "podcast",
+  "start": "2026-09-10T18:00:00+03:00",
+  "episode": 2,
+  "duration": 52,
+  "links": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@marsad-placeholder"
+    },
+    {
+      "platform": "tiktok",
+      "url": "https://www.tiktok.com/@marsad-placeholder"
+    }
+  ],
+  "ar": {
+    "title": "الخط العربي في الألعاب",
+    "summary": "حديث عن اختيار الخطوط العربية للشاشات الصغيرة والكبيرة، وأخطاء نراها كثيرًا."
+  },
+  "en": {
+    "title": "Arabic type in games",
+    "summary": "On choosing Arabic typefaces for small and large screens, and the mistakes we see most often."
+  }
+}

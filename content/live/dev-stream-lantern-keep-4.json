@@ -1,0 +1,24 @@
+{
+  "kind": "stream",
+  "start": "2026-10-16T20:00:00+03:00",
+  "end": "2026-10-16T22:00:00+03:00",
+  "game": "lantern-keep",
+  "links": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@marsad-placeholder"
+    },
+    {
+      "platform": "twitch",
+      "url": "https://www.twitch.tv/marsad_placeholder"
+    }
+  ],
+  "ar": {
+    "title": "بث التطوير: نبني الطابق الأخير في حارس الفانوس",
+    "summary": "نعمل مباشرة على آخر طوابق البرج، ونجيب على أسئلتكم أثناء البناء."
+  },
+  "en": {
+    "title": "Dev stream: building Lantern Keep's final floor",
+    "summary": "We work live on the tower's last floor and answer your questions as we build."
+  }
+}

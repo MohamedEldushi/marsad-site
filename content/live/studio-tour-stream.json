@@ -1,0 +1,24 @@
+{
+  "kind": "stream",
+  "start": "2026-08-28T19:00:00+03:00",
+  "end": "2026-08-28T20:30:00+03:00",
+  "duration": 90,
+  "links": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@marsad-placeholder"
+    },
+    {
+      "platform": "kick",
+      "url": "https://kick.com/marsad-placeholder"
+    }
+  ],
+  "ar": {
+    "title": "جولة في مرصد: كيف نعمل",
+    "summary": "أول بث للاستوديو: أدواتنا، وطريقة عملنا، ولماذا نبدأ كل شيء بالعربية."
+  },
+  "en": {
+    "title": "Inside Marsad: how we work",
+    "summary": "The studio's first stream: our tools, our process, and why we start everything in Arabic."
+  }
+}

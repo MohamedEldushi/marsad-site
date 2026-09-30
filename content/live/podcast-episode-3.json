@@ -1,0 +1,24 @@
+{
+  "kind": "podcast",
+  "start": "2026-09-24T18:00:00+03:00",
+  "episode": 3,
+  "duration": 48,
+  "links": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@marsad-placeholder"
+    },
+    {
+      "platform": "tiktok",
+      "url": "https://www.tiktok.com/@marsad-placeholder"
+    }
+  ],
+  "ar": {
+    "title": "فكرة واحدة حتى النهاية",
+    "summary": "لماذا نفضّل لعبة صغيرة مكتملة على عالم ضخم نصف منجز، وكيف نقرّر ما نحذفه."
+  },
+  "en": {
+    "title": "One idea, all the way through",
+    "summary": "Why we'd rather finish a small game than half-build a huge world, and how we decide what to cut."
+  }
+}
