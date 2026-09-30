@@ -14,10 +14,14 @@ import { routing } from "@/i18n/routing";
 import { getSiteUrl } from "@/lib/site";
 import "../globals.css";
 
+// The width axis (62-125) is loaded so "expanded" (font-stretch: 125%) is
+// real, not ignored: the English "Marsad" lockup uses it (CLAUDE.md
+// section 4). Without axes, next/font ships the weight axis only.
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
   weight: "variable",
+  axes: ["wdth"],
 });
 
 const notoKufiArabic = Noto_Kufi_Arabic({

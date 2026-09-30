@@ -43,17 +43,27 @@ export function Hero({
             into the ر, letters appear -- see globals.css). Arabic: the
             primary logo. English: the symbol animates, the name fades up.
             Steps 4-5: headline, then CTA, fading up 16px. */}
+        {/* The logo is the boldest element here (CLAUDE.md section 4), so
+            it scales up with the screen and the headline sits a step
+            below it. `height` sets the artwork's largest size; the classes
+            size it per breakpoint and w-auto keeps its proportions. */}
         {locale === "ar" ? (
-          <Logo variant="primary" height={72} label={wordmark} animate className="text-parchment" />
+          <Logo
+            variant="primary"
+            height={120}
+            label={wordmark}
+            animate
+            className="text-parchment h-16 w-auto sm:h-24 lg:h-[120px]"
+          />
         ) : (
           <span className="flex items-center gap-4 text-parchment">
-            <Logo variant="symbol" height={52} animate />
-            <span className="font-display text-step-5 font-extrabold leading-none [font-stretch:125%] motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_460ms_both]">
+            <Logo variant="symbol" height={80} animate className="h-12 w-auto sm:h-16 lg:h-20" />
+            <span className="font-display text-step-6 font-extrabold leading-none [font-stretch:125%] motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_460ms_both]">
               {wordmark}
             </span>
           </span>
         )}
-        <h1 className="text-balance font-display text-step-7 font-black leading-display text-parchment sm:text-step-8 motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_460ms_both]">
+        <h1 className="text-balance font-display text-step-6 font-black leading-display text-parchment sm:text-step-7 motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_460ms_both]">
           {headline}
         </h1>
         <div className="motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_540ms_both]">

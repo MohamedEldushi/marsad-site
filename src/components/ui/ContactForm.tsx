@@ -93,8 +93,9 @@ export function ContactForm({
         "game",
         labels.game,
         // Keyed on the returned value: React 19 resets the form after each
-        // submit, and a remount is what makes a <select> restore it.
-        <select {...a11y("game")} key={values.game ?? ""} defaultValue={values.game ?? ""} className={control}>
+        // submit, and a remount is what makes a <select> restore it. `key`
+        // must come before the spread: after it, React warns about keys.
+        <select key={values.game ?? ""} {...a11y("game")} defaultValue={values.game ?? ""} className={control}>
           <option value="" disabled>
             {labels.gameChoose}
           </option>

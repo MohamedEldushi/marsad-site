@@ -68,10 +68,13 @@ export function NewsFilter({
       {/* Pinned bar. top-16 = the site header's height. */}
       <div className="sticky top-16 z-30 border-b border-muted/20 bg-ink">
         <div className="flex flex-col gap-3 py-3 md:flex-row md:items-center md:justify-between md:gap-8 md:py-0">
+          {/* Below lg the tabs wrap onto a second line, so none is ever
+              hidden off the edge; from lg up they sit in one row. (At md,
+              768px, six tabs plus the game dropdown don't fit one row.) */}
           <div
             role="group"
             aria-label={labels.type}
-            className="-mb-px flex gap-6 overflow-x-auto [scrollbar-width:none]"
+            className="-mb-px flex flex-wrap gap-x-6 lg:flex-nowrap lg:overflow-x-auto [scrollbar-width:none]"
           >
             {tabs.map((tab) => {
               const active = type === tab.value;

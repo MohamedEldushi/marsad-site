@@ -250,7 +250,7 @@ Every post is one folder, `content/news/<slug>/` (the folder name is the web add
 
 ## 7. Pages
 
-- Site header on every page (`SiteHeader`, rendered in the locale layout): the logo (links home; primary logo in Arabic, English lockup in English) + Games / About / Support at the start, a language switch (same page, other locale) at the end. Active page marked with a 2px `--lapis` underline. Sticky: `--ink` at the top, `--ink-raised` + hairline once scrolled. Below md, a menu button opens a panel (closes on navigation and Escape). Includes a skip-to-content link targeting `#main-content`.
+- Site header on every page (`SiteHeader`, rendered in the locale layout): the logo (links home; primary logo in Arabic, English lockup in English) + Games / News / About / Support at the start, a language switch (same page, other locale) at the end. Active page marked with a 2px `--lapis` underline. Sticky: `--ink` at the top, `--ink-raised` + hairline once scrolled. Below md, a menu button opens a panel (closes on navigation and Escape). Includes a skip-to-content link targeting `#main-content`.
 - `/` Home — hero, featured game, games grid, latest news (3 newest posts, only when there are any), studio statement
 - `/games` — full catalogue
 - `/games/[slug]` — one template serving every game; a News section with that game's posts appears only when it has any

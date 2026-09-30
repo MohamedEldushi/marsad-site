@@ -104,21 +104,34 @@ export default async function NewsArticlePage({
 
       <article id="article" aria-labelledby="article-title" className={`${container} pt-12 pb-16 sm:pt-16 sm:pb-24`}>
         <header className="flex max-w-[960px] flex-col gap-6">
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-2 font-body text-step-2 text-muted">
-            <span className="rounded-sm bg-lapis-deep px-2 py-1 text-step-1 font-medium leading-none text-parchment">
-              {typeLabel(post.type)}
+          {/* Tag, then "date · reading time", then "· game". Each group
+              carries a 16px lead in front of it (a dot where one belongs),
+              and the row is pulled 16px past its start edge with overflow
+              hidden: whichever group starts a line has its lead clipped
+              away. So a dot can never start or end a line, whatever wraps.
+              py-1/-my-1 keep the game link's focus ring inside the clip. */}
+          <p className="-my-1 overflow-hidden py-1 font-body text-step-2 text-muted">
+            <span className="-ms-4 flex flex-wrap items-center gap-y-2">
+              <span className="ps-4">
+                <span className="inline-block rounded-sm bg-lapis-deep px-2 py-1 text-step-1 font-medium leading-none text-parchment">
+                  {typeLabel(post.type)}
+                </span>
+              </span>
+              <span className="inline-flex items-center whitespace-nowrap">
+                <span aria-hidden="true" className="w-4 shrink-0" />
+                <time dateTime={post.date}>{formatNewsDate(post.date, locale)}</time>
+                <span aria-hidden="true" className="w-4 shrink-0 text-center">·</span>
+                <span>{t("readingTime", { count: minutes, minutes: String(minutes) })}</span>
+              </span>
+              {game && (
+                <span className="inline-flex items-center whitespace-nowrap">
+                  <span aria-hidden="true" className="w-4 shrink-0 text-center">·</span>
+                  <Link href={`/games/${game.slug}`} className={quietLink}>
+                    {game.title[locale]}
+                  </Link>
+                </span>
+              )}
             </span>
-            <time dateTime={post.date}>{formatNewsDate(post.date, locale)}</time>
-            <span aria-hidden="true">·</span>
-            <span>{t("readingTime", { count: minutes, minutes: String(minutes) })}</span>
-            {game && (
-              <>
-                <span aria-hidden="true"> · </span>
-                <Link href={`/games/${game.slug}`} className={quietLink}>
-                  {game.title[locale]}
-                </Link>
-              </>
-            )}
           </p>
           <h1
             id="article-title"

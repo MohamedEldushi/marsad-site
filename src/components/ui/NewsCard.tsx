@@ -46,9 +46,13 @@ export function NewsCard({
       <span className="rounded-sm bg-lapis-deep px-2 py-1 font-medium leading-none text-parchment">
         {post.typeLabel}
       </span>
-      <time dateTime={post.date}>{post.dateLabel}</time>
-      <span aria-hidden="true">·</span>
-      <span>{t("readingTime", { count: post.readingMinutes, minutes: String(post.readingMinutes) })}</span>
+      {/* Kept on one line so the dot can never start (or end) a line;
+          only the tag may wrap onto its own line. */}
+      <span className="inline-flex items-center gap-x-3 whitespace-nowrap">
+        <time dateTime={post.date}>{post.dateLabel}</time>
+        <span aria-hidden="true">·</span>
+        <span>{t("readingTime", { count: post.readingMinutes, minutes: String(post.readingMinutes) })}</span>
+      </span>
     </p>
   );
 
@@ -95,10 +99,12 @@ export function NewsCard({
             {readLine}
           </div>
         </div>
-        {/* Below md: the same content, stacked under the cover. */}
+        {/* Below md: the same content, stacked under the cover. The title
+            is the same heading element as the overlay's: only one of the
+            two is ever displayed, so screen readers get exactly one. */}
         <div className="mt-6 flex flex-col gap-3 md:hidden">
           {meta}
-          <span className="font-display text-step-5 font-semibold leading-display text-parchment">{post.title}</span>
+          <Heading className="font-display text-step-5 font-semibold leading-display text-parchment">{post.title}</Heading>
           <p className="font-body text-step-2 leading-body text-muted">{post.summary}</p>
           {readLine}
         </div>
