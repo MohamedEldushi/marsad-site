@@ -404,10 +404,35 @@ body {
     opacity: 1;
   }
 }
+/*
+ * The symbol variant (English lockup) has its own star entrance: its frame
+ * is only 100 units wide, so starting 160 units to the right would put the
+ * star outside it and it would be clipped. Instead the star slides down its
+ * own streak, from the streak's top-right end (58, -31 from rest, in the
+ * symbol's 0-100 units) to its resting point. Same duration, easing, delay
+ * and opacity fade as the primary logo's star.
+ */
+@keyframes logo-star-in-symbol {
+  from {
+    opacity: 0;
+    transform: translate(58px, -31px);
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   .logo-animate .logo-star {
     transform-box: fill-box;
     animation: logo-star-in var(--duration-entrance) var(--ease-entrance) 160ms both;
+  }
+  .logo-animate .logo-star-symbol {
+    transform-box: fill-box;
+    animation: logo-star-in-symbol var(--duration-entrance) var(--ease-entrance) 160ms both;
   }
   .logo-animate .logo-trail {
     animation: logo-trail-draw var(--duration-entrance) var(--ease-entrance) 310ms both;

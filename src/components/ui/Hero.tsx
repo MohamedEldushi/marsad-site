@@ -58,7 +58,7 @@ export function Hero({
         ) : (
           <span className="flex items-center gap-4 text-parchment">
             <Logo variant="symbol" height={80} animate className="h-12 w-auto sm:h-16 lg:h-20" />
-            <span className="font-display text-step-6 font-extrabold leading-none [font-stretch:125%] motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_460ms_both]">
+            <span className="font-display text-step-6 font-extrabold leading-none [font-stretch:125%] sm:text-step-7 motion-safe:[animation:hero-fade-up_var(--duration-entrance)_var(--ease-entrance)_460ms_both]">
               {wordmark}
             </span>
           </span>

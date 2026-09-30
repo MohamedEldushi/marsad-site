@@ -96,8 +96,10 @@ export function Logo({
       {variant === "symbol" && (
         <>
           <path className={a("trail")} d="M85.5 28L29.4 62.5L25.6 55.5Z" />
+          {/* Its own entrance (logo-star-in-symbol): the star slides down
+              its streak, so it never leaves this small frame. */}
           <path
-            className={a("star")}
+            className={a("star-symbol")}
             fill={star}
             d="M27.5 46Q29.84 56.66 40.5 59Q29.84 61.34 27.5 72Q25.16 61.34 14.5 59Q25.16 56.66 27.5 46Z"
           />
