@@ -195,7 +195,7 @@ body {
 }
 
 /*
- * Scroll reveal (Home and News only) — CLAUDE.md 4.5's documented exception to "no
+ * Scroll reveal (Home, News, Streams & Podcasts and Games only) — CLAUDE.md 4.5's documented exception to "no
  * scroll-triggered reveals." Base state is fully visible so it degrades
  * safely with JS disabled; only under no-preference motion does it start
  * hidden, waiting for ScrollReveal.tsx to flip data-revealed once.
@@ -439,5 +439,67 @@ body {
   }
   .logo-animate .logo-letters {
     animation: logo-letters-in var(--duration-entrance) var(--ease-entrance) 610ms both;
+  }
+}
+
+/*
+ * Games: the poster "shutter" reveal -- the signature moment of /games.
+ * As a poster first scrolls into view it opens from the centre outward,
+ * like an observatory's viewing slit parting, while the art inside
+ * settles from 108% to its resting size. One 600ms entrance-band move,
+ * house easing, once. Fully visible by default; hidden only under
+ * no-preference motion until ScrollReveal flips data-revealed.
+ */
+@keyframes reveal-shutter-open {
+  from {
+    clip-path: inset(0 50% 0 50%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes reveal-shutter-settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+/* The clip goes on the wrapper's child, never on the observed wrapper
+ * itself: a fully clipped element never counts as "in view" to the
+ * IntersectionObserver, so the shutter would never open. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-shutter > * {
+    clip-path: inset(0 50% 0 50%);
+  }
+  .reveal-shutter[data-revealed="true"] > * {
+    animation: reveal-shutter-open var(--duration-entrance) var(--ease-entrance) forwards;
+  }
+  .reveal-shutter[data-revealed="true"] .shutter-art {
+    animation: reveal-shutter-settle var(--duration-entrance) var(--ease-entrance) both;
+  }
+}
+
+/*
+ * Games: a soft light that follows the pointer across a poster (set by
+ * Spotlight.tsx as --spot-x / --spot-y). Responds only to the user's
+ * pointer; fades in and out at the 200ms interaction duration. Mouse and
+ * pen only -- touch screens never show it.
+ */
+.spotlight-glow {
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle 260px at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(237, 230, 216, 0.14),
+    rgba(90, 138, 235, 0.06) 45%,
+    transparent 70%
+  );
+  transition: opacity var(--duration-interaction) var(--ease-entrance);
+}
+@media (hover: hover) {
+  .group:hover .spotlight-glow {
+    opacity: 1;
   }
 }
