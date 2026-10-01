@@ -98,7 +98,21 @@
     "releaseTba": "لم يُحدد بعد",
     "screenshotsHeading": "لقطات الشاشة",
     "screenshotsEmpty": "لقطات الشاشة قادمة قريبًا.",
-    "newsHeading": "الأخبار"
+    "newsHeading": "الأخبار",
+    "aboutHeading": "عن اللعبة",
+    "trailerHeading": "العرض الدعائي",
+    "watchTrailer": "شاهد العرض الدعائي على يوتيوب",
+    "newTab": "(يفتح في نافذة جديدة)",
+    "screenshotAlt": "{game}، لقطة الشاشة {n}",
+    "viewerOpen": "اعرض لقطة الشاشة {n} من {total}",
+    "viewerLabel": "لقطات شاشة {game}",
+    "viewerCount": "{n} من {total}",
+    "viewerClose": "إغلاق",
+    "viewerPrevious": "اللقطة السابقة",
+    "viewerNext": "اللقطة التالية",
+    "worldsLabel": "ألعاب أخرى",
+    "previousWorld": "العالم السابق",
+    "nextWorld": "العالم التالي"
   },
   "About": {
     "heading": "عن مرصد",

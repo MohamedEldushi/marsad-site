@@ -593,3 +593,12 @@ html {
     animation: sky-star-arrive var(--duration-entrance) var(--ease-entrance) 120ms both;
   }
 }
+
+/*
+ * Game page screenshot viewer (ScreenshotGallery, approved by the
+ * studio). The page behind the modal <dialog> dims to near-ink; no blur,
+ * no animation -- it opens and closes instantly.
+ */
+.screenshot-viewer::backdrop {
+  background: color-mix(in srgb, var(--ink) 94%, transparent);
+}

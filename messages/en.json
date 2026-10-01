@@ -98,7 +98,21 @@
     "releaseTba": "To be announced",
     "screenshotsHeading": "Screenshots",
     "screenshotsEmpty": "Screenshots are coming soon.",
-    "newsHeading": "News"
+    "newsHeading": "News",
+    "aboutHeading": "About the game",
+    "trailerHeading": "Trailer",
+    "watchTrailer": "Watch the trailer on YouTube",
+    "newTab": "(opens in a new tab)",
+    "screenshotAlt": "{game}, screenshot {n}",
+    "viewerOpen": "View screenshot {n} of {total}",
+    "viewerLabel": "{game} screenshots",
+    "viewerCount": "{n} of {total}",
+    "viewerClose": "Close",
+    "viewerPrevious": "Previous screenshot",
+    "viewerNext": "Next screenshot",
+    "worldsLabel": "More worlds",
+    "previousWorld": "Previous world",
+    "nextWorld": "Next world"
   },
   "About": {
     "heading": "About Marsad",
