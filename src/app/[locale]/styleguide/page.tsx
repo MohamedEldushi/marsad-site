@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/Button";
-import { GameCard } from "@/components/ui/GameCard";
+import { GamePoster } from "@/components/ui/GamePoster";
 import { Hero } from "@/components/ui/Hero";
 import { games } from "@/lib/games";
 
@@ -285,11 +285,13 @@ export default async function StyleguidePage({
           </h2>
           <p className="font-body text-step-2 text-muted">{t("cards.sub")}</p>
         </div>
-        <div className="flex flex-wrap gap-8">
+        <ul className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:gap-8">
           {games.map((game) => (
-            <GameCard key={game.slug} game={game} locale={locale} />
+            <li key={game.slug}>
+              <GamePoster game={game} locale={locale} />
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       {/* Hero */}

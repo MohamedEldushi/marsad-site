@@ -68,9 +68,6 @@
     "hero": {
       "cta": "Explore our games"
     },
-    "featured": {
-      "eyebrow": "Featured game"
-    },
     "grid": {
       "heading": "More worlds in progress"
     },
@@ -81,6 +78,10 @@
     "news": {
       "heading": "Latest news",
       "all": "All news"
+    },
+    "live": {
+      "next": "Next stream",
+      "cta": "Streams & Podcasts"
     }
   },
   "GamesIndex": {

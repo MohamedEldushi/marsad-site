@@ -47,6 +47,20 @@ export function formatDuration(minutes: number) {
   return h > 0 ? `${h}:${String(m).padStart(2, "0")}:00` : `${m}:00`;
 }
 
+/**
+ * "in 16 days" / "خلال 16 يومًا", in minutes, hours or days, Western
+ * digits. Shared by the /live "Coming up" cards and Home's live strip.
+ * Only call it in the browser: it depends on the viewer's clock.
+ */
+export function formatCountdown(msUntil: number, locale: string, startingSoon: string) {
+  const minutes = Math.round(msUntil / 60_000);
+  const rtf = new Intl.RelativeTimeFormat(numberLocale(locale), { numeric: "auto" });
+  if (minutes < 1) return startingSoon;
+  if (minutes < 60) return rtf.format(minutes, "minute");
+  if (minutes < 60 * 24) return rtf.format(Math.round(minutes / 60), "hour");
+  return rtf.format(Math.round(minutes / (60 * 24)), "day");
+}
+
 function actionLabel(t: ReturnType<typeof useTranslations>, kind: string, platform: string) {
   return kind === "podcast" ? t("listenOn", { platform }) : t("watchOn", { platform });
 }
@@ -116,19 +130,7 @@ export function UpcomingCard({ item, now, isClient }: { item: LiveCardData; now:
     ...(isClient ? { timeZoneName: "short" } : {}),
   }).format(start);
 
-  let countdown = "";
-  if (isClient) {
-    const minutes = Math.round((start.getTime() - now) / 60_000);
-    const rtf = new Intl.RelativeTimeFormat(loc, { numeric: "auto" });
-    countdown =
-      minutes < 1
-        ? t("startingSoon")
-        : minutes < 60
-          ? rtf.format(minutes, "minute")
-          : minutes < 60 * 24
-            ? rtf.format(Math.round(minutes / 60), "hour")
-            : rtf.format(Math.round(minutes / (60 * 24)), "day");
-  }
+  const countdown = isClient ? formatCountdown(start.getTime() - now, locale, t("startingSoon")) : "";
 
   const main = item.links[0];
   return (

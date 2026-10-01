@@ -2,8 +2,8 @@
  * A compact, whole-tile link for a game: 3:4 thumbnail slot, title, and
  * one line under it. Used by /support (the line is an email action and
  * the link is a pre-filled mailto:) and /about (the line is the tagline
- * and the link goes to the game page). Simpler than GameCard on purpose:
- * no status labels, no store buttons, no brass.
+ * and the link goes to the game page). Simpler than GamePoster on purpose:
+ * a plain thumbnail slot, no pointer light, no status labels, no brass.
  *
  * Hover per CLAUDE.md 4.5 (cards): raise 4px and lighten the border,
  * 200ms, house easing. The focus ring is not transitioned.
