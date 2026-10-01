@@ -135,7 +135,7 @@ export function UpcomingCard({ item, now, isClient }: { item: LiveCardData; now:
     <a href={main.url} target="_blank" rel="noopener noreferrer" className={`group flex h-full gap-5 border border-muted/20 bg-ink-raised p-5 transition-colors duration-200 ease-[var(--ease-entrance)] hover:border-muted/60 ${focus}`}>
       {/* Calendar tile */}
       <div className="flex w-16 shrink-0 flex-col items-center justify-center gap-1 self-start border border-muted/30 bg-ink py-3">
-        <span className="font-display text-step-5 font-semibold leading-none text-parchment">{day}</span>
+        <span className="font-display text-step-5 font-semibold leading-none text-parchment tabular-nums">{day}</span>
         <span className="font-body text-step-1 text-muted">{month}</span>
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-2">
@@ -146,7 +146,7 @@ export function UpcomingCard({ item, now, isClient }: { item: LiveCardData; now:
           <time dateTime={item.start}>{when}</time>
         </p>
         <h3 className="font-display text-step-3 font-semibold leading-display text-parchment">{item.title}</h3>
-        {countdown && <p className="font-body text-step-2 font-medium text-lapis">{countdown}</p>}
+        {countdown && <p className="font-body text-step-2 font-medium text-lapis tabular-nums">{countdown}</p>}
         <span className="mt-auto inline-flex items-center gap-2 pt-1 font-body text-step-1 text-muted transition-colors duration-200 ease-[var(--ease-entrance)] group-hover:text-parchment">
           {actionLabel(t, item.kind, platformName(main.platform))}
           <ExternalIcon className="transition-transform duration-200 ease-[var(--ease-entrance)] motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5" />
@@ -188,7 +188,7 @@ export function ReplayCard({ item, isClient }: { item: LiveCardData; isClient: b
             // dir="ltr" only on the digits: on the badge itself it would
             // also flip its end-3 position to the wrong side in Arabic.
             <span className={`absolute end-3 bottom-3 ${chip}`}>
-              <span dir="ltr">{formatDuration(item.duration)}</span>
+              <span dir="ltr" className="tabular-nums">{formatDuration(item.duration)}</span>
             </span>
           )}
         </div>

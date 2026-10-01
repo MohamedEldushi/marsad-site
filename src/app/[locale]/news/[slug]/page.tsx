@@ -91,7 +91,7 @@ export default async function NewsArticlePage({
   const container = "mx-auto w-full max-w-[1280px] px-6 sm:px-12 lg:px-16";
   const proseMaxWidth = locale === "ar" ? "max-w-[58ch]" : "max-w-[62ch]";
   const quietLink =
-    "text-lapis underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis";
+    "text-lapis underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink";
 
   return (
     <main>

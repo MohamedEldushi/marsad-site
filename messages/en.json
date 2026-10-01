@@ -369,5 +369,12 @@
   "GameStatus": {
     "beta": "Beta",
     "comingSoon": "Coming soon"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "heading": "This world hasn't been discovered yet",
+    "body": "The page you're looking for doesn't exist, or it has moved.",
+    "home": "Back to home",
+    "linksLabel": "Ways back"
   }
 }

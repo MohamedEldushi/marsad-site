@@ -93,6 +93,8 @@ Nine tokens. Nothing outside this set without asking.
 
 Brass is the single place boldness is spent. If it appears more than twice on a screen, it has stopped working. Status labels (including beta) are explicitly exempt from this brass budget because they are small metadata, not calls to action. The logo's star is also exempt: it is part of the brand mark, not a call to action. `--error`/`--success` exist only for form validation states — never used to color a badge, label, or other UI decoration.
 
+Browser surfaces follow the palette too (`globals.css`): `color-scheme: dark`; text selection is a `--lapis-deep` surface with `--parchment` text; the caret is `--lapis`; scrollbars are slim, a `--muted` thumb on `--ink`. Link underlines sit 4px below the text, and dates, times and durations use tabular figures.
+
 ### Type
 
 Two display faces (one per script) and one body superfamily:
@@ -113,14 +115,14 @@ Avoid: all-caps eyebrow labels above headings; accenting a single word in a head
 
 ### Texture
 
-Kufic-inspired geometric tiling (SVG) appears in exactly four places: behind the hero, as a divider band between major sections, in one framed `KufiPanel` in the header of a text page (/about, /support — approved by the studio; static, no motion), and in generated covers (`NewsCover`, only when a news post, stream, episode or game poster has no artwork — approved by the studio; static, no motion). Max 6% opacity, one scale across the whole site. Never behind body text. Never inside a card, except a generated cover. Nowhere else without asking first.
+Kufic-inspired geometric tiling (SVG) appears in exactly five places: behind the hero, as a divider band between major sections, in one framed `KufiPanel` in the header of a text page (/about, /support — approved by the studio; static, no motion), in generated covers (`NewsCover`, only when a news post, stream, episode or game poster has no artwork — approved by the studio; static, no motion), and in the 404 page's night-sky band around the star (approved by the studio; static, masked to fade out inside the band, above the text). Max 6% opacity, one scale across the whole site. Never behind body text. Never inside a card, except a generated cover. Nowhere else without asking first.
 
 ### Layout and motion
 
 - 12-column grid, 1280px max content width, full-bleed heroes allowed to break out.
 - Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 128px. Nothing off-scale.
 - Radii: 0 for structural surfaces, 4px for controls. Not every element gets the same radius.
-- **Motion:** one orchestrated reveal on page load, in the hero only. Everything else moves only in response to a user action, except for the hero's ambient pool drift and the scoped scroll reveals on Home, News, Streams & Podcasts and Games specified in section 4.5. Section 4.5 defines the full motion rules, including card hover behaviour; Scroll reveals are not a site-wide pattern: Home, News, Streams & Podcasts and Games only. Always respect `prefers-reduced-motion`.
+- **Motion:** one orchestrated reveal on page load, in the hero only — plus the 404 page's one star arrival (section 4.5). Everything else moves only in response to a user action, except for the hero's ambient pool drift and the scoped scroll reveals on Home, News, Streams & Podcasts and Games specified in section 4.5. Section 4.5 defines the full motion rules, including card hover behaviour; Scroll reveals are not a site-wide pattern: Home, News, Streams & Podcasts and Games only. Always respect `prefers-reduced-motion`.
 
 ---
 
@@ -130,7 +132,7 @@ The full spec behind the one-line rule above.
 
 Two rules govern everything:
 
-- **One orchestrated reveal on page load, hero only.** Nothing else animates on mount or on scrolling into view.
+- **One orchestrated reveal on page load, hero only.** Nothing else animates on mount or on scrolling into view. The one other on-load moment is the 404 page's star (see "404" below, approved by the studio).
 - **Everything else moves only in direct response to a user action** — hover, press, focus. No ambient motion outside the hero's pool drift below, no autoplay. The one scoped exception is the scroll reveal on Home, News, Streams & Podcasts and Games, below.
 
 `prefers-reduced-motion: reduce` disables every animation and transition this section describes. The end state still renders — reduced motion removes the *motion*, not the result.
@@ -159,6 +161,10 @@ On mount, once:
 
 Each step runs at the entrance duration (600ms) with the house easing curve. This sequence is the one exception to "everything else moves on user action only" — it runs once, on load, in the hero and nowhere else.
 
+### 404
+
+Approved by the studio: the not-found page's signature moment is the logo's brass star arriving once on load — it drifts in from the upper right (72px, −36px, 80% scale) and settles, 600ms, house easing, 120ms delay. Physical direction on purpose: like the logo's star it always travels right to left and is never mirrored. Under reduced motion it is simply there. Nothing else on the page moves except hover/focus.
+
 ### Ambient
 
 The hero's pool gradient drifts slowly — 20s or longer per cycle, subtle enough to be felt rather than consciously seen. No other element gets ambient motion.
@@ -170,7 +176,7 @@ The hero's pool gradient drifts slowly — 20s or longer per cycle, subtle enoug
 - **News cards:** lighten the frame's border, zoom the cover 4% inside the frame (it never grows past the frame), and slide the "read" arrow forward in the reading direction. 200ms. No raise.
 - **Tabs (news filter):** the active tab's `--lapis` underline grows in from nothing, 200ms.
 - **Reading progress (news articles):** a 2px `--lapis` line along the bottom of the site header, tracking the reader's own scroll directly (no transition). Fills from the start edge.
-- **Focus rings:** appear instantly. Never animated — a focus ring that fades in is briefly invisible to the person who needs it most.
+- **Focus rings:** appear instantly. Never animated — a focus ring that fades in is briefly invisible to the person who needs it most. One style everywhere: a 2px `--lapis` ring, square (no radius beyond the element's own), offset from the element over `--ink` — 2px for controls, tabs and text links, 4px for whole-card links. Article links (`.news-body`) use the same as a 2px outline.
 
 ### Scroll reveal (Home, News, Streams & Podcasts and Games only)
 
@@ -264,7 +270,7 @@ Every post is one folder, `content/news/<slug>/` (the folder name is the web add
 - `/about` — studio story, incl. the Arabic-first differentiator. No team section yet. Header with a `KufiPanel`, an image slot (`about/arabic-first`, 4:5) in the Arabic-first band, and an "Our games" strip of `GameTile`s.
 - `/support` — a per-game routing grid of `GameTile`s (coming-soon games excluded), each a `mailto:` with the game in the subject and a report template in the body (`Support.mailSubject` / `Support.mailBody`); then a contact form + FAQ; then a See also row. The contact form (`ContactForm`, server action in `src/app/[locale]/support/actions.ts`) sends through Resend's HTTP API with plain `fetch` — no SDK dependency. Configured only by env vars (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, see `.env.example`); without them it shows an "unavailable" state pointing to the email address. Spam protection is a honeypot plus a minimum time on page — no CAPTCHA (third-party).
 - `/privacy` and `/terms` — required for app store listings. Real copy will be supplied by the studio; use placeholder text until then.
-- `404`
+- `404` — `src/app/[locale]/not-found.tsx`, shown for unknown addresses (via the catch-all `src/app/[locale]/[...rest]/page.tsx`) and wherever a page calls `notFound()`; inside the normal layout, in the visitor's language, HTTP 404. A night-sky band (lit pool + tiling, star at its centre) above the line "يبدو أن هذا العالم لم يُكتشف بعد" / "This world hasn't been discovered yet", a short explanation, and links back: Home (the page's one brass button), Games and News. Signature moment: the star's arrival (section 4.5, 404). The star is `LogoStar`, exported from `Logo.tsx`.
 
 Careers is out of scope for v1.
 

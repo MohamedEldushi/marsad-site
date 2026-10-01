@@ -91,7 +91,7 @@ export default async function GameDetailPage({
       <div className="mx-auto max-w-[1280px] px-6 pt-8 sm:px-12 lg:px-16">
         <Link
           href="/games"
-          className="inline-flex font-body text-step-2 text-lapis underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+          className="inline-flex font-body text-step-2 text-lapis underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
         >
           {t("backToGames")}
         </Link>

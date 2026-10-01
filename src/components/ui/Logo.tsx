@@ -26,6 +26,28 @@
 
 type Variant = "primary" | "symbol" | "small";
 
+/**
+ * The logo's 4-point star on its own, in brass. Same path as the symbol's
+ * star (0-100 units, centred on 27.5, 59), re-framed to a square box. Used
+ * where the star stands alone (the 404 page's night sky). Decorative.
+ */
+export function LogoStar({ size, className = "" }: { size: number; className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="14.5 46 26 26"
+      width={size}
+      height={size}
+      className={className}
+    >
+      <path
+        fill="var(--brass)"
+        d="M27.5 46Q29.84 56.66 40.5 59Q29.84 61.34 27.5 72Q25.16 61.34 14.5 59Q25.16 56.66 27.5 46Z"
+      />
+    </svg>
+  );
+}
+
 const VIEWBOX: Record<Variant, string> = {
   primary: "24 22 226 90",
   symbol: "0 0 100 100",

@@ -66,6 +66,54 @@ body {
 }
 
 /*
+ * Browser surfaces, themed from the palette (CLAUDE.md section 4).
+ * - color-scheme: dark, so anything the browser draws itself (scrollbars,
+ *   overscroll, autofill) matches the night-blue page.
+ * - Selection: a --lapis-deep filled surface with --parchment text, the
+ *   same pairing the token table prescribes for filled surfaces (~6:1).
+ * - Caret: --lapis, the interactive colour.
+ * - Scrollbar: slim, a --muted thumb on --ink. scrollbar-color is the
+ *   standard; the ::-webkit-scrollbar rules are only for older Safari.
+ */
+html {
+  color-scheme: dark;
+  caret-color: var(--lapis);
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted) 45%, transparent) var(--ink);
+}
+::selection {
+  background: var(--lapis-deep);
+  color: var(--parchment);
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
+  border: 2px solid var(--ink);
+}
+
+/*
+ * Defaults in the base layer, so any utility on an element still wins.
+ * - Link underlines sit 4px below the text everywhere, whether a link is
+ *   underlined at rest or only on hover (Arabic descenders need the room).
+ * - Dates and times use tabular figures, so digits line up and a ticking
+ *   countdown doesn't jitter.
+ */
+@layer base {
+  a {
+    text-underline-offset: 4px;
+  }
+  time {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/*
  * Explicit script pins, independent of the ambient [dir]. The automatic
  * --font-display/--font-body swap above is for real content, which is
  * always one script per page. These four exist only for places that show
@@ -321,7 +369,6 @@ body {
 .news-body a:focus-visible {
   outline: 2px solid var(--lapis);
   outline-offset: 2px;
-  border-radius: 2px;
 }
 .news-body figure {
   margin-block: 48px;
@@ -501,5 +548,48 @@ body {
 @media (hover: hover) {
   .group:hover .spotlight-glow {
     opacity: 1;
+  }
+}
+
+/*
+ * 404: a patch of night sky (approved by the studio), in its own band
+ * with the star at the centre. The tiling fades out fully by 75% of the
+ * mask radius, i.e. inside the band: never behind the text below it. Static apart from the
+ * star's one arrival -- the page's signature moment: the logo's brass star
+ * drifts in from the upper right and settles, 600ms, house easing, once.
+ * Physical (not logical) direction on purpose: like the logo's star, it
+ * always travels right to left and is never mirrored. Under reduced motion
+ * it is simply there.
+ */
+/* Fades to transparent (not to a darker blue), so the glow has no edge
+ * where its layer ends: it simply dissolves into the page. */
+.sky-pool {
+  background: radial-gradient(
+    ellipse 30% 30% at 50% 50%,
+    #2c4a8f 0%,
+    #16274d 35%,
+    transparent 75%
+  );
+}
+.sky-tiling-mask {
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #fff 0%, #fff 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #fff 0%, #fff 20%, transparent 75%);
+}
+@keyframes sky-star-arrive {
+  from {
+    opacity: 0;
+    transform: translate(72px, -36px) scale(0.8);
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sky-star {
+    animation: sky-star-arrive var(--duration-entrance) var(--ease-entrance) 120ms both;
   }
 }

@@ -110,7 +110,7 @@ export default async function Home({
               </h2>
               <Link
                 href="/news"
-                className="font-body text-step-2 text-lapis underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+                className="font-body text-step-2 text-lapis underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
               >
                 {tHome("news.all")}
               </Link>

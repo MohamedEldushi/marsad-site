@@ -47,7 +47,7 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
                 <li key={game.slug}>
                   <Link
                     href={`/games/${game.slug}`}
-                    className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+                    className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                   >
                     {game.title[locale]}
                   </Link>
@@ -56,7 +56,7 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
               <li>
                 <Link
                   href="/games"
-                  className="font-body text-step-2 text-lapis underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+                  className="font-body text-step-2 text-lapis underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                 >
                   {t("gamesAll")}
                 </Link>
@@ -72,7 +72,7 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
               <li>
                 <Link
                   href="/"
-                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                 >
                   {t("home")}
                 </Link>
@@ -80,7 +80,7 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
               <li>
                 <Link
                   href="/news"
-                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                 >
                   {t("news")}
                 </Link>
@@ -88,7 +88,7 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
               <li>
                 <Link
                   href="/live"
-                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                 >
                   {t("live")}
                 </Link>
@@ -96,7 +96,7 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
               <li>
                 <Link
                   href="/about"
-                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                 >
                   {t("about")}
                 </Link>
@@ -104,7 +104,7 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
               <li>
                 <Link
                   href="/support"
-                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                 >
                   {t("support")}
                 </Link>
@@ -120,13 +120,13 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link
               href="/privacy"
-              className="font-body text-step-1 text-muted underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+              className="font-body text-step-1 text-muted underline-offset-4 hover:text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
               {t("legal.privacy")}
             </Link>
             <Link
               href="/terms"
-              className="font-body text-step-1 text-muted underline-offset-4 hover:text-lapis hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis"
+              className="font-body text-step-1 text-muted underline-offset-4 hover:text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
               {t("legal.terms")}
             </Link>
