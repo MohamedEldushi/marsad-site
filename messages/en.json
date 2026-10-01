@@ -253,7 +253,9 @@
   "Legal": {
     "noticeBody": "This page is a placeholder. Marsad will provide the final legal text, and this notice will be removed once it's published.",
     "lastUpdatedLabel": "Last updated",
-    "lastUpdatedValue": "Not yet published"
+    "lastUpdatedValue": "Not yet published",
+    "contents": "Contents",
+    "contentsLabel": "On this page"
   },
   "Privacy": {
     "title": "Privacy Policy",

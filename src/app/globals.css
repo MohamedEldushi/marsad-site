@@ -143,6 +143,27 @@ html {
   --duration-entrance: 600ms;
 }
 
+/*
+ * Reduced motion, site-wide safety net (CLAUDE.md 4.5: reduce disables
+ * every animation and transition; the end state still renders). Most
+ * motion is already opted in with motion-safe / no-preference; this also
+ * catches colour fades and underline growth that weren't (the header on
+ * scroll, tab and contents underlines): each completes instantly, so the
+ * result shows without the movement.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* The one orchestrated reveal CLAUDE.md allows — hero only, on load,
    staggered 80ms per step across the five elements below. */
 @keyframes hero-fade-in {

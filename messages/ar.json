@@ -253,7 +253,9 @@
   "Legal": {
     "noticeBody": "هذه الصفحة نائبة مؤقتة. سيقدّم مرصد النص القانوني النهائي، وستُزال هذه الملاحظة عند نشره.",
     "lastUpdatedLabel": "آخر تحديث",
-    "lastUpdatedValue": "لم يُنشر بعد"
+    "lastUpdatedValue": "لم يُنشر بعد",
+    "contents": "المحتويات",
+    "contentsLabel": "محتويات هذه الصفحة"
   },
   "Privacy": {
     "title": "سياسة الخصوصية",
