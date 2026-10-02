@@ -694,3 +694,110 @@ html {
 .screenshot-viewer::backdrop {
   background: color-mix(in srgb, var(--ink) 94%, transparent);
 }
+
+/*
+ * Back to top: the star "launches". It streaks up out of the button,
+ * then slides back in from below to rest. 600ms entrance band, on click
+ * only. Uses the `translate` property, so it composes with the icon's
+ * rotation (the `rotate` property) instead of replacing it.
+ */
+@keyframes star-launch {
+  0% {
+    translate: 0 0;
+    opacity: 1;
+  }
+  45% {
+    translate: 0 -40px;
+    opacity: 0;
+  }
+  55% {
+    translate: 0 40px;
+    opacity: 0;
+  }
+  100% {
+    translate: 0 0;
+    opacity: 1;
+  }
+}
+
+/*
+ * Easter egg: shooting stars streak right to left along the logo's own
+ * angle (the streak's slope, about 31/58), in the 1200ms band, once.
+ */
+@keyframes easter-streak {
+  from {
+    transform: translate(0, 0) scale(var(--s, 1));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    transform: translate(calc(-100vw - 240px), calc(53vw + 128px)) scale(var(--s, 1));
+    opacity: 0;
+  }
+}
+@keyframes easter-message {
+  0% {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  15%,
+  85% {
+    opacity: 1;
+    translate: 0 0;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 0;
+  }
+}
+.easter-star {
+  opacity: 0;
+  animation: easter-streak var(--duration-ambient, 1200ms) var(--ease-entrance) both;
+}
+.easter-message {
+  animation: easter-message 4000ms var(--ease-entrance) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .easter-star {
+    display: none;
+  }
+  .easter-message {
+    animation: none;
+  }
+}
+
+/*
+ * Page transitions: moving between pages crossfades the content (the
+ * header and footer stay put), with the new page rising 8px. 200ms out,
+ * 600ms in, house easing. Browsers without the View Transitions API just
+ * load the page; reduced motion removes the animation entirely.
+ */
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+::view-transition-old(.page) {
+  animation: page-out var(--duration-interaction) var(--ease-entrance) both;
+}
+::view-transition-new(.page) {
+  animation: page-in var(--duration-entrance) var(--ease-entrance) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

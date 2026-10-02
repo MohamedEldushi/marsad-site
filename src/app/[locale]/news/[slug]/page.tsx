@@ -6,8 +6,10 @@ import { NewsBody } from "@/components/ui/NewsBody";
 import { NewsCard } from "@/components/ui/NewsCard";
 import { NewsCover } from "@/components/ui/NewsCover";
 import { ReadingProgress } from "@/components/ui/ReadingProgress";
+import { ShareLinks } from "@/components/ui/ShareLinks";
 import { Link } from "@/i18n/navigation";
 import { games } from "@/lib/games";
+import { getSiteUrl } from "@/lib/site";
 import {
   formatNewsDate,
   getAllNews,
@@ -166,6 +168,10 @@ export default async function NewsArticlePage({
             </Button>
           </div>
         )}
+        {/* Share: links and the clipboard only, no third-party widgets. */}
+        <div className={`${proseMaxWidth} mt-12 ${game ? "" : "border-t border-muted/40 pt-8"}`}>
+          <ShareLinks url={`${getSiteUrl()}/${locale}/news/${post.slug}`} title={text.title} />
+        </div>
       </article>
 
       {(newer || older) && (

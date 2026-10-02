@@ -109,6 +109,14 @@ export async function Footer({ locale }: { locale: "ar" | "en" }) {
                   {t("support")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/press"
+                  className="font-body text-step-2 text-parchment underline-offset-4 hover:text-lapis hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+                >
+                  {t("press")}
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>

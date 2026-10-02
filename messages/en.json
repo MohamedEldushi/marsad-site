@@ -283,7 +283,7 @@
       },
       {
         "heading": "Cookies and Similar Technologies",
-        "body": "Placeholder text. The studio's real content for this section will replace this paragraph once the policy is finalised."
+        "body": "This site doesn't use cookies for tracking, advertising or analytics, and doesn't load players or widgets from other sites; stream and video links open on their own platforms. The site may store one small, essential cookie to remember the language you chose, and it's used for nothing else. If we ever add something that needs your consent, we'll ask you first."
       },
       {
         "heading": "Children's Privacy",
@@ -373,6 +373,7 @@
     "home": "Home",
     "about": "About",
     "support": "Support",
+    "press": "Press kit",
     "legal": {
       "privacy": "Privacy Policy",
       "terms": "Terms of Service"
@@ -397,5 +398,110 @@
     "body": "The page you're looking for doesn't exist, or it has moved.",
     "home": "Back to home",
     "linksLabel": "Ways back"
+  },
+  "Press": {
+    "heading": "Press kit",
+    "intro": "Everything you need to write about Marsad or feature its games: facts, ready-to-paste copy, logo files and colours.",
+    "factsHeading": "Quick facts",
+    "facts": [
+      {
+        "label": "Name",
+        "value": "Marsad (مرصد)"
+      },
+      {
+        "label": "Type",
+        "value": "Independent game studio"
+      },
+      {
+        "label": "Based in",
+        "value": "To be confirmed"
+      },
+      {
+        "label": "Founded",
+        "value": "To be confirmed"
+      },
+      {
+        "label": "Team",
+        "value": "To be confirmed"
+      },
+      {
+        "label": "Languages",
+        "value": "Arabic first, then English"
+      }
+    ],
+    "contactHeading": "Press contact",
+    "contactBody": "For interviews, review copies, or streaming and showcase requests, email us and we'll reply quickly.",
+    "contactSubject": "Press",
+    "aboutHeading": "About Marsad — copy to paste",
+    "about": {
+      "shortLabel": "Short version",
+      "short": "Marsad is an independent game studio building small, focused worlds, designed in Arabic first.",
+      "longLabel": "Full version",
+      "long": "Marsad is an independent game studio that builds small, focused worlds instead of sprawling ones. Every project starts from a single idea and stays in development until that idea is done right. Unlike most games made for Arabic-speaking players, Marsad's games are designed in Arabic first — from the interface to the rhythm of a sentence — with English as a genuine second language."
+    },
+    "copy": "Copy",
+    "copied": "Copied",
+    "logosHeading": "Logo",
+    "logosNote": "SVG files that scale without losing quality. Use the dark-background version on dark backgrounds and the light one on light.",
+    "files": {
+      "logoDark": "Logo — dark backgrounds",
+      "logoLight": "Logo — light backgrounds",
+      "symbolDark": "Symbol — dark backgrounds",
+      "symbolLight": "Symbol — light backgrounds",
+      "logoWhite": "Logo — white",
+      "logoBlack": "Logo — black"
+    },
+    "downloadSvg": "Download SVG",
+    "coloursHeading": "Colours",
+    "colourNames": {
+      "ink": "Ink",
+      "inkRaised": "Ink raised",
+      "parchment": "Parchment",
+      "brass": "Brass",
+      "lapis": "Lapis"
+    },
+    "typeHeading": "Typefaces",
+    "typefaces": [
+      {
+        "role": "Arabic display",
+        "name": "Noto Kufi Arabic"
+      },
+      {
+        "role": "Arabic text",
+        "name": "IBM Plex Sans Arabic"
+      },
+      {
+        "role": "Latin display",
+        "name": "Archivo"
+      },
+      {
+        "role": "Latin text",
+        "name": "IBM Plex Sans"
+      }
+    ],
+    "gamesHeading": "Games",
+    "released": "Released",
+    "usageHeading": "Using the logo",
+    "usage": [
+      "Don't recolour, stretch or rotate the logo, or add shadows or effects.",
+      "Leave clear space around it at least the height of the ص loop.",
+      "Don't use the full logo narrower than 96px; use the symbol at small sizes.",
+      "The logo is never mirrored, even in English designs."
+    ]
+  },
+  "BackToTop": {
+    "label": "Back to top"
+  },
+  "EasterEgg": {
+    "found": "You found the observatory's secret."
+  },
+  "Share": {
+    "heading": "Share this story",
+    "copy": "Copy link",
+    "copied": "Link copied",
+    "copyFallback": "Copy the link:",
+    "whatsapp": "WhatsApp",
+    "more": "Share…",
+    "newTab": "(opens in a new tab)"
   }
 }

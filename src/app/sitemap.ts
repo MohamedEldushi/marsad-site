@@ -66,6 +66,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ["/live", 0.7],
       ["/about", 0.6],
       ["/support", 0.6],
+      ["/press", 0.4],
       ["/privacy", 0.3],
       ["/terms", 0.3],
     ] as const

@@ -8,6 +8,9 @@ import {
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ViewTransition } from "react";
+import { BackToTop } from "@/components/ui/BackToTop";
+import { EasterEgg } from "@/components/ui/EasterEgg";
 import { Footer } from "@/components/ui/Footer";
 import { SiteHeader } from "@/components/ui/SiteHeader";
 import { BUILT_AT, getStreamWindows } from "@/lib/live";
@@ -133,9 +136,13 @@ export default async function LocaleLayout({
           {/* Skip-link target. tabIndex -1 so focus can land here without
               adding it to the normal tab order. */}
           <div id="main-content" tabIndex={-1} className="outline-none">
-            {children}
+            {/* Page transitions: the content crossfades between pages; the
+                header and footer stay put (globals.css, "Page transitions"). */}
+            <ViewTransition default="page">{children}</ViewTransition>
           </div>
           <Footer locale={locale} />
+          <BackToTop />
+          <EasterEgg />
         </NextIntlClientProvider>
       </body>
     </html>
