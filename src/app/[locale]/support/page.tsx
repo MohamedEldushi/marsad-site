@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { ContactForm } from "@/components/ui/ContactForm";
-import { GameTile } from "@/components/ui/GameTile";
+import { GamePoster } from "@/components/ui/GamePoster";
 import { KufiDivider } from "@/components/ui/KufiDivider";
 import { KufiPanel } from "@/components/ui/KufiPanel";
 import { Link } from "@/i18n/navigation";
@@ -28,7 +28,8 @@ type FaqEntry = { question: string; answer: string };
 // A routing hub, after the Supercell support page's structure (per-game
 // routing first), in our own design system:
 //   1. Header: title + intro beside the Kufi panel.
-//   2. Choose your game: one tile per playable game. Each is a mailto:
+//   2. Choose your game: one GamePoster per playable game (pointer
+//      light, status line). Each is a mailto:
 //      with the game in the subject and a short report template in the
 //      body, so every email arrives already sorted and detailed.
 //   3. Kufi divider band.
@@ -99,16 +100,11 @@ export default async function SupportPage({
         <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-8">
           {supportedGames.map((game) => (
             <li key={game.slug}>
-              <GameTile
-                thumbnail={game.thumbnail}
-                title={game.title[locale]}
-                line={t("gameAction")}
-                lineTone="lapis"
-                link={(className, children) => (
-                  <a href={mailtoFor(game.title[locale])} className={className}>
-                    {children}
-                  </a>
-                )}
+              <GamePoster
+                game={game}
+                locale={locale}
+                href={mailtoFor(game.title[locale])}
+                action={t("gameAction")}
               />
             </li>
           ))}
