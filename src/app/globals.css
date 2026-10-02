@@ -20,8 +20,13 @@
   --success: #46a758;
 
   /* Latin is the default script; [dir="rtl"] below swaps these to Arabic. */
-  --display-font: var(--font-archivo), sans-serif;
-  --body-font: var(--font-ibm-plex-sans), sans-serif;
+  /* Arabic faces follow the Latin ones, so an Arabic word inside English
+     text ("Marsad (مرصد)") uses our Arabic fonts, not a system font. The
+     stacks are built in the locale layout (--latin-*-stack) so the Arabic
+     web font comes before next/font's Arial stand-ins; the fallback here
+     only applies if those variables are missing. */
+  --display-font: var(--latin-display-stack, var(--font-archivo), var(--font-noto-kufi-arabic), sans-serif);
+  --body-font: var(--latin-body-stack, var(--font-ibm-plex-sans), var(--font-ibm-plex-sans-arabic), sans-serif);
   --display-leading: 1.05;
   --body-leading: 1.5;
 }
@@ -124,13 +129,13 @@ html {
   font-family: var(--font-noto-kufi-arabic), sans-serif;
 }
 .font-display-en {
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--latin-display-stack, var(--font-archivo), var(--font-noto-kufi-arabic), sans-serif);
 }
 .font-body-ar {
   font-family: var(--font-ibm-plex-sans-arabic), sans-serif;
 }
 .font-body-en {
-  font-family: var(--font-ibm-plex-sans), sans-serif;
+  font-family: var(--latin-body-stack, var(--font-ibm-plex-sans), var(--font-ibm-plex-sans-arabic), sans-serif);
 }
 
 /*

@@ -46,6 +46,24 @@ const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   weight: ["400", "500"],
 });
 
+// Latin stacks with the Arabic face as a fallback, for Arabic words inside
+// English text ("Marsad (مرصد)"). Order: the Latin web font, the Arabic web
+// font, then next/font's size-matched stand-ins. The stand-ins are local
+// system fonts (Arial) that contain Arabic letters, so they must come after
+// the Arabic web font or they would draw the Arabic instead of it. Built
+// from the names next/font reports, not hardcoded.
+function latinStack(latin: { style: { fontFamily: string } }, arabic: { style: { fontFamily: string } }) {
+  const names = (font: { style: { fontFamily: string } }) => font.style.fontFamily.split(",").map((name) => name.trim());
+  const [latinFace, ...latinStandIns] = names(latin);
+  const [arabicFace, ...arabicStandIns] = names(arabic);
+  return [latinFace, arabicFace, ...latinStandIns, ...arabicStandIns, "sans-serif"].join(", ");
+}
+
+const latinFontStacks = {
+  "--latin-display-stack": latinStack(archivo, notoKufiArabic),
+  "--latin-body-stack": latinStack(ibmPlexSans, ibmPlexSansArabic),
+} as React.CSSProperties;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -126,6 +144,7 @@ export default async function LocaleLayout({
       lang={locale}
       dir={dir}
       className={`${archivo.variable} ${notoKufiArabic.variable} ${ibmPlexSans.variable} ${ibmPlexSansArabic.variable} h-full`}
+      style={latinFontStacks}
     >
       <body className="min-h-full font-body antialiased">
         <NextIntlClientProvider>
