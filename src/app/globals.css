@@ -573,6 +573,62 @@ html {
 }
 
 /*
+ * About: the Arabic-first line's word-by-word reveal (approved by the
+ * studio, CLAUDE.md 4.5) -- the page's one signature moment. 600ms total:
+ * each word 200ms, starts spread over 400ms by WordReveal.tsx. Visible by
+ * default; hidden only under no-preference motion until it fires.
+ */
+@keyframes word-reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.word-reveal-word {
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .word-reveal .word-reveal-word {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .word-reveal[data-revealed="true"] .word-reveal-word {
+    animation: word-reveal-up var(--duration-interaction) var(--ease-entrance) forwards;
+  }
+}
+
+/*
+ * Support: the contact form's success moment. In response to the
+ * player's own submit: the ring draws, then the check, 600ms in total,
+ * house easing, once per send. Drawn by default (reduced motion, no JS).
+ */
+@keyframes contact-sent-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.contact-sent-ring,
+.contact-sent-check {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .contact-sent-ring {
+    animation: contact-sent-draw var(--duration-entrance) var(--ease-entrance) both;
+  }
+  .contact-sent-check {
+    animation: contact-sent-draw var(--duration-interaction) var(--ease-entrance) 400ms both;
+  }
+}
+
+/*
  * 404: a patch of night sky (approved by the studio), in its own band
  * with the star at the centre. The tiling fades out fully by 75% of the
  * mask radius, i.e. inside the band: never behind the text below it. Static apart from the

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Game } from "@/types/game";
@@ -6,14 +7,19 @@ import { Spotlight } from "./Spotlight";
 
 /**
  * A game as a single 3:4 poster link: the compact sibling of GameChapter,
- * for rows of games (Home's games row, the styleguide). The poster is the
- * game's art, or a generated Marsad-style poster (NewsCover: lit pool +
- * Kufic tiling + the game's name) until art exists.
+ * for rows of games (Home's games row, /about's "Our games", /support's
+ * per-game routing, the styleguide). The poster is the game's art, or a
+ * generated Marsad-style poster (NewsCover: lit pool + Kufic tiling + the
+ * game's name) until art exists.
  *
  * Under the poster: the status line (beta in brass -- status labels are
  * exempt from the brass budget -- or coming soon) and the tagline. The
  * title is set on the poster itself, so it's repeated as a screen-reader
  * heading rather than shown twice.
+ *
+ * By default the poster links to the game's page. /support passes `href`
+ * (a pre-filled mailto:) and `action` (the email line, in --lapis) instead
+ * of the tagline.
  *
  * Hover, same as the /games posters (CLAUDE.md 4.5): the pointer light
  * (Spotlight), the frame lightens, the art zooms 4%. 200ms, house easing,
@@ -23,19 +29,24 @@ export async function GamePoster({
   game,
   locale,
   headingLevel = "h3",
+  href,
+  action,
 }: {
   game: Game;
   locale: "ar" | "en";
   headingLevel?: "h2" | "h3";
+  /** A plain address (e.g. mailto:) instead of the game page. */
+  href?: string;
+  /** Shown in place of the tagline, as the link's action. */
+  action?: string;
 }) {
   const tStatus = await getTranslations("GameStatus");
   const Heading = headingLevel;
+  const className =
+    "group flex flex-col gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-4 focus-visible:ring-offset-ink";
 
-  return (
-    <Link
-      href={`/games/${game.slug}`}
-      className="group flex flex-col gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lapis focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
-    >
+  const content: ReactNode = (
+    <>
       <Spotlight className="relative">
         <div className="relative aspect-[3/4] w-full overflow-hidden border border-muted/20 bg-ink transition-colors duration-200 ease-[var(--ease-entrance)] group-hover:border-muted/60">
           {/* Pass the real image path as `cover` when art lands. */}
@@ -56,8 +67,22 @@ export async function GamePoster({
         {game.status === "coming-soon" && (
           <p className="font-body text-step-1 text-muted">{tStatus("comingSoon")}</p>
         )}
-        <p className="font-body text-step-2 leading-body text-muted">{game.tagline[locale]}</p>
+        {action ? (
+          <p className="font-body text-step-2 leading-body text-lapis group-hover:underline">{action}</p>
+        ) : (
+          <p className="font-body text-step-2 leading-body text-muted">{game.tagline[locale]}</p>
+        )}
       </div>
+    </>
+  );
+
+  return href ? (
+    <a href={href} className={className}>
+      {content}
+    </a>
+  ) : (
+    <Link href={`/games/${game.slug}`} className={className}>
+      {content}
     </Link>
   );
 }

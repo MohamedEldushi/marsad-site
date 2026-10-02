@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { GameTile } from "@/components/ui/GameTile";
+import { GamePoster } from "@/components/ui/GamePoster";
 import { KufiPanel } from "@/components/ui/KufiPanel";
+import { WordReveal } from "@/components/ui/WordReveal";
 import { Link } from "@/i18n/navigation";
 import { games } from "@/lib/games";
 
@@ -106,9 +107,11 @@ export default async function AboutPage({
                   <h2 id={headingId} className={headingCell}>
                     {section.heading}
                   </h2>
-                  <p className="font-display text-step-4 font-semibold leading-display text-parchment sm:text-step-5">
-                    {section.lead}
-                  </p>
+                  {/* The page's signature moment: word by word, once. */}
+                  <WordReveal
+                    text={section.lead}
+                    className="font-display text-step-4 font-semibold leading-display text-parchment sm:text-step-5"
+                  />
                   <p className={`${proseMaxWidth} font-body text-step-3 leading-body text-muted`}>
                     {section.body}
                   </p>
@@ -138,8 +141,8 @@ export default async function AboutPage({
         );
       })}
 
-      {/* Our games: every game, linking to its page. Thumbnails are the
-          existing 3:4 slots, so real art fills in with no layout change. */}
+      {/* Our games: every game as a GamePoster (pointer light, status
+          line, tagline), linking to its page. */}
       <section
         aria-labelledby="about-games-heading"
         className={`${container} pb-16 sm:pb-24`}
@@ -158,16 +161,7 @@ export default async function AboutPage({
         <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-3 lg:gap-x-8">
           {games.map((game) => (
             <li key={game.slug}>
-              <GameTile
-                thumbnail={game.thumbnail}
-                title={game.title[locale]}
-                line={game.tagline[locale]}
-                link={(className, children) => (
-                  <Link href={`/games/${game.slug}`} className={className}>
-                    {children}
-                  </Link>
-                )}
-              />
+              <GamePoster game={game} locale={locale} />
             </li>
           ))}
         </ul>
