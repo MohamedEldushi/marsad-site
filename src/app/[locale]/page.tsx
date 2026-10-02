@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { GameChapter } from "@/components/ui/GameChapter";
 import { GamePoster } from "@/components/ui/GamePoster";
 import { Hero } from "@/components/ui/Hero";
+import { HeroFeature } from "@/components/ui/HeroFeature";
 import { KufiDivider } from "@/components/ui/KufiDivider";
 import { LiveStrip } from "@/components/ui/LiveStrip";
 import { LogoStar } from "@/components/ui/Logo";
@@ -47,7 +48,13 @@ export default async function Home({
 
   return (
     <main>
-      <Hero wordmark={tBoot("heading")} locale={locale} headline={tBoot("tagline")}>
+      <Hero
+        wordmark={tBoot("heading")}
+        locale={locale}
+        headline={tBoot("tagline")}
+        underHeader
+        feature={<HeroFeature game={featuredGame} locale={locale} />}
+      >
         <Button as={Link} href="/games" variant="primary">
           {tHome("hero.cta")}
         </Button>

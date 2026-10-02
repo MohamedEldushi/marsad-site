@@ -573,6 +573,21 @@ html {
 }
 
 /*
+ * Home hero, step 6 of the load sequence (CLAUDE.md 4.5): the featured
+ * game's poster opens with the /games shutter -- on load, 80ms after the
+ * CTA starts -- while the art settles from 108%. Same keyframes as the
+ * scroll shutter. Visible by default; reduced motion skips it.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-shutter > * {
+    animation: reveal-shutter-open var(--duration-entrance) var(--ease-entrance) 620ms both;
+  }
+  .hero-shutter .shutter-art {
+    animation: reveal-shutter-settle var(--duration-entrance) var(--ease-entrance) 620ms both;
+  }
+}
+
+/*
  * About: the Arabic-first line's word-by-word reveal (approved by the
  * studio, CLAUDE.md 4.5) -- the page's one signature moment. 600ms total:
  * each word 200ms, starts spread over 400ms by WordReveal.tsx. Visible by
